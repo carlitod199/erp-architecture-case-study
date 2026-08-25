@@ -1,0 +1,54 @@
+# This repository contains no application, no build and no dependencies.
+# These rules exist so that nothing from a real system can be committed by
+# accident — the reason for each is stated, because a .gitignore is a
+# security control here, not housekeeping.
+
+# Secrets and environment. Nothing in this repository needs them; anything
+# matching these patterns arrived by mistake.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.cer
+*.jks
+secrets.php
+*secrets*.php
+config/*.local.php
+
+# Dependency trees and build output. The reference implementations have no
+# dependencies; a vendor directory here means something was copied in.
+/vendor/
+/node_modules/
+composer.lock
+package-lock.json
+
+# Runtime artefacts that can contain real data: logs carry request payloads,
+# session files carry live session contents, SQLite files carry records.
+*.log
+/logs/
+/storage/
+sess_*
+*.sqlite
+*.sqlite3
+*.db
+
+# Database dumps. The single worst thing that could land in a public repo.
+*.sql
+*.sql.gz
+*.dump
+
+# Uploads and generated documents from a real system.
+/uploads/
+*.xml
+*.pdf
+
+# Editor and OS noise
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
