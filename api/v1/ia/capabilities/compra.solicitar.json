@@ -1,0 +1,23 @@
+{
+  "id": "compra.solicitar",
+  "titulo": "Criar uma solicitação de compra (SC)",
+  "modulo": "compras",
+  "permissao": "compras.solicitacoes_compra.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/compras/solicitacoes", "funcao": "rota_compra_solicitar" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "itens": { "tipo": "lista", "obrigatorio": true, "resolver": "produto", "desc": "itens [{produto_id?, descricao?, quantidade}] — produto do estoque ou texto livre" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data da solicitação" },
+    "safra_talhao_id": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "vínculo de custo à safra×válvula (opcional)" },
+    "centro_custo_id": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "centro de custo (opcional)" },
+    "justificativa": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "justificativa (máx. 255)" }
+  },
+  "resumo": "Solicitação de compra com {itens} item(ns)",
+  "regras": [
+    "ao menos 1 item (produto do estoque ou descrição) com quantidade > 0",
+    "numera a SC automaticamente e abre com status 'aberta'"
+  ],
+  "inverso": null
+}

@@ -1,0 +1,83 @@
+/* ============================================================
+   VERO — impressão global (C-35 / A-05, reunião 18/07)
+   Antes NÃO havia @media print no sistema: qualquer "Imprimir"
+   (Relatório MIP, OS, DF, relatórios) saía com sidebar, menus e
+   botões. Esta folha vale para TODAS as telas via agro_header.
+
+   Regras:
+   - some: navegação, topbars, botões/ações, formulários de filtro,
+     modais e tudo marcado .no-print;
+   - aparece: .print-header (cabeçalho com fazenda + data, injetado
+     pelo header — só existe na impressão);
+   - conteúdo a 100% da largura, fundo branco, sem sombras.
+   ============================================================ */
+/* Y-04: margens de página consistentes p/ boletim/OS/relatórios */
+@page { margin: 12mm; }
+
+@media print {
+  /* esconde a navegação e o chrome da aplicação */
+  .side, .navwrap, .sidebar, .vsidebar,
+  .macromenu, .microrail,   /* colunas da sidebar VERO (agro_header) */
+  .bios-topbar,             /* topbar do layout legado (includes/header.php) */
+  .topbar, .vero-topbar__actions,
+  .vbtn, .vicon, button,    /* A-08: .vicon = botão-ícone canônico (vero-ui) */
+  .vmodal,
+  .vpagination, .vero-pagination,
+  form.no-print, .no-print,
+  .vtoolbar form,           /* filtros de listagem */
+  .vseg,                    /* A-08: controles segmentados (abas/toggle) — só-tela */
+  .iconbtn,
+  .uni-fab, .uni-painel,    /* W-06: widget flutuante da Universidade (ajuda) */
+  .vflash-host,             /* W-06: host de toasts/avisos (canto da tela) */
+  .drawer, #drawer, .scrim, #scrim,   /* W-06: gavetas e overlays */
+  [role="alert"][style*="fixed"],   /* barra de "sessão expira" e afins */
+  .toolbar {
+    display: none !important;
+  }
+
+  /* layout de coluna única, sem grid da shell (reset explícito do grid inline) */
+  .bios-shell { display: block !important; grid-template-columns: 1fr !important; background: #fff !important; }
+  .vwrap { padding: 0 !important; max-width: none !important; }
+  body { background: #fff !important; color: #000 !important; font-size: 12px; }
+
+  /* W-06: topbar de página imprime como título simples (sem sticky/fundo/sombra);
+     as ações já saem via .vero-topbar__actions acima */
+  .vero-topbar, .vwrap > .vhead:not(.vhead ~ .vhead) {
+    position: static !important; background: none !important;
+    box-shadow: none !important; border: none !important;
+    margin: 0 0 8px !important; padding: 0 !important; min-height: 0 !important;
+  }
+
+  /* cards viram blocos planos */
+  .vcard { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
+
+  /* tabelas: cabe na página e não corta linha no meio */
+  .vdata-wrap { overflow: visible !important; }
+  table { width: 100% !important; border-collapse: collapse !important; }
+  tr { break-inside: avoid; }
+  /* A-08: cabeçalho da tabela repete no topo de cada página; rodapé idem */
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  /* A-08: garante grade visível no papel mesmo se o tema só usa linhas sutis */
+  th, td { border: 1px solid #ccc !important; }
+  th { background: #eee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* A-08: não deixa título órfão no pé da página, separado do seu conteúdo */
+  h1, h2, h3, h4, .vhead, caption { break-after: avoid; }
+
+  /* links sem cara de link */
+  a { color: inherit !important; text-decoration: none !important; }
+
+  /* cabeçalho de impressão (injetado pelo agro_header — oculto na tela) */
+  .print-header {
+    display: block !important;
+    border-bottom: 2px solid #000;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  .print-header .ph-titulo { font-size: 16px; font-weight: 700; }
+  .print-header .ph-meta { font-size: 11px; color: #333; }
+}
+
+/* fora da impressão o cabeçalho não existe visualmente */
+.print-header { display: none; }

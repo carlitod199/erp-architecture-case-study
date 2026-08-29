@@ -1,0 +1,36 @@
+{
+  "slug": "preparar-calda-e-atribuir-aplicador",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Preparo de Calda e ajuste a data em OS previstas até para ver a fila do dia (inclui atrasadas e sem data)",
+      "rota": "/mip/preparo_calda.php",
+      "seletor": "input[name=\"data\"]",
+      "marca": "caixa",
+      "label": "OS previstas até"
+    },
+    {
+      "texto": "Na OS que vai preparar, clique em Preparar para abrir o painel de atribuição",
+      "rota": "/mip/preparo_calda.php",
+      "seletor": "a.vicon-acao[title=\"Preparar\"]",
+      "marca": "seta",
+      "label": "Preparar"
+    },
+    {
+      "texto": "Escolha o trator (obrigatório) e o aplicador principal — pelo menos um operador é exigência de certificação",
+      "rota": "/mip/preparo_calda.php",
+      "pre_acoes": ["a.vicon-acao[title=\"Preparar\"]"],
+      "seletor": "#vm-preparo select[name=\"op_operador[]\"]",
+      "marca": "destaque",
+      "label": "Aplicador principal"
+    },
+    {
+      "texto": "Ajuste as quantidades reais e clique em Atribuir e confirmar preparo — este passo tira a OS da fila, baixa o estoque e lança o custo",
+      "rota": "/mip/preparo_calda.php",
+      "pre_acoes": ["a.vicon-acao[title=\"Preparar\"]"],
+      "seletor": "#vm-preparo button:has-text(\"Atribuir e confirmar preparo\")",
+      "marca": "seta",
+      "label": "Atribuir e confirmar preparo"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "montar-o-plano-de-contas",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova conta",
+      "rota": "/financeiro/plano_contas.php",
+      "seletor": "button:has-text(\"+ Nova conta\")",
+      "marca": "seta",
+      "label": "Nova conta"
+    },
+    {
+      "texto": "Informe codigo e nome — o codigo precisa ser unico em todo o plano",
+      "rota": "/financeiro/plano_contas.php",
+      "pre_acoes": ["button:has-text(\"+ Nova conta\")"],
+      "seletor": "#vm-form input[name=\"codigo\"]",
+      "marca": "caixa",
+      "label": "Codigo e nome"
+    },
+    {
+      "texto": "Escolha o tipo e a conta pai; marque aceita lancamento so nas contas-folha",
+      "rota": "/financeiro/plano_contas.php",
+      "pre_acoes": ["button:has-text(\"+ Nova conta\")"],
+      "seletor": "#vm-form select[name=\"conta_pai_id\"]",
+      "marca": "caixa",
+      "label": "Classificacao"
+    },
+    {
+      "texto": "Clique em Salvar",
+      "rota": "/financeiro/plano_contas.php",
+      "pre_acoes": ["button:has-text(\"+ Nova conta\")"],
+      "seletor": "#vm-form button.vbtn-primary",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

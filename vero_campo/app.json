@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "VERO Campo",
+    "slug": "vero",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/vero_icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "verocampo",
+    "splash": {
+      "image": "./assets/vero_icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#070907"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.example.verocampo",
+      "infoPlist": {
+        "NSCameraUsageDescription": "O VERO Campo usa a câmera para anexar fotos aos apontamentos e monitoramentos.",
+        "NSLocationWhenInUseUsageDescription": "O VERO Campo usa sua localização para identificar o talhão e registrar a coordenada da operação.",
+        "NSMicrophoneUsageDescription": "O VERO Campo usa o microfone para registrar apontamentos por comando de voz.",
+        "NSPhotoLibraryUsageDescription": "O VERO Campo acessa suas fotos para anexar imagens aos apontamentos e monitoramentos.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.example.verocampo",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/vero_icon.png",
+        "backgroundColor": "#00363D"
+      },
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ]
+    },
+    "plugins": [
+      "expo-audio",
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    "owner": "seu-usuario-expo",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/00000000-0000-0000-0000-000000000000"
+    }
+  }
+}

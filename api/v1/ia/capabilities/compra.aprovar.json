@@ -1,0 +1,20 @@
+{
+  "id": "compra.aprovar",
+  "titulo": "Aprovar um pedido de compra",
+  "modulo": "compras",
+  "permissao": "compras.aprovacoes.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/compras/pedidos/{id}/aprovar", "funcao": "rota_compra_decidir" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": null, "desc": "id do pedido em aprovação", "de_contexto": true },
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id da decisão no aparelho (idempotência)", "de_contexto": true },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação da decisão (máx. 255)" }
+  },
+  "resumo": "Aprovar pedido de compra #{id}",
+  "regras": [
+    "o pedido precisa estar aguardando aprovação (status 'aprovacao')",
+    "aprova a aprovação pendente e move o pedido para 'aprovado'"
+  ],
+  "inverso": "compra.rejeitar"
+}

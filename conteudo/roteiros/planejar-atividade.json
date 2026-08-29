@@ -1,0 +1,37 @@
+{
+  "slug": "planejar-atividade",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova atividade para abrir o planejamento",
+      "rota": "/agro/atividades.php",
+      "seletor": "button:has-text(\"Nova atividade\")",
+      "marca": "seta",
+      "label": "Nova atividade"
+    },
+    {
+      "texto": "Escreva a descricao (ex.: Poda de formacao quadra norte)",
+      "rota": "/agro/atividades.php",
+      "pre_acoes": ["button:has-text(\"Nova atividade\")"],
+      "seletor": "#vm-form input[name=\"descricao\"]",
+      "marca": "caixa",
+      "label": "Descrição"
+    },
+    {
+      "texto": "Escolha o talhao — obrigatorio; selecione o tipo de atividade e a safra",
+      "rota": "/agro/atividades.php",
+      "pre_acoes": ["button:has-text(\"Nova atividade\")"],
+      "seletor": "#vm-form select[name=\"talhao_id\"]",
+      "marca": "caixa",
+      "label": "Talhão"
+    },
+    {
+      "texto": "Clique em Salvar — a atividade nasce planejada e a OS-espelho e sincronizada",
+      "rota": "/agro/atividades.php",
+      "pre_acoes": ["button:has-text(\"Nova atividade\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-uma-conta-bancaria",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova conta",
+      "rota": "/financeiro/contas_bancarias.php",
+      "seletor": "button:has-text(\"+ Nova conta\")",
+      "marca": "seta",
+      "label": "Nova conta"
+    },
+    {
+      "texto": "Informe o nome (obrigatorio) — e como a conta aparece na conciliacao",
+      "rota": "/financeiro/contas_bancarias.php",
+      "pre_acoes": ["button:has-text(\"+ Nova conta\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome"
+    },
+    {
+      "texto": "Escolha o tipo (corrente, poupanca, caixa ou aplicacao) e informe o saldo inicial",
+      "rota": "/financeiro/contas_bancarias.php",
+      "pre_acoes": ["button:has-text(\"+ Nova conta\")"],
+      "seletor": "#vm-form select[name=\"tipo\"]",
+      "marca": "caixa",
+      "label": "Tipo e saldo inicial"
+    },
+    {
+      "texto": "Clique em Salvar — a conta fica disponivel na conciliacao bancaria",
+      "rota": "/financeiro/contas_bancarias.php",
+      "pre_acoes": ["button:has-text(\"+ Nova conta\")"],
+      "seletor": "#vm-form button.vbtn-primary",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

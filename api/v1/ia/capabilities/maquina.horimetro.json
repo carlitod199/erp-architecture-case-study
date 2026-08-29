@@ -1,0 +1,22 @@
+{
+  "id": "maquina.horimetro",
+  "titulo": "Registrar leitura de horímetro",
+  "modulo": "maquinas",
+  "permissao": "maquinas.horimetro.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/maquinas/{id}/horimetro", "funcao": "rota_maquina_horimetro" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": "maquina", "desc": "máquina lida", "de_contexto": true },
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "horimetro": { "tipo": "decimal", "obrigatorio": true, "resolver": null, "desc": "leitura do horímetro (> 0)" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data da leitura" }
+  },
+  "resumo": "Horímetro {horimetro} da máquina {id}",
+  "regras": [
+    "a leitura deve ser maior que zero",
+    "não aceita leitura menor que o horímetro atual da máquina",
+    "atualiza o horimetro_atual da máquina"
+  ],
+  "inverso": null
+}

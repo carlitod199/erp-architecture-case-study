@@ -1,0 +1,34 @@
+{
+  "slug": "importar-produtos-por-planilha",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Baixe o template CSV — já vem com o cabeçalho e um exemplo",
+      "rota": "/estoque/importar_produtos.php",
+      "seletor": "a[href=\"?acao=template\"]",
+      "marca": "seta",
+      "label": "Template CSV"
+    },
+    {
+      "texto": "Preenchida a planilha, selecione o arquivo CSV",
+      "rota": "/estoque/importar_produtos.php",
+      "seletor": "input[name=\"arquivo\"]",
+      "marca": "caixa",
+      "label": "Arquivo CSV"
+    },
+    {
+      "texto": "Deixe Confirmar desmarcado na primeira vez — o sistema roda um dry-run e mostra o que será criado/atualizado",
+      "rota": "/estoque/importar_produtos.php",
+      "seletor": "input[name=\"confirmar\"]",
+      "marca": "caixa",
+      "label": "Confirmar gravação"
+    },
+    {
+      "texto": "Envie; revise a prévia e só então reenvie com Confirmar marcado para gravar de fato",
+      "rota": "/estoque/importar_produtos.php",
+      "seletor": "form button.vbtn-primary",
+      "marca": "seta",
+      "label": "Enviar"
+    }
+  ]
+}

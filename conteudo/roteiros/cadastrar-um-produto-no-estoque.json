@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-um-produto-no-estoque",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo produto",
+      "rota": "/estoque/produtos.php",
+      "seletor": "button[onclick=\"vModalNovo('vm-form')\"]",
+      "marca": "seta",
+      "label": "+ Novo produto"
+    },
+    {
+      "texto": "O código de 6 dígitos já vem preenchido com o próximo livre — informe o nome",
+      "rota": "/estoque/produtos.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form input[name=\"codigo\"]",
+      "marca": "caixa",
+      "label": "Código sugerido"
+    },
+    {
+      "texto": "Confira a unidade de medida — ela alimenta o custo médio e as doses; um erro aqui distorce todo o consumo",
+      "rota": "/estoque/produtos.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form input[name=\"unidade\"]",
+      "marca": "caixa",
+      "label": "Unidade (campo crítico)"
+    },
+    {
+      "texto": "Salve — o produto passa a aparecer nas telas de entrada, saída e apontamento",
+      "rota": "/estoque/produtos.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

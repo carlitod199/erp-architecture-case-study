@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-ponto-de-amostragem",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Pontos de Amostragem e clique em + Novo ponto",
+      "rota": "/mip/pontos_amostragem.php",
+      "seletor": "button:has-text(\"+ Novo ponto\")",
+      "marca": "caixa",
+      "label": "Novo ponto"
+    },
+    {
+      "texto": "Escolha a válvula a que o ponto pertence",
+      "rota": "/mip/pontos_amostragem.php",
+      "pre_acoes": ["button:has-text(\"+ Novo ponto\")"],
+      "seletor": "select[name=\"talhao_id\"]",
+      "marca": "caixa",
+      "label": "Válvula"
+    },
+    {
+      "texto": "Dê um nome ao ponto — algo que a equipe reconheça no campo",
+      "rota": "/mip/pontos_amostragem.php",
+      "pre_acoes": ["button:has-text(\"+ Novo ponto\")"],
+      "seletor": "input[name=\"nome\"]",
+      "marca": "destaque",
+      "label": "Nome do ponto"
+    },
+    {
+      "texto": "Clique em Salvar — o ponto passa a ficar disponível nos monitoramentos daquela válvula",
+      "rota": "/mip/pontos_amostragem.php",
+      "pre_acoes": ["button:has-text(\"+ Novo ponto\")"],
+      "seletor": "#vm-form .vform-actions button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

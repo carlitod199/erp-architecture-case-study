@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-estagio-fenologico",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo estagio para abrir o cadastro",
+      "rota": "/agro/fenologia.php",
+      "seletor": "button:has-text(\"Novo estágio\")",
+      "marca": "seta",
+      "label": "Novo estágio"
+    },
+    {
+      "texto": "Escolha a cultura e a escala (BBCH, E-L ou Propria)",
+      "rota": "/agro/fenologia.php",
+      "pre_acoes": ["button:has-text(\"Novo estágio\")"],
+      "seletor": "#vm-form select[name=\"escala\"]",
+      "marca": "caixa",
+      "label": "Escala"
+    },
+    {
+      "texto": "Informe o codigo (ex.: EL-12) e o nome do estagio",
+      "rota": "/agro/fenologia.php",
+      "pre_acoes": ["button:has-text(\"Novo estágio\")"],
+      "seletor": "#vm-form input[name=\"codigo\"]",
+      "marca": "caixa",
+      "label": "Código do estágio"
+    },
+    {
+      "texto": "Preencha a ordem de exibicao e clique em Salvar",
+      "rota": "/agro/fenologia.php",
+      "pre_acoes": ["button:has-text(\"Novo estágio\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

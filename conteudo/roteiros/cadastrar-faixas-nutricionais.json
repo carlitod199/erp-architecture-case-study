@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-faixas-nutricionais",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Nova faixa para abrir o formulario da referencia",
+      "rota": "/nutricao/faixas_nutricionais.php",
+      "seletor": "button:has-text(\"Nova faixa\")",
+      "marca": "seta",
+      "label": "Nova faixa"
+    },
+    {
+      "texto": "Escolha o tipo (solo ou foliar) e o nutriente da faixa",
+      "rota": "/nutricao/faixas_nutricionais.php",
+      "pre_acoes": ["button:has-text(\"Nova faixa\")"],
+      "seletor": "#vm-form select[name=nutriente_id]",
+      "marca": "caixa",
+      "label": "Nutriente"
+    },
+    {
+      "texto": "Preencha a faixa ideal — ideal minimo e ideal maximo sao obrigatorios",
+      "rota": "/nutricao/faixas_nutricionais.php",
+      "pre_acoes": ["button:has-text(\"Nova faixa\")"],
+      "seletor": "#vm-form input[name=ideal_min]",
+      "marca": "caixa",
+      "label": "Ideal minimo"
+    },
+    {
+      "texto": "Salve — a partir daqui todo laudo novo e classificado contra esta faixa",
+      "rota": "/nutricao/faixas_nutricionais.php",
+      "pre_acoes": ["button:has-text(\"Nova faixa\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "baixar-um-titulo",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Localize o titulo em aberto que voce pagou e clique em Baixar",
+      "rota": "/financeiro/contas_pagar.php",
+      "seletor": ".vtable tbody tr:first-child button[title=\"Registrar pagamento\"]",
+      "marca": "seta",
+      "label": "Baixar"
+    },
+    {
+      "texto": "Informe a data do pagamento e a forma de pagamento usada",
+      "rota": "/financeiro/contas_pagar.php",
+      "pre_acoes": [".vtable tbody tr:first-child button[title=\"Registrar pagamento\"]"],
+      "seletor": "#vm-baixa input[name=data_pagamento]",
+      "marca": "caixa",
+      "label": "Data do pagamento"
+    },
+    {
+      "texto": "Confirme a baixa — quita o titulo e desconta o valor do fluxo de caixa",
+      "rota": "/financeiro/contas_pagar.php",
+      "pre_acoes": [".vtable tbody tr:first-child button[title=\"Registrar pagamento\"]"],
+      "seletor": "#vm-baixa button.vbtn-primary",
+      "marca": "seta",
+      "label": "Confirmar baixa"
+    }
+  ]
+}

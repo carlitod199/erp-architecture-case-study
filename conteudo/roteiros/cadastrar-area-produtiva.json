@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-area-produtiva",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova area para abrir o cadastro",
+      "rota": "/agro/areas_produtivas.php",
+      "seletor": "button:has-text(\"Nova área\")",
+      "marca": "seta",
+      "label": "Nova área"
+    },
+    {
+      "texto": "De um nome a area (ex.: Quadra Norte)",
+      "rota": "/agro/areas_produtivas.php",
+      "pre_acoes": ["button:has-text(\"Nova área\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome da área"
+    },
+    {
+      "texto": "Escolha a fazenda — e obrigatoria",
+      "rota": "/agro/areas_produtivas.php",
+      "pre_acoes": ["button:has-text(\"Nova área\")"],
+      "seletor": "#vm-form select[name=\"fazenda_id\"]",
+      "marca": "caixa",
+      "label": "Fazenda (obrigatória)"
+    },
+    {
+      "texto": "Clique em Salvar — a area fica disponivel para vincular talhoes",
+      "rota": "/agro/areas_produtivas.php",
+      "pre_acoes": ["button:has-text(\"Nova área\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

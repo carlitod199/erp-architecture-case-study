@@ -1,0 +1,26 @@
+{
+  "id": "recebimento.confirmar",
+  "titulo": "Confirmar recebimento avulso de insumo (entrada de estoque)",
+  "modulo": "estoque",
+  "permissao": "estoque.entradas.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/recebimentos/confirmar", "funcao": "rota_recebimento_confirmar" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "produto_id": { "tipo": "int", "obrigatorio": true, "resolver": "produto", "desc": "produto recebido", "de_contexto": true },
+    "quantidade": { "tipo": "decimal", "obrigatorio": true, "resolver": null, "desc": "quantidade recebida (> 0)" },
+    "validade": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "validade do lote (YYYY-MM-DD)" },
+    "lote": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "código físico do lote (QR/etiqueta)" },
+    "nf_numero": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "número da NF" },
+    "divergencia": { "tipo": "bool", "obrigatorio": false, "resolver": null, "desc": "marca divergência apontada na conferência física" },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação (máx. 160)" }
+  },
+  "resumo": "Receber {quantidade} do produto {produto_id}",
+  "regras": [
+    "vira entrada real de estoque pelo custo médio atual do produto (o app não envia custo — P-75)",
+    "período de estoque fechado bloqueia com 422",
+    "o código físico do lote lido substitui o gerado pelo serviço quando há validade"
+  ],
+  "inverso": null
+}

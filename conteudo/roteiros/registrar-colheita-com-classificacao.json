@@ -1,0 +1,34 @@
+{
+  "slug": "registrar-colheita-com-classificacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Colheita e clique em + Nova colheita",
+      "rota": "/colheita/index.php",
+      "seletor": "a:has-text(\"+ Nova colheita\")",
+      "marca": "caixa",
+      "label": "Nova colheita"
+    },
+    {
+      "texto": "Informe a data, a válvula (setor) e a safra — os três são obrigatórios",
+      "rota": "/colheita/index.php?novo=1",
+      "seletor": "select[name=\"setor_id\"]",
+      "marca": "caixa",
+      "label": "Válvula e safra"
+    },
+    {
+      "texto": "Distribua os percentuais por categoria em cada momento — a soma de um momento não pode passar de 100%",
+      "rota": "/colheita/index.php?novo=1",
+      "seletor": "input.cl-pct",
+      "marca": "destaque",
+      "label": "Percentuais por categoria"
+    },
+    {
+      "texto": "Clique em Salvar colheita — este é o passo que grava a produção e o faturamento estimado da válvula",
+      "rota": "/colheita/index.php?novo=1",
+      "seletor": "#f-colheita button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar colheita"
+    }
+  ]
+}

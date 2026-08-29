@@ -1,0 +1,37 @@
+{
+  "slug": "planejar-irrigacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo planejamento para abrir o formulario",
+      "rota": "/irrigacao/planejamento_irrigacao.php",
+      "seletor": "button:has-text(\"Novo planejamento\")",
+      "marca": "seta",
+      "label": "Novo planejamento"
+    },
+    {
+      "texto": "Escolha a valvula — ao selecionar, a vazao da bomba e sugerida",
+      "rota": "/irrigacao/planejamento_irrigacao.php",
+      "pre_acoes": ["button:has-text(\"Novo planejamento\")"],
+      "seletor": "#vm-form select[name=talhao_id]",
+      "marca": "caixa",
+      "label": "Valvula"
+    },
+    {
+      "texto": "Informe a lamina-alvo (mm), maior que zero, e o inicio do periodo",
+      "rota": "/irrigacao/planejamento_irrigacao.php",
+      "pre_acoes": ["button:has-text(\"Novo planejamento\")"],
+      "seletor": "#vm-form input[name=lamina_mm]",
+      "marca": "caixa",
+      "label": "Lamina-alvo"
+    },
+    {
+      "texto": "Salve — o planejamento vira a regua do confronto planejado vs realizado",
+      "rota": "/irrigacao/planejamento_irrigacao.php",
+      "pre_acoes": ["button:has-text(\"Novo planejamento\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

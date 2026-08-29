@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-uma-benfeitoria",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Benfeitorias (a categoria já vem fixada) e clique em Novo ativo",
+      "rota": "/patrimonio/benfeitorias.php",
+      "seletor": "button:has-text(\"Novo ativo\")",
+      "marca": "seta",
+      "label": "Nova benfeitoria"
+    },
+    {
+      "texto": "Informe a descrição da benfeitoria (galpão, cerca, irrigação, casa...)",
+      "rota": "/patrimonio/benfeitorias.php",
+      "pre_acoes": ["button:has-text(\"Novo ativo\")"],
+      "seletor": "#vm-form input[name=\"descricao\"]",
+      "marca": "caixa",
+      "label": "Descrição"
+    },
+    {
+      "texto": "Preencha o valor de aquisição (maior que zero) e a data de aquisição",
+      "rota": "/patrimonio/benfeitorias.php",
+      "pre_acoes": ["button:has-text(\"Novo ativo\")"],
+      "seletor": "#vm-form input[name=\"valor_aquisicao\"]",
+      "marca": "caixa",
+      "label": "Valor de aquisição"
+    },
+    {
+      "texto": "Clique em Salvar — a benfeitoria entra no patrimônio e passa a depreciar",
+      "rota": "/patrimonio/benfeitorias.php",
+      "pre_acoes": ["button:has-text(\"Novo ativo\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

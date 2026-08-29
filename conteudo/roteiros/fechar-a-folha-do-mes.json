@@ -1,0 +1,36 @@
+{
+  "slug": "fechar-a-folha-do-mes",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Informe a competência (mês/ano) do período que você quer fechar",
+      "rota": "/pessoas/folha.php",
+      "seletor": "input[name=\"competencia\"]",
+      "marca": "caixa",
+      "label": "Competência"
+    },
+    {
+      "texto": "Clique em Criar período",
+      "rota": "/pessoas/folha.php",
+      "seletor": "button:has-text(\"Criar período\")",
+      "marca": "destaque",
+      "label": "Criar período"
+    },
+    {
+      "texto": "Abra o período na lista e clique em Gerar lançamentos — calcula salário, encargos e premiações por CLT",
+      "rota": "/pessoas/folha.php",
+      "pre_acoes": [".vtable tbody tr:first-child a[href*=\"ver=\"]"],
+      "seletor": "button:has-text(\"Gerar lançamentos\")",
+      "marca": "caixa",
+      "label": "Gerar lançamentos"
+    },
+    {
+      "texto": "Confira os valores e clique em Fechar período — este passo emite o custo de mão de obra ao custeio",
+      "rota": "/pessoas/folha.php",
+      "pre_acoes": [".vtable tbody tr:first-child a[href*=\"ver=\"]"],
+      "seletor": "button:has-text(\"Fechar período\")",
+      "marca": "seta",
+      "label": "Fechar período"
+    }
+  ]
+}

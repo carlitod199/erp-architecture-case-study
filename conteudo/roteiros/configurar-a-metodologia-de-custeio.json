@@ -1,0 +1,34 @@
+{
+  "slug": "configurar-a-metodologia-de-custeio",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Crie a metodologia informando o nome e o tipo de ciclo (anual ou perene)",
+      "rota": "/custeio/metodologias.php",
+      "seletor": "input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome da metodologia"
+    },
+    {
+      "texto": "Dentro dela, adicione um grupo e escolha o tipo: variavel, fixo ou operacional",
+      "rota": "/custeio/metodologias.php",
+      "seletor": "select[name=\"tipo\"]",
+      "marca": "caixa",
+      "label": "Tipo do grupo"
+    },
+    {
+      "texto": "No item, aponte a origem de onde o realizado vem (aplicacao, apontamento, folha, irrigacao...)",
+      "rota": "/custeio/metodologias.php",
+      "seletor": "select[name=\"origem\"]",
+      "marca": "caixa",
+      "label": "Origem do realizado"
+    },
+    {
+      "texto": "Salve o item — o VERO checa o mapa do realizado e avisa (ou bloqueia) sobreposicoes",
+      "rota": "/custeio/metodologias.php",
+      "seletor": "button:has-text(\"Salvar item\")",
+      "marca": "seta",
+      "label": "Salvar item"
+    }
+  ]
+}

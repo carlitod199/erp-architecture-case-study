@@ -1,0 +1,37 @@
+{
+  "slug": "rolar-valvulas-de-uma-safra-anterior",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Safras / Ciclos e entre na safra de destino (a nova) pelo ícone Válvulas da safra",
+      "rota": "/safras/index.php",
+      "seletor": "table.vtable tbody tr:first-child a.vicon-acao[title=\"Válvulas da safra\"]",
+      "marca": "seta",
+      "label": "Abrir o painel da safra"
+    },
+    {
+      "texto": "No painel Rolar safra, escolha a safra de origem — de onde os vínculos serão copiados",
+      "rota": "/safras/index.php",
+      "pre_acoes": ["table.vtable tbody tr:first-child a.vicon-acao[title=\"Válvulas da safra\"]"],
+      "seletor": "select[name=\"origem_safra_id\"]",
+      "marca": "caixa",
+      "label": "Safra de origem"
+    },
+    {
+      "texto": "Clique em Copiar vínculos — este é o passo que copia os vínculos de válvulas ativas para a safra atual",
+      "rota": "/safras/index.php",
+      "pre_acoes": ["table.vtable tbody tr:first-child a.vicon-acao[title=\"Válvulas da safra\"]"],
+      "seletor": "button:has-text(\"Copiar vínculos\")",
+      "marca": "seta",
+      "label": "Copiar vínculos"
+    },
+    {
+      "texto": "Revise as áreas e as metas de produtividade de cada válvula, pois vêm da safra antiga",
+      "rota": "/safras/index.php",
+      "pre_acoes": ["table.vtable tbody tr:first-child a.vicon-acao[title=\"Válvulas da safra\"]"],
+      "seletor": "th:has-text(\"Meta produtividade\")",
+      "marca": "destaque",
+      "label": "Meta de produtividade"
+    }
+  ]
+}

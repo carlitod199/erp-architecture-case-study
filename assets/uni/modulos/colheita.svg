@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="colheita">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a7d78"/><stop offset="1" stop-color="#004a52"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="120" height="120" rx="26" fill="url(#g)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M60 90 V44"/><path d="M60 46 C50 46 44 40 44 30 C56 30 60 38 60 46Z" fill="#fff" stroke="none"/><path d="M60 46 C70 46 76 40 76 30 C64 30 60 38 60 46Z" fill="#fff" stroke="none"/><path d="M60 60 C50 60 44 54 44 44 C56 44 60 52 60 60Z" fill="#fff" stroke="none" opacity=".9"/><path d="M60 60 C70 60 76 54 76 44 C64 44 60 52 60 60Z" fill="#fff" stroke="none" opacity=".9"/>
+  </g>
+</svg>

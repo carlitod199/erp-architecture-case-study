@@ -1,0 +1,19 @@
+{
+  "id": "monitoramento.enviar",
+  "titulo": "Enviar monitoramentos ao líder (dispara alertas)",
+  "modulo": "mip",
+  "permissao": "mip.monitoramentos.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/monitoramentos/enviar", "funcao": "rota_monitoramentos_enviar" },
+  "params": {
+    "uuids": { "tipo": "lista", "obrigatorio": true, "resolver": null, "desc": "lista de client_uuid dos monitoramentos (rascunhos) a enviar", "de_contexto": true }
+  },
+  "resumo": "Enviar {uuids} monitoramento(s) ao líder",
+  "regras": [
+    "marca os rascunhos como 'enviado'",
+    "motor do servidor cria um alerta por alvo que atingiu o nível de ação (2× = crítico)",
+    "o sistema ALERTA, nunca recomenda produto"
+  ],
+  "inverso": null
+}

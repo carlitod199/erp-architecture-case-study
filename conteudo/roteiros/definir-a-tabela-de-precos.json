@@ -1,0 +1,37 @@
+{
+  "slug": "definir-a-tabela-de-precos",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Tabela de preços e clique em Nova regra de preço",
+      "rota": "/comercial/tabela_precos.php",
+      "seletor": "button:has-text(\"Nova regra de preço\")",
+      "marca": "seta",
+      "label": "Nova regra de preço"
+    },
+    {
+      "texto": "Informe o preço e escolha a moeda",
+      "rota": "/comercial/tabela_precos.php",
+      "pre_acoes": ["button:has-text(\"Nova regra de preço\")"],
+      "seletor": "#vm-form input[name=\"preco\"]",
+      "marca": "caixa",
+      "label": "Preço"
+    },
+    {
+      "texto": "Defina o início da vigência e restrinja a regra (cultura, comprador, canal...) — quanto mais específica, mais ela vence as genéricas",
+      "rota": "/comercial/tabela_precos.php",
+      "pre_acoes": ["button:has-text(\"Nova regra de preço\")"],
+      "seletor": "#vm-form input[name=\"vigencia_inicio\"]",
+      "marca": "caixa",
+      "label": "Vigência início"
+    },
+    {
+      "texto": "Clique em Salvar — a regra passa a sugerir o preço nas novas vendas que se encaixarem",
+      "rota": "/comercial/tabela_precos.php",
+      "pre_acoes": ["button:has-text(\"Nova regra de preço\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

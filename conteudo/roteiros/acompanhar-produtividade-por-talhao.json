@@ -1,0 +1,27 @@
+{
+  "slug": "acompanhar-produtividade-por-talhao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione a safra que voce quer acompanhar",
+      "rota": "/agro/produtividade.php",
+      "seletor": "select[name=\"safra\"]",
+      "marca": "caixa",
+      "label": "Safra"
+    },
+    {
+      "texto": "Leia os KPIs: colhido, area, produtividade media e atingimento do plano",
+      "rota": "/agro/produtividade.php",
+      "seletor": ".prod-kpis",
+      "marca": "destaque",
+      "label": "Indicadores da safra"
+    },
+    {
+      "texto": "Confira a barra de atingimento de cada valvula (realizado divide planejado) — clique para o drill-down",
+      "rota": "/agro/produtividade.php",
+      "seletor": "table.vtable tbody tr.prod-linha:first-child .prod-barra",
+      "marca": "seta",
+      "label": "Atingimento do plano"
+    }
+  ]
+}

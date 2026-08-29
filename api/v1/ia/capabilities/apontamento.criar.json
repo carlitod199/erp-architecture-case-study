@@ -1,0 +1,29 @@
+{
+  "id": "apontamento.criar",
+  "titulo": "Registrar um apontamento de campo",
+  "modulo": "agro",
+  "permissao": "agro.apontamentos_campo.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/apontamentos", "funcao": "rota_apontamento_criar" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência da fila offline)", "de_contexto": true },
+    "tipo": { "tipo": "enum", "obrigatorio": true, "resolver": null, "enum": ["aplicacao", "nutricao", "tratos_culturais", "colheita", "abastecimento", "outro"], "desc": "tipo do apontamento (irrigação NÃO entra aqui)" },
+    "talhao_id": { "tipo": "int", "obrigatorio": true, "resolver": "valvula", "desc": "válvula/talhão onde ocorreu", "de_contexto": true },
+    "atividade_id": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "atividade planejada vinculada (opcional)" },
+    "maquina_id": { "tipo": "int", "obrigatorio": false, "resolver": "maquina", "desc": "máquina usada (opcional)" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data/hora do apontamento" },
+    "hectares": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "área trabalhada em ha" },
+    "quantidade": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "quantidade colhida/podada (vira nota estruturada)" },
+    "quantidade_unidade": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["plantas", "kg", "caixa"], "desc": "unidade da quantidade (caixa converte p/ kg pela config)" },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação livre (máx. 255)" },
+    "estagio": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["iniciado"], "desc": "'iniciado' abre a tarefa em dois estágios (concluir depois)" }
+  },
+  "resumo": "Apontamento de {tipo} na válvula {talhao_id}",
+  "regras": [
+    "irrigação não entra por aqui — use irrigacao.registrar",
+    "entra com status 'pendente' (a validação é feita no VERO web)",
+    "estagio 'iniciado' cria o espelho aberto; concluir promove para 'pendente'"
+  ],
+  "inverso": null
+}

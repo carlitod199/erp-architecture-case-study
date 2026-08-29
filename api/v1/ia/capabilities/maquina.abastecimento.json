@@ -1,0 +1,23 @@
+{
+  "id": "maquina.abastecimento",
+  "titulo": "Registrar abastecimento de máquina",
+  "modulo": "maquinas",
+  "permissao": "maquinas.horimetro.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/maquinas/{id}/abastecimento", "funcao": "rota_maquina_abastecimento" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": "maquina", "desc": "máquina abastecida", "de_contexto": true },
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "litros": { "tipo": "decimal", "obrigatorio": true, "resolver": null, "desc": "litros abastecidos (> 0)" },
+    "horimetro": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "horímetro no abastecimento (opcional)" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data do abastecimento" }
+  },
+  "resumo": "Abastecimento de {litros} L na máquina {id}",
+  "regras": [
+    "litros deve ser maior que zero",
+    "horímetro opcional vira leitura oficial se for maior que o atual",
+    "o app não envia valor — o custo do diesel fica com o escritório"
+  ],
+  "inverso": null
+}

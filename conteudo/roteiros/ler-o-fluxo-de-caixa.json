@@ -1,0 +1,27 @@
+{
+  "slug": "ler-o-fluxo-de-caixa",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Escolha o ano",
+      "rota": "/financeiro/fluxo_caixa.php",
+      "seletor": "select[name=\"ano\"]",
+      "marca": "caixa",
+      "label": "Ano"
+    },
+    {
+      "texto": "Leia entradas e saidas por mes: realizado vem das baixas; previsto vem dos titulos em aberto pelo vencimento",
+      "rota": "/financeiro/fluxo_caixa.php",
+      "seletor": "#fMain",
+      "marca": "seta",
+      "label": "Entradas x Saidas"
+    },
+    {
+      "texto": "Confira o bucket Sem vencimento — titulos abertos sem data ficam de fora da projecao mensal",
+      "rota": "/financeiro/fluxo_caixa.php",
+      "seletor": "div.vtoolbar:has-text(\"sem data de vencimento\")",
+      "marca": "destaque",
+      "label": "Sem vencimento"
+    }
+  ]
+}

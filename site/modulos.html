@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERO</title>
+<meta name="description" content="Os módulos do VERO organizados por área: agrícola, MIP, nutrição, irrigação, mapa da fazenda, estoque, compras, frota, pessoas, comercial, financeiro, fiscal e inteligência.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/vero-symbol.svg?v=4">
+<link rel="stylesheet" href="assets/vero-site.css">
+<style>
+  .mod-anchor-nav { display:flex; flex-wrap:wrap; gap:10px; margin-top: 26px }
+  .mod-anchor-nav a {
+    display: inline-flex; align-items: center; min-height: 44px;
+    padding: 10px 18px; border-radius: 999px; border: 1px solid var(--stroke);
+    background: var(--glass); color: var(--tx-2); font-size: .88rem; font-weight: 600;
+    text-decoration: none; transition: all .25s;
+  }
+  .mod-anchor-nav a:hover { color: var(--teal-bright); border-color: rgba(45,212,191,.4) }
+  .mod-group { scroll-margin-top: calc(var(--nav-h) + 24px) }
+  .mod-num { display:block; font-family: var(--font-mono); font-size: .78rem; font-weight: 600; color: var(--lime); letter-spacing: .08em; margin-bottom: 10px }
+  .section-paper .mod-num { color: var(--lime) }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="VERO — página inicial"><img src="assets/vero-lockup-white.svg" alt="VERO" width="118" height="27"></a>
+    <nav aria-label="Navegação principal" style="display:contents">
+      <ul class="nav-links" id="menu">
+        <li><a href="produto.html">Produto</a></li>
+        <li><a href="modulos.html" aria-current="page">Módulos</a></li>
+        <li><a href="solucoes.html">Soluções</a></li>
+        <li><a href="seguranca.html">Segurança</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <button class="nav-burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="section bg-topo" style="padding-top: calc(var(--nav-h) + 72px); padding-bottom: 48px; background: radial-gradient(110% 80% at 40% 0%, #0E2E28 0%, var(--ink-1) 60%)">
+  <div class="container">
+    <div class="section-head rv" style="max-width: 820px; margin-bottom: 0">
+      <span class="eyebrow">Módulos</span>
+      <h1 style="font-size: clamp(2.1rem, 4.6vw, 3.4rem)">Tudo o que a fazenda precisa,<br><span class="text-grad">em um único sistema.</span></h1>
+    </div>
+  </div>
+</section>
+
+<section class="section mod-group" id="campo" aria-label="Módulos de campo" style="padding-top: 64px">
+  <div class="container">
+    <div class="grid-3" aria-label="Módulos de campo">
+      <article class="card rv"><span class="mod-num">01</span><h3>Safras & Talhões</h3><p class="muted small">Abertura de safra, talhões/válvulas georreferenciados, variedades e porta-enxertos, kg/caixa e metas por área.</p></article>
+      <article class="card rv rv-d1"><span class="mod-num">02</span><h3>Planejamento & Ordens de Serviço</h3><p class="muted small">Atividade planejada vira OS espelho com equipe, insumo e máquina previstos; execução comparada ao plano.</p></article>
+      <article class="card rv rv-d2"><span class="mod-num">03</span><h3>Apontamentos de Campo</h3><p class="muted small">O realizado do dia (horas, pessoas, insumos, máquinas), lançado uma vez e propagado até o custo.</p></article>
+      <article class="card rv"><span class="mod-num">04</span><h3>Fenologia & Variedades</h3><p class="muted small">Curva fenológica versionada por variedade, com Dia 0 na confirmação da poda. O calendário nasce do campo.</p></article>
+      <article class="card rv rv-d1"><span class="mod-num">05</span><h3>MIP / MID</h3><p class="muted small">Monitoramento de pragas e doenças por ponto e alvo, níveis de controle e histórico por talhão.</p></article>
+      <article class="card rv rv-d2"><span class="mod-num">06</span><h3>Aplicações & Receituário</h3><p class="muted small">Receituário agronômico com Responsável Técnico, catálogo Agrofit/MAPA e NR-31 embutidos na rotina.</p></article>
+      <article class="card rv"><span class="mod-num">07</span><h3>Nutrição</h3><p class="muted small">Análises de solo e folha, faixas nutricionais por fase fenológica e recomendação por variedade.</p></article>
+      <article class="card rv rv-d1"><span class="mod-num">08</span><h3>Irrigação & Fertirrigação</h3><p class="muted small">Apontamentos por válvula, tempo de irrigação, fertirrigação e custo da água atribuído ao talhão.</p></article>
+      <article class="card rv rv-d2"><span class="mod-num">09</span><h3>Mapa da Fazenda</h3><p class="muted small">Talhões georreferenciados no mapa, com clima, chuva e camadas de vegetação por área.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section mod-group section-paper" id="suprimentos" aria-labelledby="t-supr">
+  <div class="container">
+    <div class="section-head rv"><span class="eyebrow">Suprimentos & Frota</span><h2 id="t-supr">O que abastece a operação</h2></div>
+    <div class="grid-3">
+      <article class="card rv"><span class="mod-num">10</span><h3>Estoque</h3><p class="muted small">Lote e validade com FEFO, custo médio ponderado, múltiplos almoxarifados e alertas de estoque mínimo.</p></article>
+      <article class="card rv rv-d1"><span class="mod-num">11</span><h3>Compras</h3><p class="muted small">Requisição, cotação, aprovação por alçada e recebimento conferido contra o pedido, direto para o contas a pagar.</p></article>
+      <article class="card rv rv-d2"><span class="mod-num">12</span><h3>Máquinas & Frota</h3><p class="muted small">Horímetro, abastecimento, manutenção preventiva e rateio de combustível por horas de apontamento.</p></article>
+      <article class="card rv"><span class="mod-num">13</span><h3>Patrimônio</h3><p class="muted small">Bens, depreciação atribuída ao custo da safra e controle do ativo do grupo.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section mod-group" id="gente" aria-labelledby="t-gente">
+  <div class="container">
+    <div class="section-head rv"><span class="eyebrow">Pessoas</span><h2 id="t-gente">Quem faz a safra acontecer</h2></div>
+    <div class="grid-3">
+      <article class="card rv"><span class="mod-num">14</span><h3>Pessoas & Equipes</h3><p class="muted small">Funções, equipes e custo de mão de obra por apontamento. O maior custo da fruticultura, sob controle.</p></article>
+      <article class="card rv rv-d1"><span class="mod-num">15</span><h3>Premiação por Produtividade</h3><p class="muted small">Metas por linha e regras de premiação calculadas na finalização da OS, com regras claras para a equipe.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section mod-group section-paper" id="negocio" aria-labelledby="t-neg">
+  <div class="container">
+    <div class="section-head rv"><span class="eyebrow">Comercial & Financeiro</span><h2 id="t-neg">Onde a safra vira resultado</h2></div>
+    <div class="grid-3">
+      <article class="card rv"><span class="mod-num">16</span><h3>Comercial</h3><p class="muted small">Pedidos, tabela de preços, romaneio e expedição, com a posição de vendas por safra, cliente e variedade.</p></article>
+      <article class="card rv rv-d1"><span class="mod-num">17</span><h3>Financeiro</h3><p class="muted small">Contas a pagar e receber, fluxo de caixa, conciliação bancária e DRE Agro por safra e fazenda.</p></article>
+      <article class="card rv rv-d2"><span class="mod-num">18</span><h3>Custeio</h3><p class="muted small">O motor que consolida mão de obra, insumo, máquina, irrigação e depreciação em custo por talhão, hectare e quilo.</p></article>
+      <article class="card rv"><span class="mod-num">19</span><h3>Fiscal & Contratos</h3><p class="muted small">Livro-Caixa do Produtor Rural (LCDPR), acesso restrito do contador e gestão de contratos.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section mod-group" id="inteligencia" aria-labelledby="t-int">
+  <div class="container">
+    <div class="section-head rv"><span class="eyebrow">Inteligência & Governança</span><h2 id="t-int">A visão de quem decide</h2>
+      <p class="lead">No fim da linha, tudo o que o campo lançou vira uma pergunta respondida: quanto custou, quanto rendeu, onde agir agora.</p>
+    </div>
+    <div class="hero-grid" style="align-items:center">
+
+      <!-- O produtor diante da fazenda e dos números -->
+      <div class="rv" style="display:grid; place-items:center">
+        <svg viewBox="0 0 520 400" role="img" aria-label="Produtor rural de chapéu olhando a fazenda com os indicadores da safra flutuando à frente" style="width:100%; max-width:480px; height:auto">
+          <!-- horizonte e fileiras -->
+          <path d="M20 316h480" stroke="#24483C" stroke-width="2" stroke-linecap="round"/>
+          <g stroke="#2DD4BF" stroke-opacity="0.35" stroke-width="1.5">
+            <path d="M300 316l70-56M356 316l64-46M412 316l52-36M468 316l32-22"/>
+            <path d="M298 262h204M320 284h190" stroke-opacity="0.2"/>
+          </g>
+          <!-- sol -->
+          <circle cx="452" cy="84" r="22" fill="none" stroke="#A8E10C" stroke-opacity="0.5" stroke-width="2"/>
+          <!-- produtor -->
+          <g stroke="#2DD4BF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- chapéu -->
+            <path d="M96 96c8-26 64-26 72 0M76 98c30 12 82 12 112 0" stroke="#A8E10C" stroke-width="2.5"/>
+            <!-- cabeça e ombros -->
+            <path d="M112 106c0 18 10 30 20 30s20-12 20-30"/>
+            <path d="M84 208c4-38 22-58 48-58s44 20 48 58"/>
+            <!-- braço segurando tablet -->
+            <path d="M96 170c14 16 34 24 52 20"/>
+            <rect x="148" y="168" width="46" height="34" rx="5" transform="rotate(-8 148 168)"/>
+            <!-- corpo -->
+            <path d="M84 208v92M180 208v92" />
+            <path d="M84 300h96" stroke-opacity="0.6"/>
+          </g>
+          <!-- indicadores flutuando -->
+          <g font-family="JetBrains Mono,monospace">
+            <rect x="236" y="70" width="150" height="56" rx="10" fill="#111C17" stroke="#1D2C25"/>
+            <text x="252" y="92" font-size="9" fill="#5E7A6F">MARGEM DA SAFRA</text>
+            <text x="252" y="114" font-size="18" font-weight="600" fill="#A8E10C">32,6%</text>
+            <rect x="268" y="146" width="168" height="56" rx="10" fill="#111C17" stroke="#1D2C25"/>
+            <text x="284" y="168" font-size="9" fill="#5E7A6F">CUSTO / HECTARE</text>
+            <text x="284" y="190" font-size="18" font-weight="600" fill="#2DD4BF">R$ 18,4k</text>
+            <rect x="240" y="222" width="196" height="62" rx="10" fill="#111C17" stroke="#1D2C25"/>
+            <text x="256" y="244" font-size="9" fill="#5E7A6F">RESULTADO ACUMULADO</text>
+            <polyline points="256,272 282,266 308,269 334,258 360,252 386,242 412,238" fill="none" stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="412" cy="238" r="4" fill="#A8E10C"/>
+          </g>
+          <!-- linha do tablet aos indicadores -->
+          <path class="drip" d="M196 178c16-8 28-24 40-46" stroke="#2DD4BF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div style="display:grid; gap:18px">
+        <article class="card rv"><span class="mod-num">20</span><h3>Dashboards & Relatórios</h3><p class="muted small">Executivo, financeiro, operacional e alertas em tempo real, com filtros globais de safra e fazenda. O número do talhão na tela da diretoria, no mesmo dia.</p></article>
+        <article class="card rv rv-d1"><span class="mod-num">21</span><h3>Configurações & Permissões</h3><p class="muted small">9 perfis pré-configurados, matriz de permissões por função, trilha de auditoria e soft-delete. Governança para crescer sem perder o controle.</p></article>
+        <div class="rv rv-d2" style="display:flex; gap:14px; flex-wrap:wrap; margin-top: 10px">
+          <a class="btn btn-primary btn-lg" href="demonstracao.html">Ver os módulos em ação</a>
+          <a class="btn btn-ghost" href="solucoes.html">Soluções por perfil</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="assets/vero-lockup-white.svg" alt="VERO"></div>
+        <p>ERP de gestão agrícola de dentro e fora da porteira. Uma base única da safra ao resultado.</p>
+      </div>
+      <div>
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="produto.html">Como funciona</a></li>
+          <li><a href="modulos.html">Módulos</a></li>
+          <li><a href="solucoes.html">Soluções</a></li>
+          <li><a href="seguranca.html">Segurança</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre o VERO</a></li>
+          <li><a href="demonstracao.html">Fale com um especialista</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="demonstracao.html">Solicitar demonstração</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> VERO. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20conhecer%20o%20VERO." target="_blank" rel="noopener" aria-label="Falar com o time de vendas no WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.4S24.6.5 16 .5zm0 28c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5a12.9 12.9 0 1 1 11 6zm7-9.7c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9a11.6 11.6 0 0 1-2.1-2.6c-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.2 0-.5 0-.7l-1.2-2.9c-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.4 3.6 1.6 3.9c.2.3 2.7 4.1 6.6 5.8.9.4 1.6.6 2.2.8.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.4-.3-.8-.5z"/></svg></a>
+<script src="assets/vero-site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "id": "monitoramento.criar",
+  "titulo": "Registrar um monitoramento MIP (rascunho)",
+  "modulo": "mip",
+  "permissao": "mip.monitoramentos.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/monitoramentos", "funcao": "rota_monitoramento_criar" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "talhao_id": { "tipo": "int", "obrigatorio": true, "resolver": "valvula", "desc": "válvula/talhão monitorado", "de_contexto": true },
+    "ponto_id": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "ponto de amostragem (de mip_pontos)" },
+    "plantas_amostradas": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "nº de plantas amostradas (transforma encontradas em índice pela regra de 3)" },
+    "alvos": { "tipo": "lista", "obrigatorio": true, "resolver": "alvo", "desc": "alvos avaliados [{alvo_id, quantidade_encontrada, nivel_infestacao?, local_infestacao?, severidade_qualitativa?}]" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data do monitoramento" },
+    "unidade": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "unidade do índice (ex.: %, /planta)" },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação (máx. 255)" }
+  },
+  "resumo": "Monitoramento MIP na válvula {talhao_id}",
+  "regras": [
+    "grava como rascunho — o alerta só é disparado ao enviar (monitoramento.enviar)",
+    "com plantas_amostradas a quantidade vira índice (encontradas ÷ amostradas × 100)",
+    "local_infestacao restrito à whitelist (folha, ramo, cacho, ponteiros, casca, mato); mesmo alvo em locais diferentes é permitido"
+  ],
+  "inverso": null
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-um-receituario-agronomico",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Receituários (módulo MIP) e clique em Novo receituário",
+      "rota": "/mip/receituarios.php",
+      "seletor": "button:has-text(\"Novo receituário\")",
+      "marca": "seta",
+      "label": "Novo receituário"
+    },
+    {
+      "texto": "Informe o número do receituário (único no sistema)",
+      "rota": "/mip/receituarios.php",
+      "pre_acoes": ["button:has-text(\"Novo receituário\")"],
+      "seletor": "#vm-form input[name=\"numero\"]",
+      "marca": "caixa",
+      "label": "Número do receituário"
+    },
+    {
+      "texto": "Vincule a aplicação correspondente e o responsável técnico que emitiu",
+      "rota": "/mip/receituarios.php",
+      "pre_acoes": ["button:has-text(\"Novo receituário\")"],
+      "seletor": "#vm-form select[name=\"aplicacao_id\"]",
+      "marca": "caixa",
+      "label": "Aplicação vinculada"
+    },
+    {
+      "texto": "Clique em Salvar e, na sequência, anexe o PDF da prescrição — é o arquivo que comprova o receituário",
+      "rota": "/mip/receituarios.php",
+      "pre_acoes": ["button:has-text(\"Novo receituário\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "montar-o-orcamento-da-safra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo orcamento",
+      "rota": "/custeio/orcamento.php",
+      "seletor": "button:has-text(\"+ Novo orçamento\")",
+      "marca": "seta",
+      "label": "Novo orcamento"
+    },
+    {
+      "texto": "Selecione a safra — cada safra so pode ter um orcamento ativo por vez",
+      "rota": "/custeio/orcamento.php",
+      "pre_acoes": ["button:has-text(\"+ Novo orçamento\")"],
+      "seletor": "#vm-form select[name=\"safra_id\"]",
+      "marca": "caixa",
+      "label": "Safra"
+    },
+    {
+      "texto": "Preencha o previsto por categoria — deixe em branco as sem previsao",
+      "rota": "/custeio/orcamento.php",
+      "pre_acoes": ["button:has-text(\"+ Novo orçamento\")"],
+      "seletor": "#vm-form table.vtable",
+      "marca": "caixa",
+      "label": "Previsto por categoria"
+    },
+    {
+      "texto": "Clique em Salvar — o sistema soma tudo e mostra o total previsto",
+      "rota": "/custeio/orcamento.php",
+      "pre_acoes": ["button:has-text(\"+ Novo orçamento\")"],
+      "seletor": "#vm-form button.vbtn-primary",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

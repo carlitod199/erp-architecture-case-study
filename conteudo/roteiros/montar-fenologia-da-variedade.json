@@ -1,0 +1,37 @@
+{
+  "slug": "montar-fenologia-da-variedade",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Adicionar fase e comece pela poda (dia inicial 0)",
+      "rota": "/agro/variedade_fenologia.php?variedade_id=1",
+      "seletor": "button:has-text(\"Adicionar fase\")",
+      "marca": "seta",
+      "label": "Adicionar fase"
+    },
+    {
+      "texto": "De o nome da fase (ex.: Poda, Brotacao)",
+      "rota": "/agro/variedade_fenologia.php?variedade_id=1",
+      "pre_acoes": ["button:has-text(\"Adicionar fase\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome da fase"
+    },
+    {
+      "texto": "Informe o dia inicial (0 na primeira) e o dia final (maior que o inicial)",
+      "rota": "/agro/variedade_fenologia.php?variedade_id=1",
+      "pre_acoes": ["button:has-text(\"Adicionar fase\")"],
+      "seletor": "#vm-form input[name=\"dia_inicio\"]",
+      "marca": "caixa",
+      "label": "Dia inicial (poda = 0)"
+    },
+    {
+      "texto": "Clique em Salvar fase — a faixa verde confirma que a curva esta contigua",
+      "rota": "/agro/variedade_fenologia.php?variedade_id=1",
+      "pre_acoes": ["button:has-text(\"Adicionar fase\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar fase"
+    }
+  ]
+}

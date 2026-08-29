@@ -1,0 +1,6 @@
+# PT-10 (CSO 08/07): api/auth/login.php é um ÓRFÃO da API antiga (VERO app_api),
+# superseção = api/v1. Ao ser acessado direto, o require de includes/app_api.php
+# (inexistente) falhava ANTES do bootstrap e vazava o caminho absoluto + include_path.
+# Negar acesso fecha o path disclosure sem depender de remover o arquivo.
+# A API oficial é api/v1/ (roteador próprio, não afetado por este deny).
+Require all denied

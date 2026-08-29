@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-um-colaborador",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Colaboradores e clique em Novo colaborador",
+      "rota": "/pessoas/colaboradores.php",
+      "seletor": "button:has-text(\"Novo colaborador\")",
+      "marca": "seta",
+      "label": "Novo colaborador"
+    },
+    {
+      "texto": "Informe o nome completo da pessoa",
+      "rota": "/pessoas/colaboradores.php",
+      "pre_acoes": ["button:has-text(\"Novo colaborador\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome completo"
+    },
+    {
+      "texto": "Escolha o tipo de vinculo e, se for CLT, preencha o salario mensal (o custo/hora sai sozinho)",
+      "rota": "/pessoas/colaboradores.php",
+      "pre_acoes": ["button:has-text(\"Novo colaborador\")"],
+      "seletor": "#vm-form select[name=\"tipo_vinculo\"]",
+      "marca": "caixa",
+      "label": "Tipo de vinculo"
+    },
+    {
+      "texto": "Clique em Salvar — a pessoa ja aparece para equipes, apontamentos e folha",
+      "rota": "/pessoas/colaboradores.php",
+      "pre_acoes": ["button:has-text(\"Novo colaborador\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

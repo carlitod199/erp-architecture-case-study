@@ -1,0 +1,29 @@
+{
+  "slug": "finalizar-apontamento",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Na lista de Apontamentos de Campo, abra o apontamento iniciado pelo botão Finalizar",
+      "rota": "/agro/apontamentos.php",
+      "seletor": "a.vicon-acao[title*=\"Finalizar\"]",
+      "marca": "seta",
+      "label": "Abrir o apontamento iniciado"
+    },
+    {
+      "texto": "Confira as pessoas, as horas trabalhadas e os insumos usados",
+      "rota": "/agro/apontamentos.php",
+      "pre_acoes": ["a.vicon-acao[title*=\"Finalizar\"]"],
+      "seletor": "#card-pessoas",
+      "marca": "caixa",
+      "label": "Pessoas, horas e insumos"
+    },
+    {
+      "texto": "Clique em Finalizar — este é o passo que gera o custo",
+      "rota": "/agro/apontamentos.php",
+      "pre_acoes": ["a.vicon-acao[title*=\"Finalizar\"]"],
+      "seletor": "#apont-form button[type=\"submit\"]:has-text(\"Finalizar\")",
+      "marca": "destaque",
+      "label": "Finalizar apontamento"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "conferir-a-auditoria-do-estoque",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "A tela roda 12 checagens de consistência — cada card é uma checagem",
+      "rota": "/estoque/auditoria.php",
+      "seletor": ".au-check:first-of-type",
+      "marca": "caixa",
+      "label": "Checagem de consistência"
+    },
+    {
+      "texto": "Priorize as marcadas como Crítico — são as que indicam saldo inconsistente de verdade",
+      "rota": "/estoque/auditoria.php",
+      "seletor": ".au-check:first-of-type .au-tag",
+      "marca": "seta",
+      "label": "Severidade"
+    },
+    {
+      "texto": "Leia o que a checagem verifica e abra os itens afetados — a correção acontece na tela própria, não aqui",
+      "rota": "/estoque/auditoria.php",
+      "seletor": ".au-check:first-of-type .vhint",
+      "marca": "caixa",
+      "label": "O que a checagem verifica"
+    }
+  ]
+}

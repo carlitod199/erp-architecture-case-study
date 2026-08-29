@@ -1,0 +1,27 @@
+{
+  "slug": "aprovar-um-pedido-de-compra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Na fila de pendentes, confira fornecedor, itens, valores e prazo do pedido",
+      "rota": "/compras/aprovacoes.php",
+      "seletor": ".vcard:first-of-type .vdata",
+      "marca": "caixa",
+      "label": "Itens e valores do pedido"
+    },
+    {
+      "texto": "Clique em Aprovar pedido para liberar — ele fica pronto para ser recebido",
+      "rota": "/compras/aprovacoes.php",
+      "seletor": "button[value=\"aprovar\"]",
+      "marca": "seta",
+      "label": "Aprovar pedido"
+    },
+    {
+      "texto": "Se for rejeitar, escreva a observação do motivo antes — o pedido volta a rascunho para o comprador corrigir",
+      "rota": "/compras/aprovacoes.php",
+      "seletor": "input[name=\"observacao\"]",
+      "marca": "caixa",
+      "label": "Observação ao rejeitar"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "definir-parametros-de-rendimento",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique no lapis do tipo de atividade para abrir o cadastro dos parametros",
+      "rota": "/agro/parametros_rendimento.php",
+      "seletor": ".vdata tbody tr:first-child button.vicon-acao[title=\"Editar\"]",
+      "marca": "seta",
+      "label": "Editar parâmetros"
+    },
+    {
+      "texto": "Informe o rendimento por diaria (quanto 1 pessoa faz por dia)",
+      "rota": "/agro/parametros_rendimento.php",
+      "pre_acoes": [".vdata tbody tr:first-child button.vicon-acao[title=\"Editar\"]"],
+      "seletor": "#vm-form input[name=\"p_rendimento_por_diaria\"]",
+      "marca": "caixa",
+      "label": "Rendimento por diária"
+    },
+    {
+      "texto": "Defina o inicio da vigencia — os apontamentos usam a vigencia da data",
+      "rota": "/agro/parametros_rendimento.php",
+      "pre_acoes": [".vdata tbody tr:first-child button.vicon-acao[title=\"Editar\"]"],
+      "seletor": "#vm-form input[name=\"vigencia_inicio\"]",
+      "marca": "caixa",
+      "label": "Início da vigência"
+    },
+    {
+      "texto": "Clique em Gravar parametros — a calculadora ja usa a nova versao",
+      "rota": "/agro/parametros_rendimento.php",
+      "pre_acoes": [".vdata tbody tr:first-child button.vicon-acao[title=\"Editar\"]"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Gravar parâmetros"
+    }
+  ]
+}

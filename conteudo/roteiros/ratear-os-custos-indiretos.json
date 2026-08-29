@@ -1,0 +1,27 @@
+{
+  "slug": "ratear-os-custos-indiretos",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "No bloco 1, confira os custos gerais pendentes e clique em Atribuir as safras do periodo",
+      "rota": "/custeio/rateios.php",
+      "seletor": "button:has-text(\"Atribuir às safras do período\")",
+      "marca": "seta",
+      "label": "Atribuir as safras"
+    },
+    {
+      "texto": "No bloco 2, clique em Ratear por horas para distribuir os abastecimentos as valvulas",
+      "rota": "/custeio/rateios.php",
+      "seletor": "button:has-text(\"Ratear por horas\")",
+      "marca": "seta",
+      "label": "Ratear por horas"
+    },
+    {
+      "texto": "Em Regras de rateio, use + Nova regra para registrar o criterio acordado com o cliente",
+      "rota": "/custeio/rateios.php",
+      "seletor": "button:has-text(\"+ Nova regra\")",
+      "marca": "seta",
+      "label": "Nova regra"
+    }
+  ]
+}

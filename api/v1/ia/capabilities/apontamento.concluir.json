@@ -1,0 +1,23 @@
+{
+  "id": "apontamento.concluir",
+  "titulo": "Concluir um apontamento iniciado",
+  "modulo": "agro",
+  "permissao": "agro.apontamentos_campo.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/apontamentos/{id}/concluir", "funcao": "rota_apontamento_concluir_id" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": null, "desc": "id do apontamento aberto (de apontamentos_abertos.sync)", "de_contexto": true },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação da conclusão (máx. 255)" },
+    "quantidade": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "quantidade finalizada (colheita/poda)" },
+    "quantidade_unidade": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["plantas", "kg", "caixa"], "desc": "unidade da quantidade" },
+    "colaboradores": { "tipo": "lista", "obrigatorio": false, "resolver": null, "desc": "produção por pessoa [{colaborador_id|terceirizado_id, quantidade, meta?, ...}] — o servidor calcula a premiação" }
+  },
+  "resumo": "Concluir apontamento #{id}",
+  "regras": [
+    "promove status 'iniciado' → 'pendente' (fica em aberto p/ validação no web)",
+    "grava a produção por colaborador quando 'colaboradores' é enviado (delete+reinsert idempotente)",
+    "quantidade vira nota estruturada (caixa → kg pela config do tenant)"
+  ],
+  "inverso": null
+}

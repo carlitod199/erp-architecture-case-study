@@ -1,0 +1,37 @@
+{
+  "slug": "emitir-ordem-de-pulverizacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Pulverização e clique em + Nova aplicação",
+      "rota": "/mip/aplicacoes.php",
+      "seletor": "button:has-text(\"+ Nova aplicação\")",
+      "marca": "caixa",
+      "label": "Nova aplicação"
+    },
+    {
+      "texto": "Marque o modo Emitir OS (DF/IF) — este passo transforma o registro em instrução numerada, sem baixa de estoque",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["button:has-text(\"+ Nova aplicação\")"],
+      "seletor": "#vm-form input[name=\"modo\"][value=\"emitir\"]",
+      "marca": "destaque",
+      "label": "Emitir OS (DF/IF)"
+    },
+    {
+      "texto": "Escolha a válvula, a safra e o tipo e informe a Data prevista (na emissão a data realizada não existe)",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["button:has-text(\"+ Nova aplicação\")"],
+      "seletor": "#aplic-data-prev",
+      "marca": "caixa",
+      "label": "Data prevista"
+    },
+    {
+      "texto": "Clique em Registrar aplicação — a OS entra na fila em status planejada, aguardando o preparo e a execução",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["button:has-text(\"+ Nova aplicação\")"],
+      "seletor": "#vm-form button:has-text(\"Registrar aplicação\")",
+      "marca": "seta",
+      "label": "Registrar aplicação"
+    }
+  ]
+}

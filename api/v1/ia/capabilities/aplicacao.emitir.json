@@ -1,0 +1,28 @@
+{
+  "id": "aplicacao.emitir",
+  "titulo": "Emitir OS de aplicação (DF/IF)",
+  "modulo": "mip",
+  "permissao": "mip.aplicacoes_defensivos.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/aplicacoes", "funcao": "rota_aplicacao_emitir" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do documento no aparelho (idempotência)", "de_contexto": true },
+    "talhao_id": { "tipo": "int", "obrigatorio": true, "resolver": "valvula", "desc": "válvula/talhão da aplicação", "de_contexto": true },
+    "alvo_id": { "tipo": "int", "obrigatorio": false, "resolver": "alvo", "desc": "alvo alvo do controle (puxa dose do Auto de Controle)" },
+    "tipo": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["pulverizacao", "fertirrigacao", "indutor_brotacao", "foliar", "tratamento", "outro"], "default": "pulverizacao", "desc": "tipo de aplicação" },
+    "itens": { "tipo": "lista", "obrigatorio": true, "resolver": "produto", "desc": "produtos [{produto_id, dose?, dose_unidade?, quantidade?}] — dose puxa do cadastro do alvo se ausente" },
+    "data_prevista": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data prevista da execução" },
+    "maquinas": { "tipo": "lista", "obrigatorio": false, "resolver": "maquina", "desc": "máquinas usadas (ids)" },
+    "volume_calda_ha_l": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "volume de calda por ha (L)" },
+    "area_aplicada_ha": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "área aplicada em ha" },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação (máx. 255)" }
+  },
+  "resumo": "Emitir OS de {tipo} na válvula {talhao_id}",
+  "regras": [
+    "exige safra em andamento na válvula e custeio aberto (senão 422)",
+    "numera o documento DF/IF por fazenda na emissão (lock atômico)",
+    "nasce 'planejada' — SEM baixa de estoque/custeio (isso ocorre na confirmação)"
+  ],
+  "inverso": null
+}

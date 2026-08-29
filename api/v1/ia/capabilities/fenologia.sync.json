@@ -1,0 +1,17 @@
+{
+  "id": "fenologia.sync",
+  "titulo": "Listar fenologia por variedade da válvula",
+  "modulo": "agro",
+  "permissao": "agro.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/fenologia", "funcao": "rota_sync" },
+  "params": {},
+  "resumo": "Fenologia atual por válvula (dia 0 = poda)",
+  "regras": [
+    "retrato ATUAL por talhão (ignora 'desde' — a fase muda com os dias, não com updated_at)",
+    "sem api_exigir no handler — token válido + tenant",
+    "traz fase vigente, dias desde a poda e o dia de início da colheita (para o alerta de LMR)"
+  ],
+  "inverso": null
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-implemento",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo implemento para abrir o cadastro",
+      "rota": "/maquinas/implementos.php",
+      "seletor": "button:has-text(\"Novo implemento\")",
+      "marca": "seta",
+      "label": "Novo implemento"
+    },
+    {
+      "texto": "Informe o nome do implemento — e o campo obrigatorio",
+      "rota": "/maquinas/implementos.php",
+      "pre_acoes": ["button:has-text(\"Novo implemento\")"],
+      "seletor": "#vm-form input[name=nome]",
+      "marca": "caixa",
+      "label": "Nome"
+    },
+    {
+      "texto": "Preencha o tipo, a fazenda e, se ficar acoplado a um trator, a maquina",
+      "rota": "/maquinas/implementos.php",
+      "pre_acoes": ["button:has-text(\"Novo implemento\")"],
+      "seletor": "#vm-form select[name=maquina_id]",
+      "marca": "caixa",
+      "label": "Maquina atual"
+    },
+    {
+      "texto": "Salve — o implemento entra na lista como ativo",
+      "rota": "/maquinas/implementos.php",
+      "pre_acoes": ["button:has-text(\"Novo implemento\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

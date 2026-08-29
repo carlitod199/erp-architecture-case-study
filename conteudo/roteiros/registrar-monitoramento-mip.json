@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-monitoramento-mip",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo monitoramento para registrar o que você viu no talhão",
+      "rota": "/mip/monitoramento.php",
+      "seletor": "button:has-text(\"+ Novo monitoramento\")",
+      "marca": "caixa",
+      "label": "Novo monitoramento"
+    },
+    {
+      "texto": "Escolha a válvula que você percorreu — a safra é preenchida sozinha",
+      "rota": "/mip/monitoramento.php",
+      "pre_acoes": ["button:has-text(\"+ Novo monitoramento\")"],
+      "seletor": "#mon-talhao",
+      "marca": "caixa",
+      "label": "Válvula percorrida"
+    },
+    {
+      "texto": "Lance o alvo encontrado com o índice de infestação, o local e a severidade",
+      "rota": "/mip/monitoramento.php",
+      "pre_acoes": ["button:has-text(\"+ Novo monitoramento\")"],
+      "seletor": "#mon-alvos",
+      "marca": "destaque",
+      "label": "Alvo e índice de infestação"
+    },
+    {
+      "texto": "Clique em Salvar e ENVIAR ao líder — é este passo que gera o alerta. Rascunho não avisa ninguém",
+      "rota": "/mip/monitoramento.php",
+      "pre_acoes": ["button:has-text(\"+ Novo monitoramento\")"],
+      "seletor": "button:has-text(\"Salvar e ENVIAR\")",
+      "marca": "seta",
+      "label": "Concluir e enviar (gera o alerta)"
+    }
+  ]
+}

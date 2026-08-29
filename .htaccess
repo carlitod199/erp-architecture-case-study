@@ -1,0 +1,129 @@
+# ============================================================
+# VERO — .htaccess  v2.0
+# Hardening de segurança na raiz do projeto
+# ============================================================
+
+# ── Charset padrão ──────────────────────────────────────────
+AddDefaultCharset UTF-8
+
+# ── Desabilita listagem de diretórios ───────────────────────
+Options -Indexes -MultiViews
+
+# ── Páginas de erro personalizadas (branded) ────────────────
+# Qualquer 403/404/500 do servidor passa a mostrar a tela VERO.
+# Caminho absoluto a partir da raiz do host (app em /vero). Se mudar
+# a subpasta do deploy, ajuste o prefixo aqui.
+ErrorDocument 403 /vero/403.php
+ErrorDocument 404 /vero/404.php
+ErrorDocument 500 /vero/500.php
+
+# ── Bloqueia acesso direto a tipos de arquivo sensíveis ─────
+<FilesMatch "\.(env|sql|log|sh|bak|swp|git|md|json|lock|yml|yaml|ini|cfg|conf|dist|htpasswd|pem|key|crt|pfx|p12|jks)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Bloqueia acesso direto a diretórios internos ────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ── Colisão arquivo.php vs diretório de mesmo nome ──────────────────
+    # dashboard.php/dashboard e agro.php/agro: a URL limpa /dashboard cairia
+    # no DIRETÓRIO (403 do mod_dir). Esta regra explícita serve o .php ANTES,
+    # cobrindo /dashboard, /dashboard/, /agro, /agro/. (Só há estas 2 colisões.)
+    RewriteRule ^(dashboard|agro)/?$ $1.php [L,QSA]
+
+    # Bloqueia includes/ (exceto requests legítimos via PHP)
+    RewriteRule ^includes/           - [F,L]
+
+    # Bloqueia apenas config/database.php (contém credenciais)
+    RewriteRule ^config/database\.php$ - [F,L]
+
+    # Bloqueia database/ (migrations e schemas)
+    RewriteRule ^database/           - [F,L]
+
+    # Bloqueia storage_private/ (arquivos privados)
+    RewriteRule ^storage_private/    - [F,L]
+
+    # Bloqueia api/src/ (código-fonte Node.js)
+    RewriteRule ^api/src/            - [F,L]
+
+    # Bloqueia node_modules/
+    RewriteRule ^node_modules/       - [F,L]
+
+    # Bloqueia arquivos ocultos (.git, .env, etc.)
+    RewriteRule (^|/)\.              - [F,L]
+
+    # ── Canoniza para URL SEM .php (27/07) ──────────────────────────────
+    # Redireciona 301 apenas requisições GET a *.php para a versão limpa
+    # (a barra de endereços fica sem .php em toda navegação/link existente).
+    # POST NÃO é redirecionado -> envios de formulário a *.php seguem intactos.
+    # Base-agnóstico: usa o caminho real da requisição (%1 de THE_REQUEST);
+    # a query string é preservada automaticamente.
+    RewriteCond %{REQUEST_METHOD} =GET
+    RewriteCond %{THE_REQUEST} \s([^?\s]+)\.php[\s?]
+    RewriteRule \.php$ %1 [R=301,L,NE]
+
+    # ── URLs limpas (27/07): /pasta/pagina -> /pasta/pagina.php ──────────
+    # Reescreve para o .php correspondente quando o pedido NÃO é um arquivo
+    # real. O .php TEM PRIORIDADE sobre um diretório de MESMO NOME (ex.:
+    # dashboard.php vs dashboard/, agro.php vs agro/) — por isso NÃO usamos
+    # a condição !-d: sem ela, "/dashboard" cairia no diretório (403).
+    # Rewrite INTERNO (preserva POST e query via QSA); as URLs .php seguem
+    # funcionando por baixo.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}\.php -f
+    RewriteRule ^(.+?)/?$ $1.php [L,QSA]
+</IfModule>
+
+# ── Restringe utilitários administrativos ao localhost ───────
+<FilesMatch "^(criar_admin|phpinfo|debug|setup|install|migrate)\.(php)$">
+    <IfModule mod_authz_core.c>
+        Require local
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Allow from 127.0.0.1 ::1
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Headers de segurança HTTP ────────────────────────────────
+<IfModule mod_headers.c>
+    # Impede clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Impede MIME-sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Habilita XSS filter em navegadores legados
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Controla informação do Referrer
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Remove cabeçalhos que revelam tecnologia
+    Header always unset X-Powered-By
+    Header always unset Server
+
+    # Habilita HSTS somente em HTTPS (descomente em produção com HTTPS)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── Limite de tamanho de request (10 MB) ─────────────────────
+LimitRequestBody 10485760
+
+# ── Desabilita assinatura do servidor ───────────────────────
+ServerSignature Off
+
+# BIOS_SECRET_KEY deve ser configurada fora do webroot.
+
+# ── CA bundle para cURL/API bancária ─────────────────────────
+# BIOS_CURL_CAINFO deve apontar para o CA bundle do PHP 8.3 no VirtualHost.
+
+# Tokens e IDs de integração Sicoob devem ser configurados no ambiente.

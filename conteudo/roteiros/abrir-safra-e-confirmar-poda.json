@@ -1,0 +1,34 @@
+{
+  "slug": "abrir-safra-e-confirmar-poda",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Abrir safra do semestre — a identificação AAAA.S-NN sai sozinha",
+      "rota": "/agro/abertura_safra.php",
+      "seletor": "button:has-text(\"Abrir safra do semestre\")",
+      "marca": "seta",
+      "label": "Abrir safra do semestre"
+    },
+    {
+      "texto": "Abra a safra recém-criada para ver as válvulas candidatas",
+      "rota": "/agro/abertura_safra.php",
+      "seletor": "a.vicon-acao[title*=\"Válvulas\"]",
+      "marca": "seta",
+      "label": "Abrir a safra e ver as válvulas"
+    },
+    {
+      "texto": "Encontre a válvula com a situação Pronta p/ confirmar",
+      "rota": "/agro/abertura_safra.php?safra=19",
+      "seletor": "span.vbadge:has-text(\"Pronta p/ confirmar\")",
+      "marca": "destaque",
+      "label": "Válvula pronta p/ confirmar"
+    },
+    {
+      "texto": "Clique em Confirmar poda — este passo define o dia 0 e libera a fenologia",
+      "rota": "/agro/abertura_safra.php?safra=19",
+      "seletor": "button.vbtn-primary:has-text(\"Confirmar poda\")",
+      "marca": "caixa",
+      "label": "Confirmar poda (define o dia 0)"
+    }
+  ]
+}

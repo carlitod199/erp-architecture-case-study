@@ -1,0 +1,27 @@
+{
+  "slug": "fechar-a-safra-no-custeio",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Localize a safra na lista, com o custo apurado ao lado",
+      "rota": "/custeio/fechamento.php",
+      "seletor": "table.vtable",
+      "marca": "caixa",
+      "label": "Safras"
+    },
+    {
+      "texto": "Antes de fechar, se houver custos indiretos, aplique o rateio da safra",
+      "rota": "/custeio/fechamento.php",
+      "seletor": "button[title=\"Ratear\"]",
+      "marca": "seta",
+      "label": "Ratear"
+    },
+    {
+      "texto": "Clique em Fechar na safra — grava o snapshot do custo total e trava novos lancamentos",
+      "rota": "/custeio/fechamento.php",
+      "seletor": "button[title=\"Fechar safra\"]",
+      "marca": "seta",
+      "label": "Fechar safra"
+    }
+  ]
+}

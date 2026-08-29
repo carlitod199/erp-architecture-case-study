@@ -1,0 +1,16 @@
+{
+  "name": "VERO Campo",
+  "short_name": "VERO Campo",
+  "description": "Monitor de campo e visão do pequeno produtor — VERO",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "pt-BR",
+  "theme_color": "#08262A",
+  "background_color": "#08262A",
+  "icons": [
+    { "src": "../assets/img/logo_vero.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../assets/img/logo_vero.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "mip_recebidos.sync",
+  "titulo": "Listar monitoramentos MIP recebidos (visão do líder)",
+  "modulo": "mip",
+  "permissao": "mip.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/mip_recebidos", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Monitoramentos MIP enviados (delta desde {desde})",
+  "regras": [
+    "handler exige mip.ver",
+    "monitoramentos com status 'enviado' (índice, alvo, ponto, monitor, plantas amostradas)",
+    "leituras que voltaram a rascunho viram tombstone no delta"
+  ],
+  "inverso": null
+}

@@ -1,0 +1,23 @@
+{
+  "id": "aplicacao.assinar",
+  "titulo": "Assinar uma aplicação (operador ou RT)",
+  "modulo": "mip",
+  "permissao": "mip.aplicacoes_defensivos.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/aplicacoes/{id}/assinar", "funcao": "rota_aplicacao_assinar" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": null, "desc": "id da aplicação", "de_contexto": true },
+    "operador_nome": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "nome de quem assina (máx. 150)" },
+    "assinatura_svg": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "assinatura vetorial (SVG, máx. 500 KB)" },
+    "operador_id": { "tipo": "int", "obrigatorio": false, "resolver": "operador", "desc": "id do operador que assina" },
+    "papel": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["operador", "rt"], "default": "operador", "desc": "papel: quem executou ou o responsável técnico" }
+  },
+  "resumo": "Assinatura ({papel}) da aplicação #{id} por {operador_nome}",
+  "regras": [
+    "assinatura limitada a 500 KB",
+    "papel operador (executou) ou rt (receituário agronômico)",
+    "toca o updated_at do documento para a caixa de assinatura do RT atualizar"
+  ],
+  "inverso": null
+}

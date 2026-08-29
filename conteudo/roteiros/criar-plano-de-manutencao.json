@@ -1,0 +1,37 @@
+{
+  "slug": "criar-plano-de-manutencao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo plano para abrir o formulario do preventivo",
+      "rota": "/maquinas/planos_manutencao.php",
+      "seletor": "button:has-text(\"Novo plano\")",
+      "marca": "seta",
+      "label": "Novo plano"
+    },
+    {
+      "texto": "Escolha a maquina e escreva a descricao do plano (o que sera feito)",
+      "rota": "/maquinas/planos_manutencao.php",
+      "pre_acoes": ["button:has-text(\"Novo plano\")"],
+      "seletor": "#vm-form select[name=maquina_id]",
+      "marca": "caixa",
+      "label": "Maquina"
+    },
+    {
+      "texto": "Informe o intervalo em horas de horimetro e/ou em dias — vence o que chegar primeiro",
+      "rota": "/maquinas/planos_manutencao.php",
+      "pre_acoes": ["button:has-text(\"Novo plano\")"],
+      "seletor": "#vm-form input[name=intervalo_horas]",
+      "marca": "caixa",
+      "label": "Intervalo (horas)"
+    },
+    {
+      "texto": "Salve o plano — o alerta passa a disparar na antecedencia configurada",
+      "rota": "/maquinas/planos_manutencao.php",
+      "pre_acoes": ["button:has-text(\"Novo plano\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar plano"
+    }
+  ]
+}

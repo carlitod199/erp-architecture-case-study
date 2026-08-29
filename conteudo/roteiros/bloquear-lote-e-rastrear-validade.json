@@ -1,0 +1,27 @@
+{
+  "slug": "bloquear-lote-e-rastrear-validade",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Use o filtro de situação para achar o lote (ex.: a vencer ou com saldo)",
+      "rota": "/estoque/lotes.php",
+      "seletor": "select[name=\"sit\"]",
+      "marca": "caixa",
+      "label": "Filtro de situação"
+    },
+    {
+      "texto": "Clique em Bloquear para tirar o lote da fila do FEFO até resolver a qualidade",
+      "rota": "/estoque/lotes.php",
+      "seletor": ".vtable tbody tr:first-child button[title=\"Bloquear lote\"]",
+      "marca": "seta",
+      "label": "Bloquear lote"
+    },
+    {
+      "texto": "Abra o Rastreio para ver a origem do lote e os consumos que ele abasteceu",
+      "rota": "/estoque/lotes.php",
+      "seletor": ".vtable tbody tr:first-child a.vicon-acao[title=\"Rastrear\"]",
+      "marca": "seta",
+      "label": "Rastrear"
+    }
+  ]
+}

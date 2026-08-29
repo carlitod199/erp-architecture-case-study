@@ -1,0 +1,27 @@
+{
+  "slug": "consultar-aplicacoes-nutricionais",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Se quiser, filtre por tipo — fertirrigacao, foliar ou indutor",
+      "rota": "/nutricao/aplicacoes_nutricionais.php",
+      "seletor": "div.vtoolbar select[name=tipo]",
+      "marca": "caixa",
+      "label": "Filtrar por tipo"
+    },
+    {
+      "texto": "Leia a lista: data, valvula, safra, produtos com a dose do RT, custo e status",
+      "rota": "/nutricao/aplicacoes_nutricionais.php",
+      "seletor": "table.vdata",
+      "marca": "seta",
+      "label": "Aplicacoes"
+    },
+    {
+      "texto": "Para registrar uma nova aplicacao, use o link registrar (nucleo de Aplicacoes)",
+      "rota": "/nutricao/aplicacoes_nutricionais.php",
+      "seletor": "a[href*=\"mip/aplicacoes\"]",
+      "marca": "destaque",
+      "label": "Registrar"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "lancar-uma-conta-a-receber",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo lancamento",
+      "rota": "/financeiro/contas_receber.php",
+      "seletor": "button:has-text(\"+ Novo lançamento\")",
+      "marca": "seta",
+      "label": "Novo lancamento"
+    },
+    {
+      "texto": "Preencha a descricao e o valor (maior que zero)",
+      "rota": "/financeiro/contas_receber.php",
+      "pre_acoes": ["button:has-text(\"+ Novo lançamento\")"],
+      "seletor": "#vm-form input[name=\"descricao\"]",
+      "marca": "caixa",
+      "label": "Descricao e valor"
+    },
+    {
+      "texto": "Informe a data de vencimento — ela e obrigatoria no lancamento novo",
+      "rota": "/financeiro/contas_receber.php",
+      "pre_acoes": ["button:has-text(\"+ Novo lançamento\")"],
+      "seletor": "#vm-form input[name=\"data_vencimento\"]",
+      "marca": "caixa",
+      "label": "Vencimento"
+    },
+    {
+      "texto": "Clique em Salvar — o titulo entra como aberto e conta na projecao do fluxo de caixa",
+      "rota": "/financeiro/contas_receber.php",
+      "pre_acoes": ["button:has-text(\"+ Novo lançamento\")"],
+      "seletor": "#vm-form button.vbtn-primary",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

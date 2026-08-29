@@ -1,0 +1,27 @@
+{
+  "slug": "lancar-no-livro-caixa",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Livro caixa e, no bloco Gerar do razão pago, informe o início do período",
+      "rota": "/fiscal/livro.php",
+      "seletor": "input[name=\"ini\"]",
+      "marca": "caixa",
+      "label": "Início do período"
+    },
+    {
+      "texto": "Informe o fim do período",
+      "rota": "/fiscal/livro.php",
+      "seletor": "input[name=\"fim\"]",
+      "marca": "caixa",
+      "label": "Fim do período"
+    },
+    {
+      "texto": "Clique em Gerar do razão — cria um lançamento por movimentação paga do período, sem duplicar o que já existe",
+      "rota": "/fiscal/livro.php",
+      "seletor": "button:has-text(\"Gerar do razão\")",
+      "marca": "seta",
+      "label": "Gerar do razão"
+    }
+  ]
+}

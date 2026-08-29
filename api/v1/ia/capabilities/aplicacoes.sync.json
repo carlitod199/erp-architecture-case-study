@@ -1,0 +1,19 @@
+{
+  "id": "aplicacoes.sync",
+  "titulo": "Listar aplicações/DF da fila do operador",
+  "modulo": "mip",
+  "permissao": "mip.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/aplicacoes", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Aplicações/DF em aberto (delta desde {desde})",
+  "regras": [
+    "handler exige mip.ver; cada DF carrega itens (produto/dose/carência) e status de assinatura",
+    "só documentos vivos (planejada/rascunho/registrada); demais viram tombstone no delta",
+    "SEM custos (P-75)"
+  ],
+  "inverso": null
+}

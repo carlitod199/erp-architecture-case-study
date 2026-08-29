@@ -1,0 +1,19 @@
+{
+  "id": "alertas.sync",
+  "titulo": "Listar alertas em aberto/reconhecidos",
+  "modulo": "mip",
+  "permissao": "mip.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/alertas", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Alertas em aberto/reconhecidos (delta desde {desde})",
+  "regras": [
+    "categorias mip/estoque/resíduo com severidade, título e mensagem",
+    "sem api_exigir no handler — token válido + tenant",
+    "só status aberto/reconhecido; resolvidos viram tombstone no delta; alimenta alerta.reconhecer"
+  ],
+  "inverso": null
+}

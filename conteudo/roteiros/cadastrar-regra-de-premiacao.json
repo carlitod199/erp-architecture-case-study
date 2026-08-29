@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-regra-de-premiacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Premiação e clique em Novo template para criar a regra",
+      "rota": "/pessoas/premiacao.php",
+      "seletor": "button:has-text(\"Novo template\")",
+      "marca": "seta",
+      "label": "Novo template"
+    },
+    {
+      "texto": "Escolha a atividade e a unidade de produção (planta, caixa, kg...)",
+      "rota": "/pessoas/premiacao.php",
+      "pre_acoes": ["button:has-text(\"Novo template\")"],
+      "seletor": "#vm-form select[name=\"tipo_atividade_id\"]",
+      "marca": "caixa",
+      "label": "Tipo de atividade"
+    },
+    {
+      "texto": "Informe a meta padrao e o valor da premiacao por unidade acima da meta",
+      "rota": "/pessoas/premiacao.php",
+      "pre_acoes": ["button:has-text(\"Novo template\")"],
+      "seletor": "#vm-form input[name=\"valor_acima_meta\"]",
+      "marca": "caixa",
+      "label": "Valor da premiacao"
+    },
+    {
+      "texto": "Defina a vigencia e clique em Salvar — a regra vira o padrao sugerido no apontamento",
+      "rota": "/pessoas/premiacao.php",
+      "pre_acoes": ["button:has-text(\"Novo template\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

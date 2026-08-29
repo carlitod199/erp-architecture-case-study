@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "registrar-romaneio-de-campo",
+    "rota": "/agro/romaneios_colheita.php",
+    "arquivo": "scripts/capturas/anterior/registrar-romaneio-de-campo.png",
+    "sha256": "3d3095dd0a29dc3298a1cb4bf6ae139a8683f4ba460d7724c1af7694eb17b437",
+    "mudou": true
+  },
+  {
+    "slug": "receber-uma-compra",
+    "rota": "/compras/recebimentos.php",
+    "arquivo": "scripts/capturas/anterior/receber-uma-compra.png",
+    "sha256": "dc13ea8a464df05e01ace695a299ee8595c3d7db3688fdb42d6676fd270e8fa5",
+    "mudou": true
+  },
+  {
+    "slug": "conferir-custo-realizado-da-safra",
+    "rota": "/custeio/custo_realizado.php",
+    "arquivo": "scripts/capturas/anterior/conferir-custo-realizado-da-safra.png",
+    "sha256": "5bafc39f758abed341ca779ff6ccc6b7580ff8c04db229a1dc8ccf724d2c0d20",
+    "mudou": true
+  },
+  {
+    "slug": "dar-entrada-de-nota-no-estoque",
+    "rota": "/estoque/entradas.php",
+    "arquivo": "scripts/capturas/anterior/dar-entrada-de-nota-no-estoque.png",
+    "sha256": "b451ec5e0b703ffda4474ce0ac2f7cbd10e11f606b3ec021eb0a0a69957e6fa9",
+    "mudou": true
+  },
+  {
+    "slug": "fazer-saldo-inicial",
+    "rota": "/estoque/implantacao_saldo.php",
+    "arquivo": "scripts/capturas/anterior/fazer-saldo-inicial.png",
+    "sha256": "28d59fd2cbc434e00f50625bb13f2b9c6b6c75daeb90be834d1f5eced22a24cb",
+    "mudou": true
+  },
+  {
+    "slug": "baixar-um-titulo",
+    "rota": "/financeiro/contas_pagar.php",
+    "arquivo": "scripts/capturas/anterior/baixar-um-titulo.png",
+    "sha256": "f3abc157f41acfd96d95ab2d3c6ec17786b11dc07add294421ec3f1ed905aa2c",
+    "mudou": true
+  },
+  {
+    "slug": "registrar-monitoramento-mip",
+    "rota": "/mip/monitoramento.php",
+    "arquivo": "scripts/capturas/anterior/registrar-monitoramento-mip.png",
+    "sha256": "7fc8dd7469ebdac2021838734820dc80ed7c9503c0f18802841eb033a172e138",
+    "mudou": true
+  },
+  {
+    "slug": "abrir-safra-e-confirmar-poda",
+    "rota": "/agro/abertura_safra.php",
+    "arquivo": "scripts/capturas/anterior/abrir-safra-e-confirmar-poda.png",
+    "sha256": "3d22eafa4fd7ee7ae3ff9c784a3b4cb159833331c43907199fc91fbfb389ea92",
+    "mudou": true
+  },
+  {
+    "slug": "emitir-ordem-de-servico",
+    "rota": "/agro/atividades.php",
+    "arquivo": "scripts/capturas/anterior/emitir-ordem-de-servico.png",
+    "sha256": "6617a5d8b0b73e1eefc12cfdccb6c2f4e872e25f9e1f8f82136075de0bb7a5c2",
+    "mudou": true
+  },
+  {
+    "slug": "finalizar-apontamento",
+    "rota": "/agro/apontamentos.php",
+    "arquivo": "scripts/capturas/anterior/finalizar-apontamento.png",
+    "sha256": "2ff2140130869e110fc58c288d5ffcb3135d8b1d319c777ff2ce125f2e3904e0",
+    "mudou": true
+  }
+]

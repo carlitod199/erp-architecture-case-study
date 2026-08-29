@@ -1,0 +1,34 @@
+{
+  "slug": "registrar-colheita-no-campo",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Registrar colheita para abrir o formulario de campo",
+      "rota": "/agro/colheita.php",
+      "seletor": "a.vbtn-primary:has-text(\"Registrar colheita\")",
+      "marca": "seta",
+      "label": "Registrar colheita"
+    },
+    {
+      "texto": "Escolha a valvula, a safra e a variedade da colheita",
+      "rota": "/agro/colheita.php?novo=1",
+      "seletor": "#f-colheita select[name=\"setor_id\"]",
+      "marca": "caixa",
+      "label": "Válvula"
+    },
+    {
+      "texto": "Informe os quilos colhidos e distribua a classificacao (soma nao passa de 100%)",
+      "rota": "/agro/colheita.php?novo=1",
+      "seletor": "#f-colheita input[name=\"producao_realizada_kg_ha\"]",
+      "marca": "caixa",
+      "label": "Produção realizada"
+    },
+    {
+      "texto": "Clique em Salvar colheita — se a cultura estiver configurada, entra no estoque",
+      "rota": "/agro/colheita.php?novo=1",
+      "seletor": "#f-colheita button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar colheita"
+    }
+  ]
+}

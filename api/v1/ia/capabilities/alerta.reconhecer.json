@@ -1,0 +1,18 @@
+{
+  "id": "alerta.reconhecer",
+  "titulo": "Reconhecer um alerta fitossanitário",
+  "modulo": "mip",
+  "permissao": "mip.alertas_fitossanitarios.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/alertas/{id}/reconhecer", "funcao": "rota_alerta_reconhecer" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": null, "desc": "id do alerta (de alertas.sync)", "de_contexto": true }
+  },
+  "resumo": "Reconhecer alerta #{id}",
+  "regras": [
+    "só alertas com status 'aberto' viram 'reconhecido' (grava quem e quando)",
+    "alerta já tratado devolve 409 (ja_reconhecido)"
+  ],
+  "inverso": null
+}

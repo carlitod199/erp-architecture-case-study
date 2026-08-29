@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-tipo-de-atividade",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo tipo para abrir o cadastro",
+      "rota": "/agro/tipos_atividade.php",
+      "seletor": "button:has-text(\"Novo tipo\")",
+      "marca": "seta",
+      "label": "Novo tipo"
+    },
+    {
+      "texto": "Informe o nome (ex.: Poda, Raleio, Embalamento)",
+      "rota": "/agro/tipos_atividade.php",
+      "pre_acoes": ["button:has-text(\"Novo tipo\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome do tipo"
+    },
+    {
+      "texto": "Escolha a categoria e defina se exige quantidade produzida",
+      "rota": "/agro/tipos_atividade.php",
+      "pre_acoes": ["button:has-text(\"Novo tipo\")"],
+      "seletor": "#vm-form select[name=\"categoria\"]",
+      "marca": "caixa",
+      "label": "Categoria"
+    },
+    {
+      "texto": "Marque as culturas (nenhuma = todas) e clique em Salvar",
+      "rota": "/agro/tipos_atividade.php",
+      "pre_acoes": ["button:has-text(\"Novo tipo\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "fazer-inventario-do-almoxarifado",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione o almoxarifado que você vai contar",
+      "rota": "/estoque/inventario.php",
+      "seletor": "select[name=\"almoxarifado_id\"]",
+      "marca": "caixa",
+      "label": "Almoxarifado"
+    },
+    {
+      "texto": "Clique em Abrir inventário — o saldo é congelado item por item (por lote, quando houver)",
+      "rota": "/estoque/inventario.php",
+      "seletor": "button:has-text(\"Abrir inventário\")",
+      "marca": "seta",
+      "label": "Abrir inventário"
+    },
+    {
+      "texto": "Digite as contagens; ao Fechar a contagem nada muda ainda — o estoque só é ajustado na APROVAÇÃO de quem tem alçada",
+      "rota": "/estoque/inventario.php",
+      "seletor": ".vhint:has-text(\"Abrir congela\")",
+      "marca": "destaque",
+      "label": "Contagem por lote e aprovação"
+    }
+  ]
+}

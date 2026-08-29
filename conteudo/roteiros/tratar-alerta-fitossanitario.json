@@ -1,0 +1,35 @@
+{
+  "slug": "tratar-alerta-fitossanitario",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Alertas Fitossanitários e mantenha o filtro em ativos para ver os abertos e reconhecidos",
+      "rota": "/mip/alertas_fitossanitarios.php",
+      "seletor": "select[name=\"status\"]",
+      "marca": "destaque",
+      "label": "Filtro: ativos"
+    },
+    {
+      "texto": "No alerta, clique em Reconhecer — marca que a equipe tomou ciência, com seu usuário e a data",
+      "rota": "/mip/alertas_fitossanitarios.php",
+      "seletor": "button.vicon-acao[title=\"Reconhecer\"]",
+      "marca": "caixa",
+      "label": "Reconhecer"
+    },
+    {
+      "texto": "Clique em Registrar ação e descreva a decisão tomada pelo RT (o texto é obrigatório)",
+      "rota": "/mip/alertas_fitossanitarios.php",
+      "pre_acoes": ["button.vicon-acao[title=\"Registrar ação\"]"],
+      "seletor": "input[name=\"acao_texto\"]",
+      "marca": "caixa",
+      "label": "Ação / decisão do RT"
+    },
+    {
+      "texto": "Quando o controle estiver feito, clique em Resolver — este é o passo que fecha o alerta",
+      "rota": "/mip/alertas_fitossanitarios.php",
+      "seletor": "button.vicon-acao[title=\"Resolver\"]",
+      "marca": "seta",
+      "label": "Resolver"
+    }
+  ]
+}

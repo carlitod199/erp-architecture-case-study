@@ -1,0 +1,27 @@
+{
+  "slug": "imprimir-boletim-de-pulverizacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra o Boletim de Pulverização e ajuste a data final e quantos dias para trás quer incluir no período",
+      "rota": "/mip/boletim_pulverizacao.php?dias=92",
+      "seletor": "div.toolbar form",
+      "marca": "caixa",
+      "label": "Período do boletim"
+    },
+    {
+      "texto": "Confira a tabela consolidada — uma linha por documento, preservando número, carência e RT de cada um",
+      "rota": "/mip/boletim_pulverizacao.php?dias=92",
+      "seletor": "div.doc table",
+      "marca": "destaque",
+      "label": "Documentos do período"
+    },
+    {
+      "texto": "Use Imprimir boletim para gerar o documento pela impressão do navegador (o boletim é somente leitura)",
+      "rota": "/mip/boletim_pulverizacao.php?dias=92",
+      "seletor": "button:has-text(\"Imprimir boletim\")",
+      "marca": "seta",
+      "label": "Imprimir boletim"
+    }
+  ]
+}

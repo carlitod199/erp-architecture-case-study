@@ -1,0 +1,27 @@
+{
+  "slug": "conferir-custo-realizado-da-safra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione o ano e a safra que você quer conferir",
+      "rota": "/custeio/custo_realizado.php",
+      "seletor": "div.vtoolbar",
+      "marca": "caixa",
+      "label": "Ano e safra"
+    },
+    {
+      "texto": "Leia o total realizado da safra no canto superior",
+      "rota": "/custeio/custo_realizado.php",
+      "seletor": "span.vsub:has-text(\"total\")",
+      "marca": "seta",
+      "label": "Total realizado"
+    },
+    {
+      "texto": "Confira a quebra por categoria — mão de obra, insumos e máquinas",
+      "rota": "/custeio/custo_realizado.php",
+      "seletor": "table.vtable",
+      "marca": "caixa",
+      "label": "Custo por categoria"
+    }
+  ]
+}

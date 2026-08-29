@@ -1,0 +1,34 @@
+{
+  "slug": "criar-safra-e-vincular-valvulas",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Safras / Ciclos e clique em + Nova safra",
+      "rota": "/safras/index.php",
+      "seletor": "button:has-text(\"+ Nova safra\")",
+      "marca": "caixa",
+      "label": "Nova safra"
+    },
+    {
+      "texto": "Informe a identificação (única) e a data de início — as duas são obrigatórias",
+      "rota": "/safras/index.php?nova=1",
+      "seletor": "input[name=\"identificacao\"]",
+      "marca": "caixa",
+      "label": "Identificação"
+    },
+    {
+      "texto": "Marque as válvulas que entram na safra já na criação — a cultura e a área vêm da variedade de cada uma",
+      "rota": "/safras/index.php?nova=1",
+      "seletor": "#vv-list",
+      "marca": "destaque",
+      "label": "Válvulas da safra"
+    },
+    {
+      "texto": "Clique em Salvar — a safra nasce com as válvulas vinculadas, prontas para o custeio e a colheita",
+      "rota": "/safras/index.php?nova=1",
+      "seletor": "#vm-form .vform-actions button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

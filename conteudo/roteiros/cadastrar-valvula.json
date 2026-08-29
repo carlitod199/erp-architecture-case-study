@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-valvula",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova valvula para abrir o cadastro",
+      "rota": "/agro/valvulas.php",
+      "seletor": "button:has-text(\"Nova válvula\")",
+      "marca": "seta",
+      "label": "Nova válvula"
+    },
+    {
+      "texto": "Informe a fazenda",
+      "rota": "/agro/valvulas.php",
+      "pre_acoes": ["button:has-text(\"Nova válvula\")"],
+      "seletor": "#vm-form select[name=\"fazenda_id\"]",
+      "marca": "caixa",
+      "label": "Fazenda"
+    },
+    {
+      "texto": "Informe o codigo — curto e unico na fazenda (ex.: 5A, 2D)",
+      "rota": "/agro/valvulas.php",
+      "pre_acoes": ["button:has-text(\"Nova válvula\")"],
+      "seletor": "#vm-form input[name=\"codigo\"]",
+      "marca": "caixa",
+      "label": "Código da válvula"
+    },
+    {
+      "texto": "Clique em Salvar — a valvula-espelho e criada e sincronizada sozinha",
+      "rota": "/agro/valvulas.php",
+      "pre_acoes": ["button:has-text(\"Nova válvula\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

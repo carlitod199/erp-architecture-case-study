@@ -1,0 +1,52 @@
+[
+    {
+        "slug": "registrar-romaneio-de-campo",
+        "titulo": "Registrar um romaneio da carga que saiu do campo",
+        "rota": "/agro/romaneios_colheita.php"
+    },
+    {
+        "slug": "receber-uma-compra",
+        "titulo": "Receber uma compra que chegou",
+        "rota": "/compras/recebimentos.php"
+    },
+    {
+        "slug": "conferir-custo-realizado-da-safra",
+        "titulo": "Conferir o custo realizado da safra",
+        "rota": "/custeio/custo_realizado.php"
+    },
+    {
+        "slug": "dar-entrada-de-nota-no-estoque",
+        "titulo": "Dar entrada de nota no estoque",
+        "rota": "/estoque/entradas.php"
+    },
+    {
+        "slug": "fazer-saldo-inicial",
+        "titulo": "Fazer o saldo inicial do estoque",
+        "rota": "/estoque/implantacao_saldo.php"
+    },
+    {
+        "slug": "baixar-um-titulo",
+        "titulo": "Baixar um título para fechar o ciclo do dinheiro",
+        "rota": "/financeiro/contas_pagar.php"
+    },
+    {
+        "slug": "registrar-monitoramento-mip",
+        "titulo": "Registrar um monitoramento de MIP para gerar o alerta",
+        "rota": "/mip/monitoramento.php"
+    },
+    {
+        "slug": "abrir-safra-e-confirmar-poda",
+        "titulo": "Abrir a safra e confirmar a poda (o dia 0)",
+        "rota": "/agro/abertura_safra.php"
+    },
+    {
+        "slug": "emitir-ordem-de-servico",
+        "titulo": "Emitir uma Ordem de Serviço para o campo executar",
+        "rota": "/agro/atividades.php"
+    },
+    {
+        "slug": "finalizar-apontamento",
+        "titulo": "Finalizar um apontamento para o custo aparecer",
+        "rota": "/agro/apontamentos.php"
+    }
+]

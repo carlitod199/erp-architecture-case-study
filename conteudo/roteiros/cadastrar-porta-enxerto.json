@@ -1,0 +1,29 @@
+{
+  "slug": "cadastrar-porta-enxerto",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo porta-enxerto para abrir o cadastro",
+      "rota": "/agro/porta_enxertos.php",
+      "seletor": "button:has-text(\"Novo porta-enxerto\")",
+      "marca": "seta",
+      "label": "Novo porta-enxerto"
+    },
+    {
+      "texto": "Informe o nome (ex.: IAC 572, Paulsen 1103, SO4) — unico campo obrigatorio",
+      "rota": "/agro/porta_enxertos.php",
+      "pre_acoes": ["button:has-text(\"Novo porta-enxerto\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome do porta-enxerto"
+    },
+    {
+      "texto": "Clique em Salvar — ele passa a aparecer no cadastro de talhao/valvula",
+      "rota": "/agro/porta_enxertos.php",
+      "pre_acoes": ["button:has-text(\"Novo porta-enxerto\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "consultar-historico-do-colaborador",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Historico do colaborador e escolha o colaborador (ou deixe em Todos para o consolidado)",
+      "rota": "/pessoas/historico_colaborador.php",
+      "seletor": "select[name=\"colaborador\"]",
+      "marca": "caixa",
+      "label": "Colaborador"
+    },
+    {
+      "texto": "Ajuste o periodo que quer analisar",
+      "rota": "/pessoas/historico_colaborador.php",
+      "seletor": "input[name=\"ini\"]",
+      "marca": "caixa",
+      "label": "Periodo"
+    },
+    {
+      "texto": "Leia o historico apresentado — dias, producao, premiacoes e custo de folha por pessoa",
+      "rota": "/pessoas/historico_colaborador.php",
+      "seletor": "table.vtable",
+      "marca": "seta",
+      "label": "Historico do colaborador"
+    }
+  ]
+}

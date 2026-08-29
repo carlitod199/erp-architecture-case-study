@@ -1,0 +1,19 @@
+{
+  "id": "estoque.sync",
+  "titulo": "Listar produtos de estoque com saldo",
+  "modulo": "estoque",
+  "permissao": "estoque.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/estoque", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Produtos de estoque + saldo (delta desde {desde})",
+  "regras": [
+    "produtos ativos + saldo agregado (entrada − saída + ajuste) + ficha de bula quando existe",
+    "sem api_exigir no handler — token válido + tenant; SEM custos (P-75)",
+    "no delta, inativados voltam com _excluido=1"
+  ],
+  "inverso": null
+}

@@ -1,0 +1,44 @@
+{
+  "cli": {
+    "version": ">= 12.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development"
+    },
+    "homolog": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "channel": "homolog"
+    },
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "channel": "production"
+    },
+    "store": {
+      "extends": "production",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascApiKeyPath": "SEU_CAMINHO/AuthKey_XXXXXXXXXX.p8",
+        "ascApiKeyId": "XXXXXXXXXX",
+        "ascApiKeyIssuerId": "00000000-0000-0000-0000-000000000000",
+        "appleTeamId": "XXXXXXXXXX",
+        "ascAppId": "0000000000"
+      }
+    }
+  }
+}

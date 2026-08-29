@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-chuva-do-dia",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo lancamento para abrir o registro",
+      "rota": "/agro/clima.php",
+      "seletor": "button:has-text(\"Novo lançamento\")",
+      "marca": "seta",
+      "label": "Novo lançamento"
+    },
+    {
+      "texto": "Escolha a fazenda e a data — obrigatorias; a valvula e opcional",
+      "rota": "/agro/clima.php",
+      "pre_acoes": ["button:has-text(\"Novo lançamento\")"],
+      "seletor": "#vm-form select[name=\"fazenda_id\"]",
+      "marca": "caixa",
+      "label": "Fazenda"
+    },
+    {
+      "texto": "Informe a chuva em mm e, se medir, as temperaturas minima e maxima",
+      "rota": "/agro/clima.php",
+      "pre_acoes": ["button:has-text(\"Novo lançamento\")"],
+      "seletor": "#vm-form input[name=\"chuva_mm\"]",
+      "marca": "caixa",
+      "label": "Chuva (mm)"
+    },
+    {
+      "texto": "Clique em Salvar — o registro entra no acumulado do mes e do ano",
+      "rota": "/agro/clima.php",
+      "pre_acoes": ["button:has-text(\"Novo lançamento\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

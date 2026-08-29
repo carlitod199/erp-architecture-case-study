@@ -1,0 +1,34 @@
+{
+  "slug": "registrar-analise-foliar",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Nova analise para iniciar o lancamento do laudo foliar",
+      "rota": "/nutricao/analise_foliar.php",
+      "seletor": "a.vbtn-primary[href=\"?novo=1\"]",
+      "marca": "seta",
+      "label": "Nova analise"
+    },
+    {
+      "texto": "Preencha a data da amostra (obrigatoria) e o talhao/valvula da coleta",
+      "rota": "/nutricao/analise_foliar.php?novo=1",
+      "seletor": "input[name=data_amostra]",
+      "marca": "caixa",
+      "label": "Data da amostra"
+    },
+    {
+      "texto": "Escolha a variedade e a fase fenologica — a faixa foliar depende desse contexto",
+      "rota": "/nutricao/analise_foliar.php?novo=1",
+      "seletor": "select[name=variedade_id]",
+      "marca": "caixa",
+      "label": "Variedade e fase"
+    },
+    {
+      "texto": "Salve e classifique contra as faixas foliares daquele contexto",
+      "rota": "/nutricao/analise_foliar.php?novo=1",
+      "seletor": "button.vbtn-primary:has-text(\"Salvar e classificar\")",
+      "marca": "seta",
+      "label": "Salvar e classificar"
+    }
+  ]
+}

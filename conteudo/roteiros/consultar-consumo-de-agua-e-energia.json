@@ -1,0 +1,27 @@
+{
+  "slug": "consultar-consumo-de-agua-e-energia",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Filtre por valvula e periodo para recortar o consumo",
+      "rota": "/irrigacao/consumo_agua.php",
+      "seletor": "#iwdValv",
+      "marca": "caixa",
+      "label": "Valvula e periodo"
+    },
+    {
+      "texto": "Leia o consumo total (m3) e o custo nos indicadores do topo",
+      "rota": "/irrigacao/consumo_agua.php",
+      "seletor": ".dsh-kpis",
+      "marca": "seta",
+      "label": "Indicadores"
+    },
+    {
+      "texto": "Compare a eficiencia por valvula na tabela — m3/ha e R$/m3",
+      "rota": "/irrigacao/consumo_agua.php",
+      "seletor": "table.dsh-table",
+      "marca": "caixa",
+      "label": "Eficiencia por valvula"
+    }
+  ]
+}

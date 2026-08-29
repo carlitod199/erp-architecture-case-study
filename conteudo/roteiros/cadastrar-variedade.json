@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-variedade",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova variedade para abrir o cadastro",
+      "rota": "/agro/variedades.php",
+      "seletor": "button:has-text(\"Nova variedade\")",
+      "marca": "seta",
+      "label": "Nova variedade"
+    },
+    {
+      "texto": "Escolha a cultura",
+      "rota": "/agro/variedades.php",
+      "pre_acoes": ["button:has-text(\"Nova variedade\")"],
+      "seletor": "#vm-form select[name=\"cultura_id\"]",
+      "marca": "caixa",
+      "label": "Cultura"
+    },
+    {
+      "texto": "Informe o nome (ex.: Thompson Seedless, Vitoria) e a produtividade esperada em kg/ha",
+      "rota": "/agro/variedades.php",
+      "pre_acoes": ["button:has-text(\"Nova variedade\")"],
+      "seletor": "#vm-form input[name=\"produtividade_esperada\"]",
+      "marca": "caixa",
+      "label": "Produtividade esperada (kg/ha)"
+    },
+    {
+      "texto": "Clique em Salvar",
+      "rota": "/agro/variedades.php",
+      "pre_acoes": ["button:has-text(\"Nova variedade\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

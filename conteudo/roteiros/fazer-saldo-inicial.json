@@ -1,0 +1,30 @@
+{
+  "slug": "fazer-saldo-inicial",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Informe a data da implantacao e digite o codigo do produto",
+      "rota": "/estoque/produtos.php?saldo=1",
+      "pre_acoes": ["button:has-text(\"Saldo Inicial\")"],
+      "seletor": "#si-codigo",
+      "marca": "caixa",
+      "label": "Codigo do produto"
+    },
+    {
+      "texto": "Digite o saldo correto — o que existe de verdade na prateleira",
+      "rota": "/estoque/produtos.php?saldo=1",
+      "pre_acoes": ["button:has-text(\"Saldo Inicial\")"],
+      "seletor": "#si-qtd",
+      "marca": "caixa",
+      "label": "Saldo correto"
+    },
+    {
+      "texto": "Clique em Corrigir saldo — grava o saldo inicial pela diferenca no estoque oficial",
+      "rota": "/estoque/produtos.php?saldo=1",
+      "pre_acoes": ["button:has-text(\"Saldo Inicial\")"],
+      "seletor": "#si-submit",
+      "marca": "seta",
+      "label": "Corrigir saldo"
+    }
+  ]
+}

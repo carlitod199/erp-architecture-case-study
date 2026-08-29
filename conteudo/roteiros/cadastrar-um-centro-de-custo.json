@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-um-centro-de-custo",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Novo centro",
+      "rota": "/financeiro/centros_custo.php",
+      "seletor": "button:has-text(\"+ Novo centro\")",
+      "marca": "seta",
+      "label": "Novo centro"
+    },
+    {
+      "texto": "Informe um codigo curto (vira maiusculas automaticamente) — precisa ser unico",
+      "rota": "/financeiro/centros_custo.php",
+      "pre_acoes": ["button:has-text(\"+ Novo centro\")"],
+      "seletor": "#vm-form input[name=\"codigo\"]",
+      "marca": "caixa",
+      "label": "Codigo"
+    },
+    {
+      "texto": "Informe o nome e, se ajudar, uma descricao",
+      "rota": "/financeiro/centros_custo.php",
+      "pre_acoes": ["button:has-text(\"+ Novo centro\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome"
+    },
+    {
+      "texto": "Clique em Salvar",
+      "rota": "/financeiro/centros_custo.php",
+      "pre_acoes": ["button:has-text(\"+ Novo centro\")"],
+      "seletor": "#vm-form button.vbtn-primary",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

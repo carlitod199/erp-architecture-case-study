@@ -1,0 +1,13 @@
+# VERO Campo — API v1: tudo passa pelo front controller
+RewriteEngine On
+# preserva o header Authorization (Apache costuma descartá-lo em CGI/FCGI)
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+
+# nunca servir os fontes internos diretamente
+<FilesMatch "^(?!index\.php$).*\.php$">
+    Require all denied
+</FilesMatch>

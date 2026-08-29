@@ -1,0 +1,22 @@
+{
+  "id": "compra.receber",
+  "titulo": "Receber itens contra um pedido de compra",
+  "modulo": "compras",
+  "permissao": "compras.recebimentos.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/compras/pedidos/{id}/receber", "funcao": "rota_compra_receber" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": null, "desc": "id do pedido (aprovado ou recebido_parcial)", "de_contexto": true },
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do recebimento no aparelho (idempotência)", "de_contexto": true },
+    "itens": { "tipo": "lista", "obrigatorio": true, "resolver": null, "desc": "itens recebidos [{pedido_item_id, quantidade, validade?}]" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data do recebimento" }
+  },
+  "resumo": "Receber itens do pedido de compra #{id}",
+  "regras": [
+    "o pedido precisa estar 'aprovado' ou 'recebido_parcial'; período fechado bloqueia",
+    "a quantidade recebida não pode passar da pendente do item",
+    "gera entrada de estoque (custo do pedido — o app não envia R$) + conta a pagar pela condição do pedido"
+  ],
+  "inverso": null
+}

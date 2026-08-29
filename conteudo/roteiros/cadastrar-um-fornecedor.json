@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-um-fornecedor",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo fornecedor",
+      "rota": "/compras/fornecedores.php",
+      "seletor": "button[onclick=\"vModalNovo('vm-form')\"]",
+      "marca": "seta",
+      "label": "+ Novo fornecedor"
+    },
+    {
+      "texto": "Preencha o nome/razão social e o CNPJ ou CPF (salvo sem pontuação, para não duplicar)",
+      "rota": "/compras/fornecedores.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome e documento"
+    },
+    {
+      "texto": "Não deixe categoria e condição de pagamento em branco — sem elas você não filtra nem agiliza os pedidos",
+      "rota": "/compras/fornecedores.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form select[name=\"categoria\"]",
+      "marca": "caixa",
+      "label": "Categoria e condição"
+    },
+    {
+      "texto": "Salve — depois use o ícone Ver ficha na lista para o desempenho consolidado (volume, lead time, % no prazo)",
+      "rota": "/compras/fornecedores.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "registrar-uma-nfe-emitida",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Emissão de NF-e e, no bloco Registrar nota emitida, escolha o tipo (NF-e ou NFC-e)",
+      "rota": "/fiscal/emissao_nfe.php",
+      "seletor": "select[name=\"tipo\"]",
+      "marca": "caixa",
+      "label": "Tipo"
+    },
+    {
+      "texto": "Informe o número e o valor da nota que você emitiu por fora",
+      "rota": "/fiscal/emissao_nfe.php",
+      "seletor": "input[name=\"valor_total\"]",
+      "marca": "caixa",
+      "label": "Valor (R$)"
+    },
+    {
+      "texto": "Cole a chave de acesso de 44 dígitos (opcional, evita duplicidade)",
+      "rota": "/fiscal/emissao_nfe.php",
+      "seletor": "input[name=\"chave\"]",
+      "marca": "caixa",
+      "label": "Chave de acesso"
+    },
+    {
+      "texto": "Anexe o XML autorizado e clique em Registrar nota — ela entra no acervo fiscal",
+      "rota": "/fiscal/emissao_nfe.php",
+      "seletor": "button:has-text(\"Registrar nota\")",
+      "marca": "seta",
+      "label": "Registrar nota"
+    }
+  ]
+}

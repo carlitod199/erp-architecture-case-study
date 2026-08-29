@@ -1,0 +1,34 @@
+{
+  "slug": "receber-uma-compra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Na lista de pedidos aguardando, escolha o pedido aprovado que chegou (só aparecem os aprovados)",
+      "rota": "/compras/recebimentos.php",
+      "seletor": "a[title=\"Receber pedido\"]",
+      "marca": "seta",
+      "label": "Receber este pedido"
+    },
+    {
+      "texto": "Confira item por item — produto, quantidade e custo — contra a nota que veio com a carga",
+      "rota": "/compras/recebimentos.php?pedido=5",
+      "seletor": "input[name=\"i_qtd[]\"]",
+      "marca": "caixa",
+      "label": "Conferir a quantidade recebida"
+    },
+    {
+      "texto": "Informe a data do recebimento e a condição de pagamento (à vista ou os dias parcelados, ex.: 45/90)",
+      "rota": "/compras/recebimentos.php?pedido=5",
+      "seletor": "#rc-cond-preset",
+      "marca": "caixa",
+      "label": "Condição de pagamento"
+    },
+    {
+      "texto": "Clique em Confirmar recebimento — dá entrada no estoque ao custo da nota e gera a conta a pagar",
+      "rota": "/compras/recebimentos.php?pedido=5",
+      "seletor": "button:has-text(\"Confirmar recebimento\")",
+      "marca": "seta",
+      "label": "Confirmar recebimento (estoque + conta a pagar)"
+    }
+  ]
+}

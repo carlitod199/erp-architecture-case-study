@@ -1,0 +1,27 @@
+{
+  "slug": "calcular-diarias-de-mao-de-obra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Escolha a atividade — o rendimento vigente ja entra como meta",
+      "rota": "/agro/calculadora.php",
+      "seletor": "#c-atividade",
+      "marca": "caixa",
+      "label": "Atividade"
+    },
+    {
+      "texto": "Informe o numero de plantas e os dias disponiveis",
+      "rota": "/agro/calculadora.php",
+      "seletor": "#c-plantas",
+      "marca": "caixa",
+      "label": "Número de plantas"
+    },
+    {
+      "texto": "Clique em Calcular para ver as diarias necessarias",
+      "rota": "/agro/calculadora.php",
+      "seletor": "#calc-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Calcular"
+    }
+  ]
+}

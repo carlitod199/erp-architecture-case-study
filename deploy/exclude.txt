@@ -1,0 +1,26 @@
+# VERO — exclusões do deploy (rsync). NÃO subir para o servidor web PHP.
+# App mobile (React Native, 373 MB) — não é do servidor web:
+vero_campo/
+mobile/
+# Controle de versão / dev / backups:
+.git/
+.gitignore
+.idea/
+.expo/
+node_modules/
+_backups_implementacao/
+docs/
+*.rar
+*.log
+logs/
+# Dependências (rodar composer no servidor, ou já existem lá):
+vendor/
+# Dados e segredos ESPECÍFICOS do servidor — NUNCA sobrescrever:
+config/database.php
+config/fiscal_secrets.php
+storage/uploads/
+storage/certs/
+storage_private/
+uploads/
+# Scripts de seed/migração locais (opcional — migrations vão à parte):
+scripts/

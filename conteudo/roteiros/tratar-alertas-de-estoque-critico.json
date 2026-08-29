@@ -1,0 +1,27 @@
+{
+  "slug": "tratar-alertas-de-estoque-critico",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Leia a fila de alertas — item abaixo do mínimo e produto perto do vencimento",
+      "rota": "/estoque/alertas.php",
+      "seletor": ".vcard table.vtable",
+      "marca": "caixa",
+      "label": "Fila de alertas"
+    },
+    {
+      "texto": "Clique em Reconhecer para sinalizar que já viu e vai cuidar",
+      "rota": "/estoque/alertas.php",
+      "seletor": ".vtable tbody tr:first-child button[title=\"Reconhecer\"]",
+      "marca": "seta",
+      "label": "Reconhecer"
+    },
+    {
+      "texto": "Resolvida a causa (comprou, transferiu, deu baixa), clique em Resolver — se a condição persistir, o alerta volta na próxima movimentação",
+      "rota": "/estoque/alertas.php",
+      "seletor": ".vtable tbody tr:first-child button[title=\"Resolver\"]",
+      "marca": "seta",
+      "label": "Resolver"
+    }
+  ]
+}

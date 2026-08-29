@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-talhao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova valvula para abrir o cadastro da unidade produtiva",
+      "rota": "/agro/talhoes.php",
+      "seletor": ".vero-topbar__actions button.vbtn-primary",
+      "marca": "seta",
+      "label": "Nova válvula / talhão"
+    },
+    {
+      "texto": "Vincule a area produtiva — ela precisa ser da mesma fazenda do talhao",
+      "rota": "/agro/talhoes.php",
+      "pre_acoes": [".vero-topbar__actions button.vbtn-primary"],
+      "seletor": "#vm-form select[name=\"area_id\"]",
+      "marca": "caixa",
+      "label": "Área produtiva"
+    },
+    {
+      "texto": "Escolha o tipo de solo na lista (catalogo fechado do RT)",
+      "rota": "/agro/talhoes.php",
+      "pre_acoes": [".vero-topbar__actions button.vbtn-primary"],
+      "seletor": "#vm-form select[name=\"tipo_solo\"]",
+      "marca": "caixa",
+      "label": "Tipo de solo"
+    },
+    {
+      "texto": "Preencha espacamentos, plantio e plantas e clique em Salvar",
+      "rota": "/agro/talhoes.php",
+      "pre_acoes": [".vero-topbar__actions button.vbtn-primary"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

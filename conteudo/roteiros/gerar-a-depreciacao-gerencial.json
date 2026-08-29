@@ -1,0 +1,27 @@
+{
+  "slug": "gerar-a-depreciacao-gerencial",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Depreciação Gerencial e informe a competência (mês/ano) que quer processar",
+      "rota": "/patrimonio/depreciacao_gerencial.php",
+      "seletor": "input[name=\"competencia\"]",
+      "marca": "caixa",
+      "label": "Competência"
+    },
+    {
+      "texto": "Clique em Gerar depreciação do mês — calcula um lançamento por ativo produtivo e emite o custo ao custeio",
+      "rota": "/patrimonio/depreciacao_gerencial.php",
+      "seletor": "button:has-text(\"Gerar depreciação do mês\")",
+      "marca": "seta",
+      "label": "Gerar depreciação do mês"
+    },
+    {
+      "texto": "Confira o total do mês e a depreciação lançada por ativo na tabela (gerar de novo a mesma competência não duplica)",
+      "rota": "/patrimonio/depreciacao_gerencial.php",
+      "seletor": "table.vtable",
+      "marca": "destaque",
+      "label": "Lançamentos da competência"
+    }
+  ]
+}

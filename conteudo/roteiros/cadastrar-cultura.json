@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-cultura",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova cultura para abrir o cadastro",
+      "rota": "/agro/culturas.php",
+      "seletor": "button:has-text(\"Nova cultura\")",
+      "marca": "seta",
+      "label": "Nova cultura"
+    },
+    {
+      "texto": "Informe o nome da cultura (ex.: Uva, Manga)",
+      "rota": "/agro/culturas.php",
+      "pre_acoes": ["button:has-text(\"Nova cultura\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome da cultura"
+    },
+    {
+      "texto": "Escolha a unidade de produtividade (kg/ha, t/ha, sacas/ha...)",
+      "rota": "/agro/culturas.php",
+      "pre_acoes": ["button:has-text(\"Nova cultura\")"],
+      "seletor": "#vm-form select[name=\"unidade_produtividade\"]",
+      "marca": "caixa",
+      "label": "Unidade de produtividade"
+    },
+    {
+      "texto": "Clique em Salvar",
+      "rota": "/agro/culturas.php",
+      "pre_acoes": ["button:has-text(\"Nova cultura\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

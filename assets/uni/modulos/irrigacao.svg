@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="irrigacao">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a7d78"/><stop offset="1" stop-color="#004a52"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="120" height="120" rx="26" fill="url(#g)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M44 34 C52 46 55 52 55 58 A11 11 0 1 1 33 58 C33 52 36 46 44 34Z" fill="#fff" stroke="none"/><path d="M80 46 C86 55 88 60 88 64 A8 8 0 1 1 72 64 C72 60 74 55 80 46Z" fill="#fff" stroke="none" opacity=".8"/><path d="M60 66 C66 76 68 80 68 84 A8 8 0 1 1 52 84 C52 80 54 76 60 66Z" fill="#fff" stroke="none" opacity=".9"/>
+  </g>
+</svg>

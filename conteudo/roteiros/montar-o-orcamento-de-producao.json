@@ -1,0 +1,27 @@
+{
+  "slug": "montar-o-orcamento-de-producao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "No cabecalho do assistente, escolha cultura, safra, fazenda e metodologia",
+      "rota": "/custeio/orcamento_producao.php?novo=1",
+      "seletor": "#w-cultura",
+      "marca": "caixa",
+      "label": "Cultura, safra e metodologia"
+    },
+    {
+      "texto": "Informe a area — o VERO ja puxa produtividade, preco e area dos parametros da cultura",
+      "rota": "/custeio/orcamento_producao.php?novo=1",
+      "seletor": "input[name=\"area_ha\"]",
+      "marca": "caixa",
+      "label": "Area (ha)"
+    },
+    {
+      "texto": "Confirme para gerar os itens da metodologia — depois ajuste os valores e peca a aprovacao",
+      "rota": "/custeio/orcamento_producao.php?novo=1",
+      "seletor": "button:has-text(\"Criar e ir para os itens\")",
+      "marca": "seta",
+      "label": "Criar e ir para os itens"
+    }
+  ]
+}

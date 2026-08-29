@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-alvo-de-controle",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Alvos de Controle e clique em + Novo alvo",
+      "rota": "/mip/alvos_controle.php",
+      "seletor": "button:has-text(\"+ Novo alvo\")",
+      "marca": "caixa",
+      "label": "Novo alvo"
+    },
+    {
+      "texto": "Informe o nome e escolha o tipo (praga, doença ou planta daninha)",
+      "rota": "/mip/alvos_controle.php",
+      "pre_acoes": ["button:has-text(\"+ Novo alvo\")"],
+      "seletor": "select[name=\"tipo\"]",
+      "marca": "caixa",
+      "label": "Tipo do alvo"
+    },
+    {
+      "texto": "Defina o nível de ação — o limiar (maior que zero) que aciona o alerta quando o índice o alcança",
+      "rota": "/mip/alvos_controle.php",
+      "pre_acoes": ["button:has-text(\"+ Novo alvo\")"],
+      "seletor": "input[name=\"nivel_acao\"]",
+      "marca": "destaque",
+      "label": "Nível de ação"
+    },
+    {
+      "texto": "Clique em Salvar — o alvo passa a ficar disponível para os monitoramentos",
+      "rota": "/mip/alvos_controle.php",
+      "pre_acoes": ["button:has-text(\"+ Novo alvo\")"],
+      "seletor": "#vm-form .vform-actions button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

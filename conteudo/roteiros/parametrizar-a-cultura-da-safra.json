@@ -1,0 +1,34 @@
+{
+  "slug": "parametrizar-a-cultura-da-safra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione a safra no topo",
+      "rota": "/custeio/parametros_cultura.php",
+      "seletor": "select[name=\"safra\"]",
+      "marca": "caixa",
+      "label": "Safra"
+    },
+    {
+      "texto": "Escolha a cultura e a metodologia ativa que vai reger o custo",
+      "rota": "/custeio/parametros_cultura.php",
+      "seletor": "select[name=\"cultura_id\"]",
+      "marca": "caixa",
+      "label": "Cultura"
+    },
+    {
+      "texto": "Informe produtividade prevista, preco previsto e area prevista — nenhum valor pode ser negativo",
+      "rota": "/custeio/parametros_cultura.php",
+      "seletor": "input[name=\"produtividade_prevista_ha\"]",
+      "marca": "caixa",
+      "label": "Produtividade, preco e area"
+    },
+    {
+      "texto": "Clique em Salvar — o mesmo par cultura+safra e atualizado no lugar, nao duplica",
+      "rota": "/custeio/parametros_cultura.php",
+      "seletor": ".vform button.vbtn-primary",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "slug": "consultar-o-historico-de-compras",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Filtre por fornecedor, produto e período conforme a sua pergunta",
+      "rota": "/compras/historico_compras.php",
+      "seletor": "select[name=\"fornecedor\"]",
+      "marca": "caixa",
+      "label": "Filtros"
+    },
+    {
+      "texto": "Leia o total do filtro — quantos itens e quanto foi comprado no recorte",
+      "rota": "/compras/historico_compras.php",
+      "seletor": ".vtoolbar span.vsub",
+      "marca": "seta",
+      "label": "Total do filtro"
+    },
+    {
+      "texto": "Confira os itens recebidos, item por item, com quantidade e custo unitário real",
+      "rota": "/compras/historico_compras.php",
+      "seletor": "table.vdata",
+      "marca": "caixa",
+      "label": "Itens recebidos"
+    }
+  ]
+}

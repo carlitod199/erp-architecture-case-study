@@ -1,0 +1,27 @@
+{
+  "slug": "comparar-o-custo-entre-safras",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione as safras que quer confrontar — ate quatro de uma vez",
+      "rota": "/custeio/comparativo_safras.php",
+      "seletor": "form.vtoolbar",
+      "marca": "caixa",
+      "label": "Safras a comparar"
+    },
+    {
+      "texto": "Clique em Comparar para colocar as safras lado a lado",
+      "rota": "/custeio/comparativo_safras.php",
+      "seletor": "button:has-text(\"Comparar\")",
+      "marca": "seta",
+      "label": "Comparar"
+    },
+    {
+      "texto": "Leia as linhas com atencao ao custo/ha e ao custo/kg, e olhe a quebra por categoria",
+      "rota": "/custeio/comparativo_safras.php",
+      "seletor": "table.vtable",
+      "marca": "caixa",
+      "label": "Custo por safra"
+    }
+  ]
+}

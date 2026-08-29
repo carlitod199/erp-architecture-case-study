@@ -1,0 +1,950 @@
+-- ============================================================================
+-- schema_referencia_pre134.sql | VERO — gerado pelo A0 em 04/07/2026
+-- SHOW CREATE TABLE das tabelas afetadas pela migration 134 (regra 3 do
+-- DB_CONTRACT + higiene A1: tabelas sem CREATE versionado). SOMENTE REFERÊNCIA
+-- — NÃO executar. Estado ANTES da migration 134.
+-- ============================================================================
+
+-- ---- movimentacoes_financeiras ----
+CREATE TABLE `movimentacoes_financeiras` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `tipo` enum('pagar','receber','transferencia') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('previsto','aberto','pago','baixado','cancelado') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aberto',
+  `plano_conta_id` bigint(20) unsigned DEFAULT NULL,
+  `centro_custo_id` bigint(20) unsigned DEFAULT NULL,
+  `conta_bancaria_id` bigint(20) unsigned DEFAULT NULL,
+  `fornecedor_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `descricao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `valor` decimal(18,2) NOT NULL,
+  `data_competencia` date DEFAULT NULL,
+  `data_vencimento` date DEFAULT NULL,
+  `data_pagamento` date DEFAULT NULL,
+  `origem_tipo` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origem_id` bigint(20) unsigned DEFAULT NULL,
+  `hash_anterior` char(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hash_atual` char(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_mf_origem` (`tenant_id`,`origem_tipo`,`origem_id`),
+  KEY `idx_mf_tenant` (`tenant_id`),
+  KEY `idx_mf_tipo_status` (`tipo`,`status`),
+  KEY `idx_mf_venc` (`data_vencimento`),
+  KEY `idx_mf_plano` (`plano_conta_id`),
+  KEY `idx_mf_cc` (`centro_custo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- estoque_produtos ----
+CREATE TABLE `estoque_produtos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `grupo_id` bigint(20) unsigned NOT NULL,
+  `subgrupo_id` bigint(20) unsigned DEFAULT NULL,
+  `codigo` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ingrediente_ativo` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unidade` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'un',
+  `controla_lote` tinyint(1) NOT NULL DEFAULT '0',
+  `controla_validade` tinyint(1) NOT NULL DEFAULT '0',
+  `estoque_minimo` decimal(18,4) NOT NULL DEFAULT '0.0000',
+  `estoque_maximo` decimal(18,4) NOT NULL DEFAULT '0.0000',
+  `plano_conta_id` bigint(20) unsigned DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_produtos_codigo` (`tenant_id`,`codigo`),
+  KEY `idx_produtos_tenant` (`tenant_id`),
+  KEY `idx_produtos_grupo` (`grupo_id`),
+  KEY `idx_produtos_subgrupo` (`subgrupo_id`),
+  KEY `idx_produtos_plano_conta` (`plano_conta_id`),
+  CONSTRAINT `fk_produtos_grupo` FOREIGN KEY (`grupo_id`) REFERENCES `estoque_grupos` (`id`),
+  CONSTRAINT `fk_produtos_plano` FOREIGN KEY (`plano_conta_id`) REFERENCES `plano_contas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_produtos_subgrupo` FOREIGN KEY (`subgrupo_id`) REFERENCES `estoque_subgrupos` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_produtos_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- estoque_movimentacoes ----
+CREATE TABLE `estoque_movimentacoes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `produto_id` bigint(20) unsigned NOT NULL,
+  `almoxarifado_id` bigint(20) unsigned NOT NULL,
+  `lote_id` bigint(20) unsigned DEFAULT NULL,
+  `tipo` enum('entrada','saida','transferencia','ajuste') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantidade` decimal(18,4) NOT NULL,
+  `custo_unitario` decimal(18,6) NOT NULL DEFAULT '0.000000',
+  `valor_total` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `almoxarifado_destino_id` bigint(20) unsigned DEFAULT NULL,
+  `origem_tipo` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origem_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `centro_custo_id` bigint(20) unsigned DEFAULT NULL,
+  `observacao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `data_movimento` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_mov_tenant` (`tenant_id`),
+  KEY `idx_mov_produto` (`tenant_id`,`produto_id`),
+  KEY `idx_mov_almox` (`almoxarifado_id`),
+  KEY `idx_mov_lote` (`lote_id`),
+  KEY `idx_mov_origem` (`origem_tipo`,`origem_id`),
+  KEY `idx_mov_safra_talhao` (`safra_talhao_id`),
+  KEY `idx_mov_cc` (`centro_custo_id`),
+  KEY `fk_mov_produto` (`produto_id`),
+  KEY `fk_mov_almox_dest` (`almoxarifado_destino_id`),
+  CONSTRAINT `fk_mov_almox` FOREIGN KEY (`almoxarifado_id`) REFERENCES `almoxarifados` (`id`),
+  CONSTRAINT `fk_mov_almox_dest` FOREIGN KEY (`almoxarifado_destino_id`) REFERENCES `almoxarifados` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_mov_cc` FOREIGN KEY (`centro_custo_id`) REFERENCES `centros_custo` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_mov_lote` FOREIGN KEY (`lote_id`) REFERENCES `estoque_lotes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_mov_produto` FOREIGN KEY (`produto_id`) REFERENCES `estoque_produtos` (`id`),
+  CONSTRAINT `fk_mov_safra_talhao` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_mov_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- estoque_lotes ----
+CREATE TABLE `estoque_lotes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `produto_id` bigint(20) unsigned NOT NULL,
+  `almoxarifado_id` bigint(20) unsigned NOT NULL,
+  `codigo_lote` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `validade` date DEFAULT NULL,
+  `fornecedor_id` bigint(20) unsigned DEFAULT NULL,
+  `custo_unitario` decimal(18,6) NOT NULL DEFAULT '0.000000',
+  `quantidade` decimal(18,4) NOT NULL DEFAULT '0.0000',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_lotes` (`tenant_id`,`produto_id`,`almoxarifado_id`,`codigo_lote`),
+  KEY `idx_lotes_tenant` (`tenant_id`),
+  KEY `idx_lotes_produto` (`produto_id`),
+  KEY `idx_lotes_almox` (`almoxarifado_id`),
+  KEY `idx_lotes_fornecedor` (`fornecedor_id`),
+  KEY `idx_lotes_validade` (`validade`),
+  CONSTRAINT `fk_lotes_almox` FOREIGN KEY (`almoxarifado_id`) REFERENCES `almoxarifados` (`id`),
+  CONSTRAINT `fk_lotes_fornecedor` FOREIGN KEY (`fornecedor_id`) REFERENCES `fornecedores` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_lotes_produto` FOREIGN KEY (`produto_id`) REFERENCES `estoque_produtos` (`id`),
+  CONSTRAINT `fk_lotes_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- compras_pedidos ----
+CREATE TABLE `compras_pedidos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `numero` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fornecedor_id` bigint(20) unsigned NOT NULL,
+  `solicitacao_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `centro_custo_id` bigint(20) unsigned DEFAULT NULL,
+  `valor_total` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `status` enum('rascunho','pedido','aprovacao','aprovado','recebido_parcial','recebido','cancelado') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'rascunho',
+  `etapa` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `acima_orcamento` tinyint(1) NOT NULL DEFAULT '0',
+  `data_pedido` date DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_pedido_numero` (`tenant_id`,`numero`),
+  KEY `idx_pedido_tenant` (`tenant_id`),
+  KEY `idx_pedido_fornecedor` (`fornecedor_id`),
+  KEY `idx_pedido_solic` (`solicitacao_id`),
+  KEY `idx_pedido_st` (`safra_talhao_id`),
+  KEY `idx_pedido_cc` (`centro_custo_id`),
+  KEY `idx_pedido_status` (`tenant_id`,`status`),
+  CONSTRAINT `fk_pedido_cc` FOREIGN KEY (`centro_custo_id`) REFERENCES `centros_custo` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_pedido_fornecedor` FOREIGN KEY (`fornecedor_id`) REFERENCES `fornecedores` (`id`),
+  CONSTRAINT `fk_pedido_solic` FOREIGN KEY (`solicitacao_id`) REFERENCES `compras_solicitacoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_pedido_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_pedido_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- compras_solicitacoes ----
+CREATE TABLE `compras_solicitacoes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `numero` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `solicitante_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `centro_custo_id` bigint(20) unsigned DEFAULT NULL,
+  `status` enum('aberta','em_cotacao','convertida','cancelada') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aberta',
+  `justificativa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `data_solicitacao` date NOT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_solic_numero` (`tenant_id`,`numero`),
+  KEY `idx_solic_tenant` (`tenant_id`),
+  KEY `idx_solic_solicitante` (`solicitante_id`),
+  KEY `idx_solic_st` (`safra_talhao_id`),
+  KEY `idx_solic_cc` (`centro_custo_id`),
+  CONSTRAINT `fk_solic_cc` FOREIGN KEY (`centro_custo_id`) REFERENCES `centros_custo` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_solic_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_solic_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- compras_recebimentos ----
+CREATE TABLE `compras_recebimentos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `pedido_id` bigint(20) unsigned NOT NULL,
+  `numero` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo` enum('parcial','total') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'parcial',
+  `almoxarifado_id` bigint(20) unsigned NOT NULL,
+  `status` enum('rascunho','confirmado','cancelado') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'rascunho',
+  `data_recebimento` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_receb_tenant` (`tenant_id`),
+  KEY `idx_receb_pedido` (`pedido_id`),
+  KEY `idx_receb_almox` (`almoxarifado_id`),
+  CONSTRAINT `fk_receb_almox` FOREIGN KEY (`almoxarifado_id`) REFERENCES `almoxarifados` (`id`),
+  CONSTRAINT `fk_receb_pedido` FOREIGN KEY (`pedido_id`) REFERENCES `compras_pedidos` (`id`),
+  CONSTRAINT `fk_receb_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- fornecedores ----
+CREATE TABLE `fornecedores` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cnpj_cpf` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contato` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefone` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_fornecedores_doc` (`tenant_id`,`cnpj_cpf`),
+  KEY `idx_fornecedores_tenant` (`tenant_id`),
+  CONSTRAINT `fk_fornecedores_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- maquinas ----
+CREATE TABLE `maquinas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `fazenda_id` bigint(20) unsigned DEFAULT NULL,
+  `codigo` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` enum('trator','colheitadeira','pulverizador','implemento','veiculo','outro') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'trator',
+  `marca` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `modelo` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ano` smallint(5) unsigned DEFAULT NULL,
+  `horimetro_atual` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `odometro_atual` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `custo_hora` decimal(18,6) NOT NULL DEFAULT '0.000000',
+  `status` enum('ativa','manutencao','inativa') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ativa',
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_maquinas_codigo` (`tenant_id`,`codigo`),
+  KEY `idx_maquinas_tenant` (`tenant_id`),
+  KEY `idx_maquinas_fazenda` (`fazenda_id`),
+  CONSTRAINT `fk_maquinas_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `agro_fazendas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_maquinas_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- maquina_horimetros ----
+CREATE TABLE `maquina_horimetros` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `maquina_id` bigint(20) unsigned NOT NULL,
+  `data_leitura` date NOT NULL,
+  `horimetro` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_horim_tenant` (`tenant_id`),
+  KEY `idx_horim_maquina` (`maquina_id`),
+  CONSTRAINT `fk_horim_maquina` FOREIGN KEY (`maquina_id`) REFERENCES `maquinas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_horim_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- maquina_manutencoes ----
+CREATE TABLE `maquina_manutencoes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `maquina_id` bigint(20) unsigned NOT NULL,
+  `tipo` enum('preventiva','corretiva') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'corretiva',
+  `descricao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `custo` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `data_manutencao` date NOT NULL,
+  `status` enum('aberta','executada','cancelada') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aberta',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_manut_tenant` (`tenant_id`),
+  KEY `idx_manut_maquina` (`maquina_id`),
+  CONSTRAINT `fk_manut_maquina` FOREIGN KEY (`maquina_id`) REFERENCES `maquinas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_manut_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- maquina_abastecimentos ----
+CREATE TABLE `maquina_abastecimentos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `maquina_id` bigint(20) unsigned DEFAULT NULL,
+  `veiculo_id` bigint(20) unsigned DEFAULT NULL,
+  `produto_id` bigint(20) unsigned DEFAULT NULL,
+  `almoxarifado_id` bigint(20) unsigned DEFAULT NULL,
+  `litros` decimal(18,4) NOT NULL DEFAULT '0.0000',
+  `valor_total` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `horimetro` decimal(12,2) DEFAULT NULL,
+  `odometro` decimal(12,2) DEFAULT NULL,
+  `data_abastecimento` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_abast_tenant` (`tenant_id`),
+  KEY `idx_abast_maquina` (`maquina_id`),
+  KEY `idx_abast_veiculo` (`veiculo_id`),
+  KEY `idx_abast_produto` (`produto_id`),
+  KEY `fk_abast_almox` (`almoxarifado_id`),
+  CONSTRAINT `fk_abast_almox` FOREIGN KEY (`almoxarifado_id`) REFERENCES `almoxarifados` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_abast_maquina` FOREIGN KEY (`maquina_id`) REFERENCES `maquinas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_abast_produto` FOREIGN KEY (`produto_id`) REFERENCES `estoque_produtos` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_abast_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_abast_veiculo` FOREIGN KEY (`veiculo_id`) REFERENCES `veiculos` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- implementos ----
+CREATE TABLE `implementos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `fazenda_id` bigint(20) unsigned DEFAULT NULL,
+  `nome` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_implementos_tenant` (`tenant_id`),
+  KEY `idx_implementos_fazenda` (`fazenda_id`),
+  CONSTRAINT `fk_implementos_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `agro_fazendas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_implementos_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_apontamento_maquinas ----
+CREATE TABLE `agro_apontamento_maquinas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `apontamento_id` bigint(20) unsigned NOT NULL,
+  `maquina_id` bigint(20) unsigned DEFAULT NULL,
+  `horas` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_apmaq_tenant` (`tenant_id`),
+  KEY `idx_apmaq_apont` (`apontamento_id`),
+  KEY `idx_apmaq_maquina` (`maquina_id`),
+  CONSTRAINT `fk_apmaq_apont` FOREIGN KEY (`apontamento_id`) REFERENCES `agro_apontamentos` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_apmaq_maquina` FOREIGN KEY (`maquina_id`) REFERENCES `maquinas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_apmaq_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_fazendas ----
+CREATE TABLE `agro_fazendas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `inscricao` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `municipio` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `uf` char(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_total_ha` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `latitude` decimal(10,7) DEFAULT NULL,
+  `longitude` decimal(10,7) DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_fazendas_tenant` (`tenant_id`),
+  KEY `idx_fazendas_created_by` (`created_by`),
+  KEY `idx_fazendas_updated_by` (`updated_by`),
+  CONSTRAINT `fk_fazendas_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_talhoes ----
+CREATE TABLE `agro_talhoes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `fazenda_id` bigint(20) unsigned NOT NULL,
+  `area_id` bigint(20) unsigned DEFAULT NULL,
+  `codigo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_ha` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `geometria` json DEFAULT NULL,
+  `latitude` decimal(10,7) DEFAULT NULL,
+  `longitude` decimal(10,7) DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_talhoes_codigo` (`tenant_id`,`fazenda_id`,`codigo`),
+  KEY `idx_talhoes_tenant` (`tenant_id`),
+  KEY `idx_talhoes_fazenda` (`fazenda_id`),
+  KEY `idx_talhoes_area` (`area_id`),
+  CONSTRAINT `fk_talhoes_area` FOREIGN KEY (`area_id`) REFERENCES `agro_areas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_talhoes_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `agro_fazendas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_talhoes_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_variedades ----
+CREATE TABLE `agro_variedades` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `cultura_id` bigint(20) unsigned NOT NULL,
+  `nome` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `codigo` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_uso` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'mesa|vinho|suco|mista - confirmar lista real com cliente',
+  `porta_enxerto` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `apirenica` tinyint(1) DEFAULT NULL COMMENT '1=sem semente - confirmar',
+  `ciclo_dias` int(11) DEFAULT NULL COMMENT 'estimativa de ciclo - confirmar com RT',
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_variedade_tenant_cultura_nome` (`tenant_id`,`cultura_id`,`nome`),
+  KEY `idx_variedade_tenant` (`tenant_id`),
+  KEY `idx_variedade_cultura` (`cultura_id`),
+  CONSTRAINT `fk_variedade_cultura` FOREIGN KEY (`cultura_id`) REFERENCES `agro_culturas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_atividades ----
+CREATE TABLE `agro_atividades` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `safra_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `descricao` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` enum('aplicacao','nutricao','irrigacao','tratos_culturais','colheita','outro') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'outro',
+  `responsavel_id` bigint(20) unsigned DEFAULT NULL,
+  `data_planejada` date DEFAULT NULL,
+  `status` enum('planejada','em_execucao','concluida','cancelada') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'planejada',
+  `observacao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_ativ_tenant` (`tenant_id`),
+  KEY `idx_ativ_safra` (`safra_id`),
+  KEY `idx_ativ_st` (`safra_talhao_id`),
+  KEY `idx_ativ_talhao` (`talhao_id`),
+  KEY `idx_ativ_status` (`tenant_id`,`status`),
+  CONSTRAINT `fk_ativ_safra` FOREIGN KEY (`safra_id`) REFERENCES `agro_safras` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_ativ_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_ativ_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_ativ_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_aplicacoes ----
+CREATE TABLE `agro_aplicacoes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `tipo` enum('pulverizacao','fertirrigacao','indutor_brotacao','foliar','tratamento','outro') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pulverizacao',
+  `fazenda_id` bigint(20) unsigned NOT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `safra_id` bigint(20) unsigned NOT NULL,
+  `variedade_id` bigint(20) unsigned DEFAULT NULL,
+  `fenologia_id` bigint(20) unsigned DEFAULT NULL,
+  `data` date NOT NULL COMMENT 'data do evento - usada nos indices',
+  `data_prevista` date DEFAULT NULL,
+  `responsavel_id` bigint(20) unsigned DEFAULT NULL COMMENT 'executor - sem FK (regra VERO)',
+  `responsavel_tecnico_id` bigint(20) unsigned DEFAULT NULL COMMENT 'RT - sem FK - confirmar quem e RT',
+  `maquina_id` bigint(20) unsigned DEFAULT NULL COMMENT 'ref futura ao modulo Maquinas (Fase 2) - sem FK',
+  `condicao_climatica` json DEFAULT NULL COMMENT 'temp/umidade/vento - registro, nao recomendacao',
+  `custo_total` decimal(18,2) DEFAULT NULL COMMENT 'preenchido por service ao lancar custeio',
+  `estoque_baixado` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'flag de baixa de estoque futura',
+  `custeio_lancado` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'flag de lancamento de custeio futuro',
+  `status` enum('rascunho','planejada','registrada','validada','cancelada') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'rascunho',
+  `validado_por` bigint(20) unsigned DEFAULT NULL COMMENT 'RT validador - sem FK',
+  `validado_em` timestamp NULL DEFAULT NULL,
+  `observacao` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_aplic_tenant` (`tenant_id`),
+  KEY `idx_aplic_safra` (`safra_id`),
+  KEY `idx_aplic_talhao` (`talhao_id`),
+  KEY `idx_aplic_variedade` (`variedade_id`),
+  KEY `idx_aplic_data` (`data`),
+  KEY `idx_aplic_tipo` (`tipo`),
+  KEY `idx_aplic_status` (`status`),
+  KEY `idx_aplic_maquina` (`maquina_id`),
+  KEY `fk_aplic_fazenda` (`fazenda_id`),
+  KEY `fk_aplic_fenologia` (`fenologia_id`),
+  CONSTRAINT `fk_aplic_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `agro_fazendas` (`id`),
+  CONSTRAINT `fk_aplic_fenologia` FOREIGN KEY (`fenologia_id`) REFERENCES `agro_fenologia_estagios` (`id`),
+  CONSTRAINT `fk_aplic_safra` FOREIGN KEY (`safra_id`) REFERENCES `agro_safras` (`id`),
+  CONSTRAINT `fk_aplic_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_aplic_variedade` FOREIGN KEY (`variedade_id`) REFERENCES `agro_variedades` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_aplicacao_itens ----
+CREATE TABLE `agro_aplicacao_itens` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `aplicacao_id` bigint(20) unsigned NOT NULL,
+  `produto_id` bigint(20) unsigned DEFAULT NULL COMMENT 'ref estoque_produtos - sem FK (confirmar) - baixa futura',
+  `lote_id` bigint(20) unsigned DEFAULT NULL COMMENT 'ref estoque_lotes - sem FK (confirmar) - rastreio de lote',
+  `ingrediente_ativo` varchar(160) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'registro historico - confirmar via Agrofit',
+  `finalidade` varchar(160) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'alvo/finalidade - registro historico',
+  `dose_valor` decimal(18,6) DEFAULT NULL COMMENT 'HISTORICO registrado - NAO e recomendacao',
+  `dose_unidade` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantidade_consumida` decimal(18,6) DEFAULT NULL,
+  `quantidade_unidade` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `custo_unitario` decimal(18,6) DEFAULT NULL COMMENT 'preenchido por service (custo medio do estoque)',
+  `custo_total` decimal(18,2) DEFAULT NULL COMMENT 'preenchido por service',
+  `carencia_dias` int(11) DEFAULT NULL COMMENT 'intervalo de seguranca - HISTORICO - confirmar bula/Anvisa',
+  `observacao` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_aplicitem_tenant` (`tenant_id`),
+  KEY `idx_aplicitem_aplicacao` (`aplicacao_id`),
+  KEY `idx_aplicitem_produto` (`produto_id`),
+  KEY `idx_aplicitem_lote` (`lote_id`),
+  CONSTRAINT `fk_aplicitem_aplicacao` FOREIGN KEY (`aplicacao_id`) REFERENCES `agro_aplicacoes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_receituarios ----
+CREATE TABLE `agro_receituarios` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `aplicacao_id` bigint(20) unsigned DEFAULT NULL,
+  `numero` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emitido_por` bigint(20) unsigned DEFAULT NULL COMMENT 'RT emissor - sem FK - confirmar',
+  `emitido_em` date DEFAULT NULL,
+  `validade` date DEFAULT NULL,
+  `observacao` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_receit_tenant` (`tenant_id`),
+  KEY `idx_receit_aplicacao` (`aplicacao_id`),
+  CONSTRAINT `fk_receit_aplicacao` FOREIGN KEY (`aplicacao_id`) REFERENCES `agro_aplicacoes` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- mip_monitoramentos ----
+CREATE TABLE `mip_monitoramentos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `ponto_id` bigint(20) unsigned DEFAULT NULL,
+  `alvo_id` bigint(20) unsigned NOT NULL,
+  `data_monitoramento` date NOT NULL,
+  `nivel_infestacao` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `unidade` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observacao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_mipmon_tenant` (`tenant_id`),
+  KEY `idx_mipmon_talhao` (`talhao_id`),
+  KEY `idx_mipmon_st` (`safra_talhao_id`),
+  KEY `idx_mipmon_ponto` (`ponto_id`),
+  KEY `idx_mipmon_alvo` (`alvo_id`),
+  CONSTRAINT `fk_mipmon_alvo` FOREIGN KEY (`alvo_id`) REFERENCES `mip_alvos` (`id`),
+  CONSTRAINT `fk_mipmon_ponto` FOREIGN KEY (`ponto_id`) REFERENCES `mip_pontos_amostragem` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_mipmon_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_mipmon_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_mipmon_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- mip_pontos_amostragem ----
+CREATE TABLE `mip_pontos_amostragem` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `nome` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `latitude` decimal(10,7) DEFAULT NULL,
+  `longitude` decimal(10,7) DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_mippt_tenant` (`tenant_id`),
+  KEY `idx_mippt_talhao` (`talhao_id`),
+  CONSTRAINT `fk_mippt_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_mippt_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- colheita_cargas ----
+CREATE TABLE `colheita_cargas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `registro_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `romaneio` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_carga` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `peso_kg` decimal(18,3) NOT NULL DEFAULT '0.000',
+  `classificacao` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `produtividade` decimal(12,4) DEFAULT NULL,
+  `unidade_produtividade` enum('sacas_ha','t_ha','arroba_ha','kg_ha','litros_ha') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 't_ha',
+  `origem` enum('web','app') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'web',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_carga_romaneio` (`tenant_id`,`romaneio`),
+  KEY `idx_carga_tenant` (`tenant_id`),
+  KEY `idx_carga_registro` (`registro_id`),
+  KEY `idx_carga_talhao` (`talhao_id`),
+  KEY `idx_carga_st` (`safra_talhao_id`),
+  CONSTRAINT `fk_carga_registro` FOREIGN KEY (`registro_id`) REFERENCES `colheita_registros` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_carga_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_carga_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_carga_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- colheita_classificacoes ----
+CREATE TABLE `colheita_classificacoes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `registro_id` bigint(20) unsigned NOT NULL,
+  `momento` enum('previsto','realizado') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoria` enum('premium','cat1','cat2','cat3','perdidos') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `percentual` decimal(6,2) NOT NULL DEFAULT '0.00',
+  `preco_kg` decimal(18,6) NOT NULL DEFAULT '0.000000',
+  `kg_calculado` decimal(18,3) NOT NULL DEFAULT '0.000',
+  `faturamento` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_colhclass` (`registro_id`,`momento`,`categoria`),
+  KEY `idx_colhclass_tenant` (`tenant_id`),
+  CONSTRAINT `fk_colhclass_registro` FOREIGN KEY (`registro_id`) REFERENCES `colheita_registros` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- colheita_registros ----
+CREATE TABLE `colheita_registros` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `safra_id` bigint(20) unsigned NOT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `setor_id` bigint(20) unsigned DEFAULT NULL,
+  `cultura_id` bigint(20) unsigned DEFAULT NULL,
+  `variedade_id` bigint(20) unsigned DEFAULT NULL,
+  `data_colheita` date NOT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `producao_prevista_kg_ha` decimal(12,3) DEFAULT NULL,
+  `producao_realizada_kg_ha` decimal(12,3) DEFAULT NULL,
+  `kg_total_previsto` decimal(18,3) NOT NULL DEFAULT '0.000',
+  `kg_total_realizado` decimal(18,3) NOT NULL DEFAULT '0.000',
+  `faturamento_previsto` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `faturamento_realizado` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `observacao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_colreg_tenant` (`tenant_id`),
+  KEY `idx_colreg_safra` (`safra_id`),
+  KEY `idx_colreg_st` (`safra_talhao_id`),
+  KEY `idx_colreg_talhao` (`talhao_id`),
+  KEY `idx_colreg_cultura` (`cultura_id`),
+  KEY `idx_colhreg_setor` (`setor_id`),
+  KEY `idx_colhreg_variedade` (`variedade_id`),
+  CONSTRAINT `fk_colhreg_setor` FOREIGN KEY (`setor_id`) REFERENCES `agro_setores` (`id`),
+  CONSTRAINT `fk_colreg_cultura` FOREIGN KEY (`cultura_id`) REFERENCES `agro_culturas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_colreg_safra` FOREIGN KEY (`safra_id`) REFERENCES `agro_safras` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_colreg_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_colreg_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_colreg_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_alertas ----
+CREATE TABLE `agro_alertas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `categoria` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'mip|irrigacao|foliar|solo|micro|residuo|dormex|maquina|drone|grade',
+  `origem_tipo` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origem_id` bigint(20) unsigned DEFAULT NULL,
+  `fazenda_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_id` bigint(20) unsigned DEFAULT NULL,
+  `severidade` enum('info','atencao','critico') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'atencao',
+  `titulo` varchar(160) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mensagem` text COLLATE utf8mb4_unicode_ci,
+  `requer_validacao_tecnica` tinyint(1) NOT NULL DEFAULT '0',
+  `status` enum('aberto','reconhecido','resolvido','descartado') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aberto',
+  `data` date NOT NULL,
+  `reconhecido_por` bigint(20) unsigned DEFAULT NULL,
+  `reconhecido_em` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_alerta_tenant` (`tenant_id`),
+  KEY `idx_alerta_categoria` (`categoria`),
+  KEY `idx_alerta_status` (`status`),
+  KEY `idx_alerta_talhao` (`talhao_id`),
+  KEY `idx_alerta_safra` (`safra_id`),
+  KEY `idx_alerta_data` (`data`),
+  KEY `idx_alerta_origem` (`origem_tipo`,`origem_id`),
+  KEY `fk_alerta_fazenda` (`fazenda_id`),
+  CONSTRAINT `fk_alerta_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `agro_fazendas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_alerta_safra` FOREIGN KEY (`safra_id`) REFERENCES `agro_safras` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_alerta_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_anexos ----
+CREATE TABLE `agro_anexos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `origem_tipo` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `origem_id` bigint(20) unsigned NOT NULL,
+  `tipo_arquivo` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'pdf|jpg|png|xlsx|...',
+  `nome_original` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'referencia/URL - nao armazenar binario aqui',
+  `tamanho_bytes` bigint(20) unsigned DEFAULT NULL,
+  `hash_sha256` char(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'integridade do arquivo',
+  `descricao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_anexo_tenant` (`tenant_id`),
+  KEY `idx_anexo_origem` (`origem_tipo`,`origem_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- custeio_fechamentos ----
+CREATE TABLE `custeio_fechamentos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `safra_id` bigint(20) unsigned NOT NULL,
+  `data_fechamento` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `valor_total` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `dre_snapshot_id` bigint(20) unsigned DEFAULT NULL,
+  `status` enum('aberto','fechado','reaberto') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'fechado',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_fech_safra` (`tenant_id`,`safra_id`),
+  KEY `idx_fech_tenant` (`tenant_id`),
+  KEY `idx_fech_dre` (`dre_snapshot_id`),
+  KEY `fk_fech_safra` (`safra_id`),
+  CONSTRAINT `fk_fech_safra` FOREIGN KEY (`safra_id`) REFERENCES `agro_safras` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_fech_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- custeio_lancamentos ----
+CREATE TABLE `custeio_lancamentos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `safra_id` bigint(20) unsigned DEFAULT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `cultura_id` bigint(20) unsigned DEFAULT NULL,
+  `centro_custo_id` bigint(20) unsigned NOT NULL,
+  `plano_conta_id` bigint(20) unsigned DEFAULT NULL,
+  `categoria` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origem_tipo` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `origem_id` bigint(20) unsigned NOT NULL,
+  `valor` decimal(18,2) NOT NULL,
+  `quantidade` decimal(18,4) DEFAULT NULL,
+  `data_competencia` date NOT NULL,
+  `movimentacao_financeira_id` bigint(20) unsigned DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_lanc_origem` (`tenant_id`,`origem_tipo`,`origem_id`),
+  KEY `idx_lanc_tenant` (`tenant_id`),
+  KEY `idx_lanc_safra` (`safra_id`),
+  KEY `idx_lanc_st` (`safra_talhao_id`),
+  KEY `idx_lanc_talhao` (`talhao_id`),
+  KEY `idx_lanc_cultura` (`cultura_id`),
+  KEY `idx_lanc_cc` (`centro_custo_id`),
+  KEY `idx_lanc_plano` (`plano_conta_id`),
+  KEY `idx_lanc_movfin` (`movimentacao_financeira_id`),
+  CONSTRAINT `fk_lanc_cc` FOREIGN KEY (`centro_custo_id`) REFERENCES `centros_custo` (`id`),
+  CONSTRAINT `fk_lanc_cultura` FOREIGN KEY (`cultura_id`) REFERENCES `agro_culturas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_lanc_plano` FOREIGN KEY (`plano_conta_id`) REFERENCES `plano_contas` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_lanc_safra` FOREIGN KEY (`safra_id`) REFERENCES `agro_safras` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_lanc_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_lanc_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_lanc_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_ordens_servico ----
+CREATE TABLE `agro_ordens_servico` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `atividade_id` bigint(20) unsigned DEFAULT NULL,
+  `numero` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `status` enum('aberta','em_execucao','concluida','cancelada') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aberta',
+  `data_abertura` date NOT NULL,
+  `data_conclusao` date DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_os_numero` (`tenant_id`,`numero`),
+  KEY `idx_os_tenant` (`tenant_id`),
+  KEY `idx_os_atividade` (`atividade_id`),
+  KEY `idx_os_talhao` (`talhao_id`),
+  CONSTRAINT `fk_os_atividade` FOREIGN KEY (`atividade_id`) REFERENCES `agro_atividades` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_os_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_os_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_apontamentos ----
+CREATE TABLE `agro_apontamentos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `atividade_id` bigint(20) unsigned DEFAULT NULL,
+  `tipo_atividade_id` bigint(20) unsigned DEFAULT NULL,
+  `fenologia_id` bigint(20) unsigned DEFAULT NULL,
+  `hectares` decimal(12,4) DEFAULT NULL,
+  `ordem_servico_id` bigint(20) unsigned DEFAULT NULL,
+  `talhao_id` bigint(20) unsigned NOT NULL,
+  `safra_talhao_id` bigint(20) unsigned DEFAULT NULL,
+  `tipo` enum('aplicacao','nutricao','irrigacao','tratos_culturais','colheita','abastecimento','outro') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'outro',
+  `operador_id` bigint(20) unsigned DEFAULT NULL,
+  `data_apontamento` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `origem` enum('web','app') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'web',
+  `status` enum('pendente','validado','recusado') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'validado',
+  `latitude` decimal(10,7) DEFAULT NULL,
+  `longitude` decimal(10,7) DEFAULT NULL,
+  `observacao` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_apont_tenant` (`tenant_id`),
+  KEY `idx_apont_atividade` (`atividade_id`),
+  KEY `idx_apont_os` (`ordem_servico_id`),
+  KEY `idx_apont_talhao` (`talhao_id`),
+  KEY `idx_apont_st` (`safra_talhao_id`),
+  KEY `idx_apont_status` (`tenant_id`,`status`),
+  KEY `idx_apont_tipoativ` (`tipo_atividade_id`),
+  KEY `idx_apont_fenologia` (`fenologia_id`),
+  CONSTRAINT `fk_apont_atividade` FOREIGN KEY (`atividade_id`) REFERENCES `agro_atividades` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_apont_os` FOREIGN KEY (`ordem_servico_id`) REFERENCES `agro_ordens_servico` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_apont_st` FOREIGN KEY (`safra_talhao_id`) REFERENCES `agro_safra_talhoes` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_apont_talhao` FOREIGN KEY (`talhao_id`) REFERENCES `agro_talhoes` (`id`),
+  CONSTRAINT `fk_apont_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_pivos ----
+CREATE TABLE `agro_pivos` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `fazenda_id` bigint(20) unsigned NOT NULL,
+  `nome` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `area_ha` decimal(12,4) NOT NULL DEFAULT '0.0000',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_pivos_tenant` (`tenant_id`),
+  KEY `idx_pivos_fazenda` (`fazenda_id`),
+  CONSTRAINT `fk_pivos_fazenda` FOREIGN KEY (`fazenda_id`) REFERENCES `agro_fazendas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_pivos_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- tenants ----
+CREATE TABLE `tenants` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- agro_operadores ----
+CREATE TABLE `agro_operadores` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tenant_id` bigint(20) unsigned NOT NULL,
+  `usuario_id` bigint(20) unsigned DEFAULT NULL,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `funcao` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_vinculo` enum('clt','diarista','terceirizado','outro') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'clt',
+  `salario_mensal` decimal(18,2) DEFAULT NULL,
+  `documento` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `custo_hora` decimal(18,6) NOT NULL DEFAULT '0.000000',
+  `ativo` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint(20) unsigned DEFAULT NULL,
+  `updated_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_oper_tenant` (`tenant_id`),
+  KEY `idx_oper_usuario` (`usuario_id`),
+  CONSTRAINT `fk_oper_tenant` FOREIGN KEY (`tenant_id`) REFERENCES `tenants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- NOVA na 134: clima_registros — não existe ✓
+-- NOVA na 134: tenant_parametros — não existe ✓
+-- NOVA na 134: estoque_movimentacao_lotes — não existe ✓
+-- NOVA na 134: maquina_odometros — não existe ✓
+-- NOVA na 134: maquina_planos_manutencao — não existe ✓
+-- NOVA na 134: maquina_manutencao_itens — não existe ✓
+-- NOVA na 134: mip_alerta_acoes — não existe ✓

@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-apontamento-de-irrigacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo apontamento para abrir o lancamento",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "seletor": "button:has-text(\"Novo apontamento\")",
+      "marca": "seta",
+      "label": "Novo apontamento"
+    },
+    {
+      "texto": "Escolha a valvula e a data — os dois sao obrigatorios",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "pre_acoes": ["button:has-text(\"Novo apontamento\")"],
+      "seletor": "#vm-form select[name=talhao_id]",
+      "marca": "caixa",
+      "label": "Valvula"
+    },
+    {
+      "texto": "Lance o consumo de agua (m3); deixe o custo em branco para o VERO calcular pela tarifa",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "pre_acoes": ["button:has-text(\"Novo apontamento\")"],
+      "seletor": "#vm-form input[name=agua_qtd]",
+      "marca": "caixa",
+      "label": "Agua (m3)"
+    },
+    {
+      "texto": "Salve — o consumo com custo gera o lancamento no custeio (categoria irrigacao)",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "pre_acoes": ["button:has-text(\"Novo apontamento\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

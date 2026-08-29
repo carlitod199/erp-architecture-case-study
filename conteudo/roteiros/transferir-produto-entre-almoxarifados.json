@@ -1,0 +1,34 @@
+{
+  "slug": "transferir-produto-entre-almoxarifados",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Em Nova transferência, escolha o produto",
+      "rota": "/estoque/transferencias.php",
+      "seletor": "#tr-form select[name=\"produto_id\"]",
+      "marca": "caixa",
+      "label": "Produto"
+    },
+    {
+      "texto": "Defina o almoxarifado de origem e o de destino (não podem ser o mesmo)",
+      "rota": "/estoque/transferencias.php",
+      "seletor": "#tr-form select[name=\"almox_destino\"]",
+      "marca": "caixa",
+      "label": "Origem e destino"
+    },
+    {
+      "texto": "Informe a quantidade — a saída sai por FEFO (lote que vence primeiro)",
+      "rota": "/estoque/transferencias.php",
+      "seletor": "#tr-qtd",
+      "marca": "caixa",
+      "label": "Quantidade"
+    },
+    {
+      "texto": "Clique em Transferir — o custo não muda, só o lugar; origem e destino são atualizados juntos",
+      "rota": "/estoque/transferencias.php",
+      "seletor": "#tr-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Transferir"
+    }
+  ]
+}

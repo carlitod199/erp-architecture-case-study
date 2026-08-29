@@ -1,0 +1,27 @@
+{
+  "slug": "definir-tarifas-de-irrigacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "No bloco de tarifas, informe a tarifa da agua (R$/m3)",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "seletor": "input[name=tarifa_agua_m3]",
+      "marca": "caixa",
+      "label": "Tarifa da agua"
+    },
+    {
+      "texto": "Informe a tarifa da energia (R$/kWh)",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "seletor": "input[name=tarifa_energia_kwh]",
+      "marca": "caixa",
+      "label": "Tarifa da energia"
+    },
+    {
+      "texto": "Clique em Gravar tarifas — os novos apontamentos passam a calcular o custo sozinhos",
+      "rota": "/irrigacao/apontamentos_irrigacao.php",
+      "seletor": "button:has-text(\"Gravar tarifas\")",
+      "marca": "seta",
+      "label": "Gravar tarifas"
+    }
+  ]
+}

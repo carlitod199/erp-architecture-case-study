@@ -1,0 +1,11 @@
+<?php
+/* VERO — exemplo de config do banco. Copie para config/database.php e preencha
+   com as credenciais REAIS. config/database.php é gitignored (P-03): a senha
+   NUNCA volta ao versionamento. */
+return [
+    'host'    => 'SEU_HOST_MYSQL',
+    'dbname'  => 'SEU_BANCO',
+    'user'    => 'SEU_USUARIO',
+    'pass'    => 'DEFINA_NO_SERVIDOR_E_AQUI',   // igual à senha rotacionada no DBaaS
+    'charset' => 'utf8mb4',
+];

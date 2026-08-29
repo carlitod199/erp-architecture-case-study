@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-romaneio-de-campo",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova carga para abrir o formulário do romaneio",
+      "rota": "/agro/romaneios_colheita.php",
+      "seletor": "button:has-text(\"+ Nova carga\")",
+      "marca": "caixa",
+      "label": "Nova carga"
+    },
+    {
+      "texto": "Preencha o número do romaneio, a válvula e o peso em kg (maior que zero)",
+      "rota": "/agro/romaneios_colheita.php",
+      "pre_acoes": ["button:has-text(\"+ Nova carga\")"],
+      "seletor": "input[name=\"romaneio\"]",
+      "marca": "caixa",
+      "label": "Romaneio, válvula e peso"
+    },
+    {
+      "texto": "Escolha a safra da válvula — ela só aparece depois de selecionar a válvula e é o que rastreia o lote",
+      "rota": "/agro/romaneios_colheita.php",
+      "pre_acoes": ["button:has-text(\"+ Nova carga\")"],
+      "seletor": "#rc-safra",
+      "marca": "caixa",
+      "label": "Safra da válvula (rastreia o lote)"
+    },
+    {
+      "texto": "Clique em Salvar — é este passo que registra a carga e soma o peso no total do dia",
+      "rota": "/agro/romaneios_colheita.php",
+      "pre_acoes": ["button:has-text(\"+ Nova carga\")"],
+      "seletor": "#vm-form button.vbtn-primary:has-text(\"Salvar\")",
+      "marca": "seta",
+      "label": "Salvar (registra a carga)"
+    }
+  ]
+}

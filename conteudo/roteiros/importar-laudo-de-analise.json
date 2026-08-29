@@ -1,0 +1,27 @@
+{
+  "slug": "importar-laudo-de-analise",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Escolha o tipo do laudo — analise de solo ou analise foliar",
+      "rota": "/nutricao/importar_laudo.php",
+      "seletor": "select[name=tipo]",
+      "marca": "caixa",
+      "label": "Tipo de laudo"
+    },
+    {
+      "texto": "Envie o PDF original do laboratorio (arquivo valido, ate 5 MB)",
+      "rota": "/nutricao/importar_laudo.php",
+      "seletor": "input[name=laudo]",
+      "marca": "caixa",
+      "label": "PDF do laudo"
+    },
+    {
+      "texto": "Clique em Extrair com IA — a IA propoe os resultados; voce revisa e confirma antes de gravar",
+      "rota": "/nutricao/importar_laudo.php",
+      "seletor": "button:has-text(\"Extrair com IA\")",
+      "marca": "seta",
+      "label": "Extrair com IA"
+    }
+  ]
+}

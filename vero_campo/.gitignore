@@ -1,0 +1,30 @@
+# Dependências (o EAS reinstala na nuvem)
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Nativo (managed workflow — gerado pelo prebuild na nuvem)
+/ios/
+/android/
+
+# Metro / logs
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Credenciais / segredos (NUNCA versionar)
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+.env*.local
+
+# macOS / editores
+.DS_Store

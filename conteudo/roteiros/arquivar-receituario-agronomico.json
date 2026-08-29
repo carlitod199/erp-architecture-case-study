@@ -1,0 +1,37 @@
+{
+  "slug": "arquivar-receituario-agronomico",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Receituários e clique em + Novo receituário",
+      "rota": "/mip/receituarios.php",
+      "seletor": "button:has-text(\"+ Novo receituário\")",
+      "marca": "caixa",
+      "label": "Novo receituário"
+    },
+    {
+      "texto": "Informe o número do receituário — é obrigatório e não pode repetir — e a data de emissão",
+      "rota": "/mip/receituarios.php",
+      "pre_acoes": ["button:has-text(\"+ Novo receituário\")"],
+      "seletor": "input[name=\"numero\"]",
+      "marca": "caixa",
+      "label": "Número do receituário"
+    },
+    {
+      "texto": "Clique em Salvar — o receituário fica registrado e o campo de anexo aparece em seguida",
+      "rota": "/mip/receituarios.php",
+      "pre_acoes": ["button:has-text(\"+ Novo receituário\")"],
+      "seletor": "#vm-form .vform-actions button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    },
+    {
+      "texto": "No receituário salvo, escolha o arquivo (PDF, JPG ou PNG) e clique em Anexar — este é o passo que guarda o documento original",
+      "rota": "/mip/receituarios.php",
+      "pre_acoes": ["table.vdata tbody tr:first-child a.vicon-edit"],
+      "seletor": "input[name=\"arquivo\"]",
+      "marca": "seta",
+      "label": "Escolher o arquivo e Anexar"
+    }
+  ]
+}

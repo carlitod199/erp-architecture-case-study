@@ -1,0 +1,37 @@
+{
+  "slug": "lancar-abastecimento",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo abastecimento para abrir o lancamento",
+      "rota": "/maquinas/abastecimento.php",
+      "seletor": "button:has-text(\"Novo abastecimento\")",
+      "marca": "seta",
+      "label": "Novo abastecimento"
+    },
+    {
+      "texto": "Escolha a maquina e a data do abastecimento",
+      "rota": "/maquinas/abastecimento.php",
+      "pre_acoes": ["button:has-text(\"Novo abastecimento\")"],
+      "seletor": "#vm-form select[name=maquina_id]",
+      "marca": "caixa",
+      "label": "Maquina"
+    },
+    {
+      "texto": "Informe os litros e o valor total pagos — os dois sao obrigatorios",
+      "rota": "/maquinas/abastecimento.php",
+      "pre_acoes": ["button:has-text(\"Novo abastecimento\")"],
+      "seletor": "#vm-form input[name=litros]",
+      "marca": "caixa",
+      "label": "Litros"
+    },
+    {
+      "texto": "Registre — o valor vira custo no custeio e, se informar o horimetro, a maquina e atualizada",
+      "rota": "/maquinas/abastecimento.php",
+      "pre_acoes": ["button:has-text(\"Novo abastecimento\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Registrar"
+    }
+  ]
+}

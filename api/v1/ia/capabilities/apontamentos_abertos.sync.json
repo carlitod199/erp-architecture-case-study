@@ -1,0 +1,19 @@
+{
+  "id": "apontamentos_abertos.sync",
+  "titulo": "Listar apontamentos em aberto (iniciados)",
+  "modulo": "agro",
+  "permissao": "agro.apontamentos_campo.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/apontamentos_abertos", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Apontamentos iniciados (delta desde {desde})",
+  "regras": [
+    "apontamentos com status 'iniciado' (dois estágios), de qualquer aparelho/no web",
+    "sem api_exigir no handler — token válido + tenant",
+    "concluído/validado sai da lista via tombstone; alimenta apontamento.concluir"
+  ],
+  "inverso": null
+}

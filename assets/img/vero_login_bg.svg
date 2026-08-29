@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fundo VERO — vale, contornos e rede de irrigação">
+  <defs>
+    <!-- céu teal do domínio: topo mais profundo, núcleo teal da marca, base escura -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#04343A"/>
+      <stop offset=".42" stop-color="#005059"/>
+      <stop offset=".78" stop-color="#013F47"/>
+      <stop offset="1"   stop-color="#00272C"/>
+    </linearGradient>
+    <!-- brilho teal de profundidade (canto superior) -->
+    <radialGradient id="glowTeal" cx=".28" cy=".22" r=".6">
+      <stop offset="0" stop-color="#0E7E72" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#0E7E72" stop-opacity="0"/>
+    </radialGradient>
+    <!-- nascer do sol dourado no horizonte (base) -->
+    <radialGradient id="glowGold" cx=".5" cy="1" r=".62">
+      <stop offset="0"  stop-color="#E2C275" stop-opacity=".26"/>
+      <stop offset=".5" stop-color="#C9A961" stop-opacity=".08"/>
+      <stop offset="1"  stop-color="#C9A961" stop-opacity="0"/>
+    </radialGradient>
+    <!-- vinheta: escurece as bordas p/ destacar o card de login central -->
+    <radialGradient id="vig" cx=".5" cy=".46" r=".75">
+      <stop offset="0"   stop-color="#00272C" stop-opacity="0"/>
+      <stop offset=".62" stop-color="#00272C" stop-opacity="0"/>
+      <stop offset="1"   stop-color="#001A1E" stop-opacity=".62"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="softBig" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <!-- base -->
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <rect width="1920" height="1080" fill="url(#glowTeal)"/>
+  <rect width="1920" height="1080" fill="url(#glowGold)"/>
+
+  <!-- contornos topográficos (identidade "mapa"): anéis concêntricos suaves à direita -->
+  <g stroke="#4E9CA1" fill="none" stroke-width="1.6" opacity=".5">
+    <g transform="translate(1360 470) rotate(-16)">
+      <ellipse rx="150"  ry="108"  opacity=".22"/>
+      <ellipse rx="250"  ry="180"  opacity=".17"/>
+      <ellipse rx="360"  ry="258"  opacity=".13"/>
+      <ellipse rx="480"  ry="342"  opacity=".10"/>
+      <ellipse rx="610"  ry="432"  opacity=".07"/>
+      <ellipse rx="750"  ry="528"  opacity=".05"/>
+      <ellipse rx="900"  ry="630"  opacity=".035"/>
+    </g>
+    <!-- segundo foco, à esquerda-baixo, dá relevo de terreno -->
+    <g transform="translate(430 900) rotate(10)">
+      <ellipse rx="120" ry="86"  opacity=".14"/>
+      <ellipse rx="230" ry="164" opacity=".10"/>
+      <ellipse rx="360" ry="252" opacity=".07"/>
+      <ellipse rx="510" ry="352" opacity=".045"/>
+    </g>
+  </g>
+
+  <!-- curva do rio / Vale, cruzando o terço inferior -->
+  <g opacity=".5">
+    <path d="M-40 806 C 360 742, 640 900, 980 838 S 1620 700, 1980 792"
+          fill="none" stroke="#7FB7BC" stroke-width="10" stroke-linecap="round" opacity=".16" filter="url(#soft)"/>
+    <path d="M-40 806 C 360 742, 640 900, 980 838 S 1620 700, 1980 792"
+          fill="none" stroke="#BFE3E6" stroke-width="2.2" stroke-linecap="round" opacity=".22"/>
+  </g>
+
+  <!-- rede de irrigação: nós (válvulas) ligados por linhas finas, canto inferior-direito -->
+  <g stroke="#00E5C7" stroke-width="1.1" opacity=".5">
+    <path d="M1180 690 L1360 742 L1560 700 L1720 760 M1360 742 L1440 880 L1620 900 M1560 700 L1640 590" fill="none" opacity=".28"/>
+  </g>
+  <g fill="#00E5C7">
+    <circle cx="1180" cy="690" r="3.2" opacity=".6"/>
+    <circle cx="1360" cy="742" r="4"   opacity=".85" filter="url(#soft)"/>
+    <circle cx="1360" cy="742" r="2.6" opacity=".95"/>
+    <circle cx="1560" cy="700" r="3.2" opacity=".6"/>
+    <circle cx="1720" cy="760" r="3"   opacity=".5"/>
+    <circle cx="1440" cy="880" r="3"   opacity=".5"/>
+    <circle cx="1620" cy="900" r="3.4" opacity=".7" filter="url(#soft)"/>
+    <circle cx="1620" cy="900" r="2.2" opacity=".95"/>
+  </g>
+  <g fill="#E2C275">
+    <circle cx="1640" cy="590" r="3.4" opacity=".7" filter="url(#soft)"/>
+    <circle cx="1640" cy="590" r="2"   opacity=".95"/>
+  </g>
+
+  <!-- fileiras de parreiral convergindo (perspectiva) no rodapé, muito sutis -->
+  <g stroke="#4E9CA1" stroke-width="1.4" opacity=".5">
+    <g opacity=".10">
+      <path d="M960 700 L120 1080"/>
+      <path d="M960 700 L440 1080"/>
+      <path d="M960 700 L760 1080"/>
+      <path d="M960 700 L1160 1080"/>
+      <path d="M960 700 L1480 1080"/>
+      <path d="M960 700 L1800 1080"/>
+    </g>
+  </g>
+
+  <!-- partículas/estrelas de brilho, esparsas em cima -->
+  <g fill="#BFE3E6">
+    <circle cx="300"  cy="180" r="1.6" opacity=".5"/>
+    <circle cx="640"  cy="120" r="1.2" opacity=".4"/>
+    <circle cx="1180" cy="150" r="1.5" opacity=".45"/>
+    <circle cx="1500" cy="230" r="1.2" opacity=".35"/>
+    <circle cx="1760" cy="150" r="1.6" opacity=".5"/>
+    <circle cx="880"  cy="240" r="1.1" opacity=".3"/>
+  </g>
+
+  <!-- vinheta por cima -->
+  <rect width="1920" height="1080" fill="url(#vig)"/>
+</svg>

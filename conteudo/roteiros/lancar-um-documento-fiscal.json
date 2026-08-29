@@ -1,0 +1,37 @@
+{
+  "slug": "lancar-um-documento-fiscal",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Documentos e clique em Registro manual",
+      "rota": "/fiscal/documentos.php",
+      "seletor": "button:has-text(\"Registro manual\")",
+      "marca": "seta",
+      "label": "Registro manual"
+    },
+    {
+      "texto": "Escolha o tipo do documento (NF-e, NFC-e, CT-e ou Outro)",
+      "rota": "/fiscal/documentos.php",
+      "pre_acoes": ["button:has-text(\"Registro manual\")"],
+      "seletor": "#vm-form select[name=\"tipo\"]",
+      "marca": "caixa",
+      "label": "Tipo"
+    },
+    {
+      "texto": "Informe o número e o valor; se tiver, cole a chave de acesso de 44 dígitos",
+      "rota": "/fiscal/documentos.php",
+      "pre_acoes": ["button:has-text(\"Registro manual\")"],
+      "seletor": "#vm-form input[name=\"valor_total\"]",
+      "marca": "caixa",
+      "label": "Valor total"
+    },
+    {
+      "texto": "Clique em Salvar — o documento entra no acervo fiscal",
+      "rota": "/fiscal/documentos.php",
+      "pre_acoes": ["button:has-text(\"Registro manual\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-pivo",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo pivo para abrir o cadastro do sistema de irrigacao",
+      "rota": "/irrigacao/painel.php",
+      "seletor": "button:has-text(\"Novo piv\")",
+      "marca": "seta",
+      "label": "Novo pivo"
+    },
+    {
+      "texto": "Informe o nome do pivo/sistema — e o unico campo obrigatorio",
+      "rota": "/irrigacao/painel.php",
+      "pre_acoes": ["button:has-text(\"Novo piv\")"],
+      "seletor": "#vm-form input[name=nome]",
+      "marca": "caixa",
+      "label": "Nome"
+    },
+    {
+      "texto": "Escolha a fazenda e informe a area (ha) atendida",
+      "rota": "/irrigacao/painel.php",
+      "pre_acoes": ["button:has-text(\"Novo piv\")"],
+      "seletor": "#vm-form select[name=fazenda_id]",
+      "marca": "caixa",
+      "label": "Fazenda"
+    },
+    {
+      "texto": "Salve — o pivo passa a aparecer no painel com os KPIs de 30 dias",
+      "rota": "/irrigacao/painel.php",
+      "pre_acoes": ["button:has-text(\"Novo piv\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

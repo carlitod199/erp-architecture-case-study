@@ -1,0 +1,37 @@
+{
+  "slug": "ajustar-ou-estornar-movimentacao-de-estoque",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "No Histórico de Movimentações, clique em + Ajuste para corrigir o saldo",
+      "rota": "/estoque/movimentacoes.php",
+      "seletor": "button[onclick=\"vModalOpen('vm-ajuste')\"]",
+      "marca": "seta",
+      "label": "+ Ajuste"
+    },
+    {
+      "texto": "Escolha o motivo (obrigatório) e a direção — acréscimo ou redução",
+      "rota": "/estoque/movimentacoes.php",
+      "pre_acoes": ["button[onclick=\"vModalOpen('vm-ajuste')\"]"],
+      "seletor": "#vm-ajuste select[name=\"motivo\"]",
+      "marca": "caixa",
+      "label": "Motivo obrigatório"
+    },
+    {
+      "texto": "Informe a quantidade do ajuste e a data",
+      "rota": "/estoque/movimentacoes.php",
+      "pre_acoes": ["button[onclick=\"vModalOpen('vm-ajuste')\"]"],
+      "seletor": "#vm-ajuste input[name=\"quantidade\"]",
+      "marca": "caixa",
+      "label": "Quantidade"
+    },
+    {
+      "texto": "Registre o ajuste — para desfazer um lançamento manual errado use o ícone Estornar na linha (também com motivo)",
+      "rota": "/estoque/movimentacoes.php",
+      "pre_acoes": ["button[onclick=\"vModalOpen('vm-ajuste')\"]"],
+      "seletor": "#vm-ajuste button.vbtn-primary",
+      "marca": "seta",
+      "label": "Registrar ajuste"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "vero-uni-capturas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pipeline T7 — capturas automaticas (Playwright) das telas ancoradas as capsulas da Universidade VERO.",
+  "scripts": {
+    "capturas": "node capturas.mjs",
+    "check": "node --check capturas.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0"
+  }
+}

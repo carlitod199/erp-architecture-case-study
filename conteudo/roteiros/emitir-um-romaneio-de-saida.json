@@ -1,0 +1,37 @@
+{
+  "slug": "emitir-um-romaneio-de-saida",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Romaneios e clique em Novo romaneio",
+      "rota": "/comercial/romaneios.php",
+      "seletor": "button:has-text(\"Novo romaneio\")",
+      "marca": "seta",
+      "label": "Novo romaneio"
+    },
+    {
+      "texto": "Escolha a venda — o sistema mostra comprador, kg vendido e lote de cada uma",
+      "rota": "/comercial/romaneios.php",
+      "pre_acoes": ["button:has-text(\"Novo romaneio\")"],
+      "seletor": "#vm-form select[name=\"venda_id\"]",
+      "marca": "caixa",
+      "label": "Venda"
+    },
+    {
+      "texto": "Informe o número do romaneio e o peso embarcado em kg",
+      "rota": "/comercial/romaneios.php",
+      "pre_acoes": ["button:has-text(\"Novo romaneio\")"],
+      "seletor": "#vm-form input[name=\"peso_kg\"]",
+      "marca": "caixa",
+      "label": "Peso (kg)"
+    },
+    {
+      "texto": "Clique em Salvar — o embarque entra no confronto embarcado × vendido da venda",
+      "rota": "/comercial/romaneios.php",
+      "pre_acoes": ["button:has-text(\"Novo romaneio\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

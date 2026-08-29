@@ -1,0 +1,27 @@
+{
+  "slug": "validar-aplicacao-como-rt",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Na lista de Pulverização, localize a aplicação em status registrada (só ela aguarda validação)",
+      "rota": "/mip/aplicacoes.php",
+      "seletor": "table.vdata",
+      "marca": "destaque",
+      "label": "Aplicações registradas"
+    },
+    {
+      "texto": "Confira a execução: produtos, quantidades, data e operadores em Ver detalhes",
+      "rota": "/mip/aplicacoes.php",
+      "seletor": "table.vdata tbody tr:first-child a.vicon-acao[title=\"Ver detalhes\"]",
+      "marca": "caixa",
+      "label": "Ver detalhes"
+    },
+    {
+      "texto": "Clique no botão Validar (RT) — este é o passo que registra o aceite, com seu usuário e a data/hora; a aplicação passa a validada",
+      "rota": "/mip/aplicacoes.php",
+      "seletor": "button.vicon-acao[title=\"Validar (RT)\"]",
+      "marca": "seta",
+      "label": "Validar (RT)"
+    }
+  ]
+}

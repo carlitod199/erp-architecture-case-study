@@ -1,0 +1,19 @@
+{
+  "id": "talhoes.sync",
+  "titulo": "Listar válvulas/talhões (com cultura, variedade e bomba)",
+  "modulo": "agro",
+  "permissao": "agro.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/talhoes", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta (YYYY-MM-DD [HH:MM:SS]); ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Válvulas/talhões (delta desde {desde})",
+  "regras": [
+    "retorna setores/válvulas com o talhão-pai, variedade, porta-enxerto, geometria e bomba vinculada",
+    "sem api_exigir no handler — exige apenas token válido + tenant",
+    "no delta, itens inativados voltam com _excluido=1 (tombstone)"
+  ],
+  "inverso": null
+}

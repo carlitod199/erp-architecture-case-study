@@ -1,0 +1,34 @@
+{
+  "slug": "emitir-um-pedido-de-compra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo pedido (ou gere a partir de uma cotação escolhida)",
+      "rota": "/compras/pedidos.php",
+      "seletor": "a.vbtn-primary[href=\"?novo=1\"]",
+      "marca": "seta",
+      "label": "+ Novo pedido"
+    },
+    {
+      "texto": "Escolha o fornecedor, a data e preencha os itens com preço, prazo, frete e condição de pagamento",
+      "rota": "/compras/pedidos.php?novo=1",
+      "seletor": "select[name=\"fornecedor_id\"]",
+      "marca": "caixa",
+      "label": "Fornecedor e dados do pedido"
+    },
+    {
+      "texto": "Salve o rascunho e revise o total",
+      "rota": "/compras/pedidos.php?novo=1",
+      "seletor": "button:has-text(\"Salvar rascunho\")",
+      "marca": "seta",
+      "label": "Salvar rascunho"
+    },
+    {
+      "texto": "Na lista, clique em Enviar para aprovação — o pedido vai para a fila (ou é liberado direto se estiver dentro da alçada)",
+      "rota": "/compras/pedidos.php",
+      "seletor": ".vdata tbody tr button[title=\"Enviar para aprovação\"]",
+      "marca": "seta",
+      "label": "Enviar para aprovação"
+    }
+  ]
+}

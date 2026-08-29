@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-um-bem-patrimonial",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Ativos Patrimoniais e clique em Novo ativo",
+      "rota": "/patrimonio/ativos.php",
+      "seletor": "button:has-text(\"Novo ativo\")",
+      "marca": "seta",
+      "label": "Novo ativo"
+    },
+    {
+      "texto": "Informe a descrição e a categoria (Terras, Benfeitorias, Equipamentos, Veículos ou Máquinas — traz a vida útil padrão)",
+      "rota": "/patrimonio/ativos.php",
+      "pre_acoes": ["button:has-text(\"Novo ativo\")"],
+      "seletor": "#vm-form select[name=\"categoria_id\"]",
+      "marca": "caixa",
+      "label": "Categoria"
+    },
+    {
+      "texto": "Preencha o valor de aquisição (maior que zero) e a data de aquisição",
+      "rota": "/patrimonio/ativos.php",
+      "pre_acoes": ["button:has-text(\"Novo ativo\")"],
+      "seletor": "#vm-form input[name=\"valor_aquisicao\"]",
+      "marca": "caixa",
+      "label": "Valor de aquisição"
+    },
+    {
+      "texto": "Clique em Salvar — o bem passa a alimentar a depreciação gerencial e o valor patrimonial",
+      "rota": "/patrimonio/ativos.php",
+      "pre_acoes": ["button:has-text(\"Novo ativo\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-maquina",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Nova maquina para abrir o cadastro da frota",
+      "rota": "/maquinas/cadastro.php",
+      "seletor": ".vero-topbar__actions button.vbtn-primary",
+      "marca": "seta",
+      "label": "Nova maquina"
+    },
+    {
+      "texto": "Informe codigo, nome e tipo — os tres sao obrigatorios (codigo unico no tenant)",
+      "rota": "/maquinas/cadastro.php",
+      "pre_acoes": [".vero-topbar__actions button.vbtn-primary"],
+      "seletor": "#vm-form input[name=codigo]",
+      "marca": "caixa",
+      "label": "Codigo"
+    },
+    {
+      "texto": "Preencha o horimetro atual e o custo/hora usados no custo das operacoes",
+      "rota": "/maquinas/cadastro.php",
+      "pre_acoes": [".vero-topbar__actions button.vbtn-primary"],
+      "seletor": "#vm-form input[name=horimetro_atual]",
+      "marca": "caixa",
+      "label": "Horimetro atual"
+    },
+    {
+      "texto": "Defina o status e salve — a maquina vira base de abastecimentos, horimetro e manutencoes",
+      "rota": "/maquinas/cadastro.php",
+      "pre_acoes": [".vero-topbar__actions button.vbtn-primary"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

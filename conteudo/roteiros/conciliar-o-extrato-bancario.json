@@ -1,0 +1,34 @@
+{
+  "slug": "conciliar-o-extrato-bancario",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Em Nova conciliacao, escolha a conta bancaria",
+      "rota": "/financeiro/conciliacao_bancaria.php",
+      "seletor": "select[name=\"conta_bancaria_id\"]",
+      "marca": "caixa",
+      "label": "Conta bancaria"
+    },
+    {
+      "texto": "Informe o periodo (inicio e fim) — use o mesmo intervalo do extrato",
+      "rota": "/financeiro/conciliacao_bancaria.php",
+      "seletor": "input[name=\"data_inicio\"]",
+      "marca": "caixa",
+      "label": "Periodo"
+    },
+    {
+      "texto": "Informe o saldo do extrato naquele periodo, copiado do banco",
+      "rota": "/financeiro/conciliacao_bancaria.php",
+      "seletor": "input[name=\"saldo_extrato\"]",
+      "marca": "caixa",
+      "label": "Saldo do extrato"
+    },
+    {
+      "texto": "Clique em Conciliar — o VERO calcula o saldo do sistema e compara: conciliada ou divergente",
+      "rota": "/financeiro/conciliacao_bancaria.php",
+      "seletor": "button:has-text(\"Conciliar\")",
+      "marca": "seta",
+      "label": "Conciliar"
+    }
+  ]
+}

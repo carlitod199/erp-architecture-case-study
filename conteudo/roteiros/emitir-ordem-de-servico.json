@@ -1,0 +1,29 @@
+{
+  "slug": "emitir-ordem-de-servico",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Em Planejamento de Atividades, clique em + Nova atividade",
+      "rota": "/agro/atividades.php",
+      "seletor": "button:has-text(\"Nova atividade\")",
+      "marca": "seta",
+      "label": "Nova atividade"
+    },
+    {
+      "texto": "Descreva o trabalho: tipo, válvula, data planejada e responsável",
+      "rota": "/agro/atividades.php",
+      "pre_acoes": ["button:has-text(\"Nova atividade\")"],
+      "seletor": "#vm-form .vgrid",
+      "marca": "caixa",
+      "label": "Tipo, válvula, data e responsável"
+    },
+    {
+      "texto": "Salve a atividade — este é o passo que emite a Ordem de Serviço numerada",
+      "rota": "/agro/atividades.php",
+      "pre_acoes": ["button:has-text(\"Nova atividade\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "destaque",
+      "label": "Salvar (emite a OS)"
+    }
+  ]
+}

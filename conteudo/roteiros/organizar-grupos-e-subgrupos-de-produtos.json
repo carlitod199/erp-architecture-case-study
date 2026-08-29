@@ -1,0 +1,36 @@
+{
+  "slug": "organizar-grupos-e-subgrupos-de-produtos",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo grupo",
+      "rota": "/estoque/grupos_subgrupos.php",
+      "seletor": "button[onclick=\"vModalNovo('vm-form')\"]",
+      "marca": "seta",
+      "label": "+ Novo grupo"
+    },
+    {
+      "texto": "Dê o nome do grupo e escolha o tipo (insumo, veterinário, peça, EPI…)",
+      "rota": "/estoque/grupos_subgrupos.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome e tipo do grupo"
+    },
+    {
+      "texto": "Salve o grupo",
+      "rota": "/estoque/grupos_subgrupos.php",
+      "pre_acoes": ["button[onclick=\"vModalNovo('vm-form')\"]"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    },
+    {
+      "texto": "Dentro do grupo, use + subgrupo para detalhar (ex.: Defensivo → Fungicida, Herbicida)",
+      "rota": "/estoque/grupos_subgrupos.php",
+      "seletor": ".vg-card:first-child .vg-add__toggle",
+      "marca": "destaque",
+      "label": "+ subgrupo"
+    }
+  ]
+}

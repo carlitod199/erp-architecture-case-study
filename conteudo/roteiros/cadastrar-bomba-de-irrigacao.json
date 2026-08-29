@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-bomba-de-irrigacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em + Nova bomba para abrir o cadastro",
+      "rota": "/agro/bombas.php",
+      "seletor": "button:has-text(\"Nova bomba\")",
+      "marca": "seta",
+      "label": "Nova bomba"
+    },
+    {
+      "texto": "Escolha a fazenda e de o nome da bomba — ambos obrigatorios",
+      "rota": "/agro/bombas.php",
+      "pre_acoes": ["button:has-text(\"Nova bomba\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome da bomba"
+    },
+    {
+      "texto": "Marque as valvulas que a bomba atende (so aparecem as ativas da fazenda)",
+      "rota": "/agro/bombas.php",
+      "pre_acoes": ["button:has-text(\"Nova bomba\")"],
+      "seletor": "#bomba-valvulas",
+      "marca": "destaque",
+      "label": "Válvulas atendidas"
+    },
+    {
+      "texto": "Clique em Salvar — a bomba e o vinculo com as valvulas ficam gravados",
+      "rota": "/agro/bombas.php",
+      "pre_acoes": ["button:has-text(\"Nova bomba\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

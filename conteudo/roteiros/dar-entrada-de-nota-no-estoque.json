@@ -1,0 +1,37 @@
+{
+  "slug": "dar-entrada-de-nota-no-estoque",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Ache o produto na lista e clique em Movimentar",
+      "rota": "/estoque/produtos.php",
+      "seletor": ".pr-table tbody tr:first-child button[title=\"Movimentar\"]",
+      "marca": "seta",
+      "label": "Movimentar"
+    },
+    {
+      "texto": "Escolha o tipo Entrada",
+      "rota": "/estoque/produtos.php",
+      "pre_acoes": [".pr-table tbody tr:first-child button[title=\"Movimentar\"]"],
+      "seletor": "#mov-tipo",
+      "marca": "caixa",
+      "label": "Tipo: Entrada"
+    },
+    {
+      "texto": "Informe a quantidade e o custo real da nota",
+      "rota": "/estoque/produtos.php",
+      "pre_acoes": [".pr-table tbody tr:first-child button[title=\"Movimentar\"]"],
+      "seletor": "#mov-custo-box",
+      "marca": "caixa",
+      "label": "Custo da nota"
+    },
+    {
+      "texto": "Registre a movimentacao — este passo cria o saldo e o custo do insumo",
+      "rota": "/estoque/produtos.php",
+      "pre_acoes": [".pr-table tbody tr:first-child button[title=\"Movimentar\"]"],
+      "seletor": "#vm-mov button.vbtn-primary",
+      "marca": "seta",
+      "label": "Registrar movimentacao"
+    }
+  ]
+}

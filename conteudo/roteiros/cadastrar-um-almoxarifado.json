@@ -1,0 +1,29 @@
+{
+  "slug": "cadastrar-um-almoxarifado",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Novo almoxarifado",
+      "rota": "/estoque/almoxarifados.php",
+      "seletor": "button[title=\"Novo almoxarifado\"]",
+      "marca": "seta",
+      "label": "Novo almoxarifado"
+    },
+    {
+      "texto": "Dê um nome claro e, se fizer sentido, vincule à fazenda e escolha o tipo",
+      "rota": "/estoque/almoxarifados.php",
+      "pre_acoes": ["button[title=\"Novo almoxarifado\"]"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome do almoxarifado"
+    },
+    {
+      "texto": "Salve — ele já fica pronto para receber entradas e transferências",
+      "rota": "/estoque/almoxarifados.php",
+      "pre_acoes": ["button[title=\"Novo almoxarifado\"]"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

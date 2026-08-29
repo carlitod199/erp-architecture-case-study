@@ -1,0 +1,25 @@
+{
+  "id": "colheita.criar",
+  "titulo": "Registrar colheita realizada (por classificação)",
+  "modulo": "agro",
+  "permissao": "agro.colheita.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/colheitas", "funcao": "rota_colheita_criar" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "setor_id": { "tipo": "int", "obrigatorio": true, "resolver": "valvula", "desc": "válvula/setor colhido (deriva talhão e safra)", "de_contexto": true },
+    "variedade_id": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "variedade colhida (validada contra a cultura da safra)" },
+    "data": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data da colheita" },
+    "unidade": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["kg", "caixa"], "default": "kg", "desc": "unidade das quantidades (caixa exige peso_caixa nos parâmetros)" },
+    "classificacoes": { "tipo": "lista", "obrigatorio": true, "resolver": null, "desc": "quantidades por classe {premium, cat1, cat2, cat3, perdidos} — ao menos uma > 0" },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação (máx. 160)" }
+  },
+  "resumo": "Colheita na válvula {setor_id} por classificação",
+  "regras": [
+    "exige safra em andamento vinculada à válvula (senão abrir no web)",
+    "unidade caixa exige o parâmetro colheita.peso_caixa_kg (converte p/ kg)",
+    "colheita dentro da carência gera alerta de resíduo; a entrada de estoque fica com o escritório"
+  ],
+  "inverso": null
+}

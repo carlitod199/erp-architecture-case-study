@@ -1,0 +1,19 @@
+{
+  "id": "compras_pedidos.sync",
+  "titulo": "Listar pedidos de compra (PC) e itens",
+  "modulo": "compras",
+  "permissao": "compras.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/compras_pedidos", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Pedidos de compra e status (delta desde {desde})",
+  "regras": [
+    "handler exige compras.ver",
+    "cada pedido carrega itens (quantidade, recebida, valor) e o fornecedor",
+    "só pedidos vivos (aprovacao/aprovado/recebido_parcial/recebido); demais viram tombstone no delta"
+  ],
+  "inverso": null
+}

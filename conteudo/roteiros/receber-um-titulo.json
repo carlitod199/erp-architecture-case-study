@@ -1,0 +1,29 @@
+{
+  "slug": "receber-um-titulo",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Localize o titulo em aberto que foi pago e clique em Baixar (registrar recebimento)",
+      "rota": "/financeiro/contas_receber.php",
+      "seletor": ".vtable tbody tr:first-child button[title=\"Registrar recebimento\"]",
+      "marca": "seta",
+      "label": "Registrar recebimento"
+    },
+    {
+      "texto": "Informe a data do recebimento e a forma (dinheiro, PIX, transferencia...)",
+      "rota": "/financeiro/contas_receber.php",
+      "pre_acoes": [".vtable tbody tr:first-child button[title=\"Registrar recebimento\"]"],
+      "seletor": "#vm-baixa input[name=\"data_pagamento\"]",
+      "marca": "caixa",
+      "label": "Data do recebimento"
+    },
+    {
+      "texto": "Confirme — registra a entrada, joga o valor no caixa efetivo e marca a venda como paga",
+      "rota": "/financeiro/contas_receber.php",
+      "pre_acoes": [".vtable tbody tr:first-child button[title=\"Registrar recebimento\"]"],
+      "seletor": "#vm-baixa button.vbtn-primary",
+      "marca": "seta",
+      "label": "Confirmar baixa"
+    }
+  ]
+}

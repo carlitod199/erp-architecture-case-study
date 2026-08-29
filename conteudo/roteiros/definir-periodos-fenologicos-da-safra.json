@@ -1,0 +1,34 @@
+{
+  "slug": "definir-periodos-fenologicos-da-safra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "No bloco Periodos por safra, escolha a safra",
+      "rota": "/agro/fenologia.php",
+      "seletor": "select[name=\"periodos\"]",
+      "marca": "seta",
+      "label": "Safra dos períodos"
+    },
+    {
+      "texto": "Selecione o estagio e o escopo (safra inteira ou um talhao)",
+      "rota": "/agro/fenologia.php?periodos=1",
+      "seletor": "select[name=\"p_estagio_id\"]",
+      "marca": "caixa",
+      "label": "Estágio"
+    },
+    {
+      "texto": "Informe a data de inicio e a data de fim do periodo",
+      "rota": "/agro/fenologia.php?periodos=1",
+      "seletor": "input[name=\"p_data_inicio\"]",
+      "marca": "caixa",
+      "label": "Data de início"
+    },
+    {
+      "texto": "Clique em Adicionar periodo — a fase daquela data passa a ser resolvida sozinha",
+      "rota": "/agro/fenologia.php?periodos=1",
+      "seletor": "button:has-text(\"Adicionar período\")",
+      "marca": "seta",
+      "label": "Adicionar período"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "montar-uma-equipe",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Equipes e clique em Nova equipe",
+      "rota": "/pessoas/equipes.php",
+      "seletor": "button:has-text(\"Nova equipe\")",
+      "marca": "seta",
+      "label": "Nova equipe"
+    },
+    {
+      "texto": "De um nome a equipe e, se fizer sentido, escolha a fazenda",
+      "rota": "/pessoas/equipes.php",
+      "pre_acoes": ["button:has-text(\"Nova equipe\")"],
+      "seletor": "#vm-form input[name=\"nome\"]",
+      "marca": "caixa",
+      "label": "Nome da equipe"
+    },
+    {
+      "texto": "Marque os membros entre os colaboradores ja cadastrados",
+      "rota": "/pessoas/equipes.php",
+      "pre_acoes": ["button:has-text(\"Nova equipe\")"],
+      "seletor": "#vm-form input[name=\"membros[]\"]",
+      "marca": "caixa",
+      "label": "Membros"
+    },
+    {
+      "texto": "Clique em Salvar — a equipe fica pronta para o apontamento em campo",
+      "rota": "/pessoas/equipes.php",
+      "pre_acoes": ["button:has-text(\"Nova equipe\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "carga.registrar",
+  "titulo": "Registrar carga/romaneio de colheita",
+  "modulo": "agro",
+  "permissao": "agro.romaneios_colheita.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/cargas", "funcao": "rota_carga_registrar" },
+  "params": {
+    "client_uuid": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "id do registro no aparelho (idempotência)", "de_contexto": true },
+    "romaneio": { "tipo": "texto", "obrigatorio": true, "resolver": null, "desc": "número do romaneio da carga (único por empresa)" },
+    "setor_id": { "tipo": "int", "obrigatorio": true, "resolver": "valvula", "desc": "válvula/setor de onde saiu a carga (deriva talhão e safra)", "de_contexto": true },
+    "peso_kg": { "tipo": "decimal", "obrigatorio": true, "resolver": null, "desc": "peso da carga em kg (maior que zero)" },
+    "classificacao": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["Premium", "CAT 1", "CAT 2", "CAT 3", "Perdidos"], "desc": "classificação da carga" },
+    "unidade_apont": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["caixa", "palete", "cumbuca"], "desc": "unidade do apontamento manual" },
+    "qtd_apont": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "quantidade na unidade do apontamento" },
+    "caixas_por_palete": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "fator caixas→palete (padrão 110)" },
+    "destino": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["venda", "packing", "armazenagem", "descarte", "doacao"], "desc": "destino da produção" },
+    "registro_id": { "tipo": "int", "obrigatorio": false, "resolver": null, "desc": "registro de colheita do dia a vincular (opcional)" },
+    "data_carga": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data da carga" }
+  },
+  "resumo": "Carga {romaneio} da válvula {setor_id} — {peso_kg} kg",
+  "regras": [
+    "romaneio é único por empresa; duplicado é recusado (romaneio_duplicado)",
+    "postar no estoque (pack) e excluir carga seguem no VERO web",
+    "carga sem safra vinculada é aceita (o escritório reconcilia depois)"
+  ],
+  "inverso": null
+}

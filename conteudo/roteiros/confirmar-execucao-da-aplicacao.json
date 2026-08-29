@@ -1,0 +1,37 @@
+{
+  "slug": "confirmar-execucao-da-aplicacao",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Na fila de Pulverização, ache a OS em status planejada e clique em Confirmar execução",
+      "rota": "/mip/aplicacoes.php",
+      "seletor": "a.vicon-acao[title=\"Confirmar execução\"]",
+      "marca": "caixa",
+      "label": "Confirmar execução"
+    },
+    {
+      "texto": "Informe a Data da execução e, se houver, as horas de início e término (o término não pode ser antes do início)",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["a.vicon-acao[title=\"Confirmar execução\"]"],
+      "seletor": "#vm-confirmar input[name=\"data\"]",
+      "marca": "caixa",
+      "label": "Data da execução"
+    },
+    {
+      "texto": "Identifique pelo menos um operador no bloco Operadores/EPI — é exigência de certificação e a confirmação não passa sem isso",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["a.vicon-acao[title=\"Confirmar execução\"]"],
+      "seletor": "#vm-confirmar select[name=\"op_operador[]\"]",
+      "marca": "destaque",
+      "label": "Operadores / EPI"
+    },
+    {
+      "texto": "Clique em Confirmar execução — este é o passo que baixa o estoque por FEFO pelas quantidades reais e lança o custeio",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["a.vicon-acao[title=\"Confirmar execução\"]"],
+      "seletor": "#vm-confirmar button:has-text(\"Confirmar execução\")",
+      "marca": "seta",
+      "label": "Confirmar execução"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "cadastrar-um-comprador",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Compradores e clique em Novo comprador",
+      "rota": "/comercial/compradores.php",
+      "seletor": "button:has-text(\"Novo comprador\")",
+      "marca": "seta",
+      "label": "Novo comprador"
+    },
+    {
+      "texto": "Informe a razao social do cliente",
+      "rota": "/comercial/compradores.php",
+      "pre_acoes": ["button:has-text(\"Novo comprador\")"],
+      "seletor": "#vm-form input[name=\"razao_social\"]",
+      "marca": "caixa",
+      "label": "Razao social"
+    },
+    {
+      "texto": "Preencha o CNPJ/CPF (o sistema valida o digito) e, para PJ, a Inscricao Estadual usada na NF-e",
+      "rota": "/comercial/compradores.php",
+      "pre_acoes": ["button:has-text(\"Novo comprador\")"],
+      "seletor": "#vm-form input[name=\"cnpj_cpf\"]",
+      "marca": "caixa",
+      "label": "CNPJ / CPF"
+    },
+    {
+      "texto": "Clique em Salvar — o comprador fica disponivel para venda e contrato",
+      "rota": "/comercial/compradores.php",
+      "pre_acoes": ["button:has-text(\"Novo comprador\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

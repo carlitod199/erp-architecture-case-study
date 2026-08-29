@@ -1,0 +1,21 @@
+{
+  "id": "irrigacao.registrar",
+  "titulo": "Registrar irrigação numa válvula",
+  "modulo": "irrigacao",
+  "permissao": "irrigacao.apontamentos_irrigacao.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/irrigacao/apontamentos", "funcao": null },
+  "params": {
+    "talhao_id": { "tipo": "int", "obrigatorio": true, "resolver": "valvula", "desc": "válvula/setor onde ocorreu", "de_contexto": true },
+    "setor_id":  { "tipo": "int", "obrigatorio": false, "resolver": "valvula", "desc": "id do setor (deriva consumos da bomba)", "de_contexto": true },
+    "horas":     { "tipo": "decimal", "obrigatorio": true, "desc": "horas de bombeamento" },
+    "lamina_mm": { "tipo": "decimal", "obrigatorio": false, "desc": "lâmina aplicada em mm" }
+  },
+  "resumo": "Irrigação: {horas} h na válvula {talhao_id}",
+  "regras": [
+    "sem safra vinculada à válvula, grava sem custeio",
+    "consumos de água/energia são derivados da bomba da válvula (setor_id)"
+  ],
+  "inverso": null
+}

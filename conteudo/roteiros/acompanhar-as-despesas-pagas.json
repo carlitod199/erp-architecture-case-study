@@ -1,0 +1,27 @@
+{
+  "slug": "acompanhar-as-despesas-pagas",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Filtre por ano, mes e origem para focar no recorte que interessa",
+      "rota": "/financeiro/despesas.php",
+      "seletor": "div.vtoolbar",
+      "marca": "caixa",
+      "label": "Filtros"
+    },
+    {
+      "texto": "Clique numa barra do mes para saltar direto para aquele mes",
+      "rota": "/financeiro/despesas.php",
+      "seletor": "div[style*=\"repeat(12\"]",
+      "marca": "seta",
+      "label": "Barras por mes"
+    },
+    {
+      "texto": "Leia o total do recorte e, se precisar levar para fora, use Exportar CSV ou Imprimir",
+      "rota": "/financeiro/despesas.php",
+      "seletor": "span.vsub",
+      "marca": "caixa",
+      "label": "Total e exportacao"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /leads/
+Disallow: /enviar.php
+
+# Troque pelo domínio real e descomente:
+# Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml

@@ -1,0 +1,34 @@
+{
+  "slug": "cotar-fornecedores-e-escolher-a-vencedora",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione a solicitação de compra que você quer cotar",
+      "rota": "/compras/cotacoes.php?solicitacao=2",
+      "seletor": "select[name=\"solicitacao\"]",
+      "marca": "caixa",
+      "label": "Solicitação"
+    },
+    {
+      "texto": "Adicione uma cotação por fornecedor, informando a data e os preços de cada item",
+      "rota": "/compras/cotacoes.php?solicitacao=2",
+      "seletor": ".vero-topbar__actions button.vbtn-primary",
+      "marca": "seta",
+      "label": "+ Nova cotação"
+    },
+    {
+      "texto": "Leia o comparativo — os totais de cada fornecedor lado a lado, com o menor preço destacado",
+      "rota": "/compras/cotacoes.php?solicitacao=2",
+      "seletor": ".vcard table.vdata",
+      "marca": "caixa",
+      "label": "Comparativo de totais"
+    },
+    {
+      "texto": "Marque a vencedora (as demais ficam recusadas) e depois use Gerar pedido",
+      "rota": "/compras/cotacoes.php?solicitacao=2",
+      "seletor": ".vdata button[title=\"Selecionar como vencedora\"]",
+      "marca": "seta",
+      "label": "Selecionar vencedora"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-aplicacao-ja-executada",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Pulverização e clique em + Nova aplicação",
+      "rota": "/mip/aplicacoes.php",
+      "seletor": "button:has-text(\"+ Nova aplicação\")",
+      "marca": "caixa",
+      "label": "Nova aplicação"
+    },
+    {
+      "texto": "Deixe o modo em Registro direto (o padrão, para aplicação já executada) — ao salvar o sistema baixa estoque e lança custo",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["button:has-text(\"+ Nova aplicação\")"],
+      "seletor": "#vm-form input[name=\"modo\"][value=\"direto\"]",
+      "marca": "destaque",
+      "label": "Registro direto"
+    },
+    {
+      "texto": "Escolha a válvula, a safra e o tipo e informe a Data realizada (obrigatória no registro direto)",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["button:has-text(\"+ Nova aplicação\")"],
+      "seletor": "#aplic-data-real-field input[name=\"data\"]",
+      "marca": "caixa",
+      "label": "Data realizada"
+    },
+    {
+      "texto": "Lance os produtos com as quantidades realmente consumidas e clique em Registrar aplicação — o estoque é baixado por FEFO e o custeio é lançado",
+      "rota": "/mip/aplicacoes.php",
+      "pre_acoes": ["button:has-text(\"+ Nova aplicação\")"],
+      "seletor": "#vm-form button:has-text(\"Registrar aplicação\")",
+      "marca": "seta",
+      "label": "Registrar aplicação"
+    }
+  ]
+}

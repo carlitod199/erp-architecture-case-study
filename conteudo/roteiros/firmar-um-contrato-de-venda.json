@@ -1,0 +1,37 @@
+{
+  "slug": "firmar-um-contrato-de-venda",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Contratos de venda e clique em Novo contrato",
+      "rota": "/comercial/contratos_venda.php",
+      "seletor": "button:has-text(\"Novo contrato\")",
+      "marca": "seta",
+      "label": "Novo contrato"
+    },
+    {
+      "texto": "Escolha o comprador do contrato",
+      "rota": "/comercial/contratos_venda.php",
+      "pre_acoes": ["button:has-text(\"Novo contrato\")"],
+      "seletor": "#vm-form select[name=\"comprador_id\"]",
+      "marca": "caixa",
+      "label": "Comprador"
+    },
+    {
+      "texto": "Informe o kg contratado e o preço travado por kg (ambos maiores que zero)",
+      "rota": "/comercial/contratos_venda.php",
+      "pre_acoes": ["button:has-text(\"Novo contrato\")"],
+      "seletor": "#vm-form input[name=\"preco_kg\"]",
+      "marca": "caixa",
+      "label": "Preço travado (R$/kg)"
+    },
+    {
+      "texto": "Clique em Salvar — o contrato nasce como rascunho; ative-o depois na lista para valer no fluxo de caixa",
+      "rota": "/comercial/contratos_venda.php",
+      "pre_acoes": ["button:has-text(\"Novo contrato\")"],
+      "seletor": "#vm-form button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar"
+    }
+  ]
+}

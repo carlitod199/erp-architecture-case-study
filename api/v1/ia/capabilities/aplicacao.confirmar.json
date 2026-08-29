@@ -1,0 +1,31 @@
+{
+  "id": "aplicacao.confirmar",
+  "titulo": "Confirmar execução de uma aplicação",
+  "modulo": "mip",
+  "permissao": "mip.aplicacoes_defensivos.editar",
+  "tipo": "escrita",
+  "confirmar": true,
+  "handler": { "metodo": "POST", "rota": "/aplicacoes/{id}/confirmar", "funcao": "rota_aplicacao_confirmar" },
+  "params": {
+    "id": { "tipo": "int", "obrigatorio": true, "resolver": null, "desc": "id da aplicação EMITIDA (planejada)", "de_contexto": true },
+    "data_execucao": { "tipo": "data", "obrigatorio": false, "resolver": null, "default": "hoje", "desc": "data real da execução" },
+    "hora_inicio": { "tipo": "hora", "obrigatorio": false, "resolver": null, "desc": "hora de início (HH:MM)" },
+    "hora_fim": { "tipo": "hora", "obrigatorio": false, "resolver": null, "desc": "hora de término (HH:MM)" },
+    "itens_reais": { "tipo": "lista", "obrigatorio": false, "resolver": null, "desc": "quantidades reais [{produto_id, quantidade_real}] — base da baixa FEFO" },
+    "operadores": { "tipo": "lista", "obrigatorio": true, "resolver": "operador", "desc": "operadores/EPI [{operador_id, epi_codigo?, epi_lavagem?, epi_condicao?}] — mínimo 1 (certificação)" },
+    "ceu": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["noite", "sol", "nublado", "chuva"], "desc": "condição do céu" },
+    "vento_class": { "tipo": "enum", "obrigatorio": false, "resolver": null, "enum": ["brisa", "moderado", "forte"], "desc": "classificação do vento" },
+    "vento_kmh": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "vento medido (km/h)" },
+    "pluviosidade_mm": { "tipo": "decimal", "obrigatorio": false, "resolver": null, "desc": "pluviosidade (mm)" },
+    "destino_sobra": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "destino da sobra de calda" },
+    "triplice_lavagem": { "tipo": "bool", "obrigatorio": false, "resolver": null, "desc": "tríplice lavagem realizada" },
+    "observacao": { "tipo": "texto", "obrigatorio": false, "resolver": null, "desc": "observação (máx. 255)" }
+  },
+  "resumo": "Confirmar execução da aplicação #{id}",
+  "regras": [
+    "só aplicações EMITIDAS (planejada) podem ser confirmadas — baixa o estoque uma vez",
+    "baixa FEFO pelas quantidades reais + custeio de insumos; exige ao menos 1 operador/EPI",
+    "sem saldo no sistema não trava: difere a baixa e alerta o escritório; gera alerta de carência/reentrada"
+  ],
+  "inverso": null
+}

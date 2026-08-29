@@ -1,0 +1,413 @@
+/* ============================================================
+   VERO CRM — sistemas independentes (Revenda / Corretor)
+   TEMA CLARO padrão do VERO: os tokens
+   vêm de agro.css (:root) — fundo #EDEAE0, cards brancos, acento
+   teal #005059, IBM Plex Sans/Mono. Os mockups de docs/ valem só
+   para ESTRUTURA; nada de dark executivo.
+   Escopos: .crm-body/.crm-shell/.crm-side (shell próprio) e
+   .crm-app (conteúdo). Classes de componente idênticas à fase
+   anterior — as telas não precisam mudar.
+   ============================================================ */
+
+/* ── Shell (menu plano: sem trilho de micros — só a coluna principal).
+   Este CSS só carrega nas páginas do CRM; o !important vence o
+   grid inline do agro_header sem afetar o ERP. ── */
+.bios-shell { grid-template-columns: 216px 1fr !important; }
+.navwrap--flat .macromenu { border-right: 1px solid rgba(0,0,0,.25); }
+
+/* ── Shell próprio (sidebar navy-teal do VERO + conteúdo claro) ── */
+.crm-body { margin: 0; background: var(--page, #EDEAE0); }
+.crm-shell { display: grid; grid-template-columns: 264px 1fr; min-height: 100vh; }
+@media (max-width: 900px) { .crm-shell { grid-template-columns: 1fr; } .crm-side { position: static; } }
+
+.crm-side {
+  background: var(--sidebar, #08262A); color: #DCE8E4;
+  display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.crm-brand { display: block; padding: 20px 18px 14px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+.crm-brand img { width: 92px; display: block; }
+.crm-brand__prod {
+  display: block; margin-top: 8px; color: #9DC3BC;
+  font: 600 10.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1.2px;
+}
+.crm-nav { flex: 1; padding: 10px 10px 18px; }
+.crm-nav__grupo {
+  margin: 16px 8px 6px; color: #6F918A;
+  font: 600 9.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1.2px;
+}
+.crm-nav__item {
+  display: block; padding: 8px 12px; border-radius: 8px; margin-bottom: 2px;
+  color: #C7D8D3; text-decoration: none; font-size: 13px; line-height: 1.3;
+}
+.crm-nav__item:hover { background: rgba(255,255,255,.06); color: #fff; }
+.crm-nav__item.is-on { background: var(--accent, #005059); color: #fff; font-weight: 600; }
+.crm-side__foot {
+  padding: 12px 18px; border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px;
+}
+.crm-side__user { color: #C7D8D3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.crm-side__sair { color: #9DC3BC; text-decoration: none; font-weight: 600; }
+.crm-side__sair:hover { color: #fff; }
+
+/* ── Conteúdo (tokens claros; nomes de var preservados p/ as telas) ── */
+.crm-app {
+  --crm-bg: var(--page, #EDEAE0);
+  --crm-bg2: var(--warm, #FBF8F2);
+  --crm-card: var(--surface, #FFFFFF);
+  --crm-card2: var(--warm, #FBF8F2);
+  --crm-line: var(--border, #E3D9C8);
+  --crm-line2: var(--border2, #DDD2BF);
+  --crm-ink: var(--ink, #241B14);
+  --crm-ink2: #6B7069;
+  --crm-ink3: var(--muted, #8A7C68);
+  --crm-teal: var(--accent, #005059);
+  --crm-teal-d: var(--accent-deep, #00363D);
+  --crm-green: var(--pos, #0E7E72);
+  --crm-amber: var(--amber, #B57C1A);
+  --crm-red: var(--danger, #B23A2E);
+  --crm-blue: #2A6F97;
+  --crm-violet: #6D5BA6;
+  --crm-grey: #8A7C68;
+
+  color: var(--crm-ink);
+  min-height: 100vh;
+}
+
+/* ── Topbar (sangra o padding do .vwrap — padrão VERO) ── */
+.crm-app .crm-topbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+  margin: -26px -30px 18px; padding: 13px 30px;
+  background: var(--crm-card); border-bottom: 1px solid var(--crm-line);
+  position: sticky; top: 0; z-index: 30;
+}
+.crm-app .crm-title { font-size: 19px; font-weight: 700; letter-spacing: .2px; }
+.crm-app .crm-sub { font-size: 12px; color: var(--crm-ink2); margin-top: 2px; }
+.crm-app .crm-topbar__acoes { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.crm-app .crm-crumb {
+  font: 11px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: .8px;
+  color: var(--crm-ink3); text-decoration: none; display: inline-block; margin-bottom: 4px;
+}
+.crm-app .crm-crumb:hover { color: var(--crm-teal); }
+
+/* ── Alternador de papel (Revenda) ── */
+.crm-app .crm-roles { display: inline-flex; border: 1px solid var(--crm-line2); border-radius: 9px; overflow: hidden; background: var(--crm-bg2); }
+.crm-app .crm-roles__opt { padding: 7px 13px; font-size: 12px; color: var(--crm-ink2); text-decoration: none; border-right: 1px solid var(--crm-line); }
+.crm-app .crm-roles__opt:last-child { border-right: 0; }
+.crm-app .crm-roles__opt:hover { color: var(--crm-ink); background: var(--crm-card); }
+.crm-app .crm-roles__opt.is-on { background: var(--crm-teal); color: #fff; font-weight: 600; }
+
+/* ── Grids responsivos (4→2→1) ── */
+.crm-app .crm-g2  { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+.crm-app .crm-g3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0; }
+.crm-app .crm-g4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 14px 0; }
+.crm-app .crm-g23 { display: grid; grid-template-columns: 3fr 2fr; gap: 14px; margin: 14px 0; }
+.crm-app .crm-g12 { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; margin: 14px 0; }
+@media (max-width: 1100px) {
+  .crm-app .crm-g4 { grid-template-columns: 1fr 1fr; }
+  .crm-app .crm-g3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .crm-app .crm-g2, .crm-app .crm-g3, .crm-app .crm-g4,
+  .crm-app .crm-g23, .crm-app .crm-g12 { grid-template-columns: 1fr; }
+}
+
+/* ── Card ── */
+.crm-app .crm-card {
+  background: var(--crm-card); border: 1px solid var(--crm-line);
+  border-radius: var(--r-card, 13px); padding: 16px 18px;
+}
+.crm-app .crm-card__head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+.crm-app .crm-card__title { font: 600 11px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1px; color: var(--crm-ink3); }
+.crm-app a.crm-card, .crm-app .crm-card.tap { cursor: pointer; text-decoration: none; color: inherit; display: block; transition: box-shadow .12s, border-color .12s; }
+.crm-app a.crm-card:hover, .crm-app .crm-card.tap:hover { border-color: var(--crm-teal); box-shadow: 0 3px 14px rgba(0,80,89,.10); }
+
+/* ── KPI card ── */
+.crm-app .crm-kpi {
+  position: relative; overflow: hidden;
+  background: var(--crm-card); border: 1px solid var(--crm-line);
+  border-radius: var(--r-card, 13px); padding: 14px 16px 12px 20px;
+}
+.crm-app .crm-kpi::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--crm-teal); }
+.crm-app .kpi-green::before  { background: var(--crm-green); }
+.crm-app .kpi-amber::before  { background: var(--crm-amber); }
+.crm-app .kpi-red::before    { background: var(--crm-red); }
+.crm-app .kpi-blue::before   { background: var(--crm-blue); }
+.crm-app .kpi-violet::before { background: var(--crm-violet); }
+.crm-app .crm-kpi__k { font: 600 10.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1px; color: var(--crm-ink3); }
+.crm-app .crm-kpi__v { font-size: 24px; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.crm-app .crm-kpi__f { font-size: 11.5px; color: var(--crm-ink2); margin-top: 3px; }
+.crm-app .crm-kpi__ic { position: absolute; right: 12px; top: 10px; font-size: 20px; opacity: .30; }
+
+/* ── Pílulas / selos ── */
+.crm-app .crm-pill {
+  display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 11px; font-weight: 600;
+  border: 1px solid; white-space: nowrap;
+}
+.crm-app .p-teal   { color: var(--crm-teal);   border-color: rgba(0,80,89,.35);    background: rgba(0,80,89,.07); }
+.crm-app .p-green  { color: var(--crm-green);  border-color: rgba(14,126,114,.35); background: var(--pos-bg, #DDEDEB); }
+.crm-app .p-amber  { color: var(--amber-d, #7A5410); border-color: rgba(181,124,26,.4); background: var(--amber-bg, #F3E7C8); }
+.crm-app .p-red    { color: var(--crm-red);    border-color: rgba(178,58,46,.35);  background: rgba(178,58,46,.08); }
+.crm-app .p-blue   { color: var(--crm-blue);   border-color: rgba(42,111,151,.35); background: rgba(42,111,151,.08); }
+.crm-app .p-violet { color: var(--crm-violet); border-color: rgba(109,91,166,.35); background: rgba(109,91,166,.08); }
+.crm-app .p-grey   { color: var(--crm-grey);   border-color: rgba(138,124,104,.4); background: rgba(138,124,104,.08); }
+.crm-app .crm-demo {
+  display: inline-block; padding: 1px 7px; border-radius: 4px; vertical-align: middle;
+  font: 600 9.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: .8px;
+  color: var(--amber-d, #7A5410); border: 1px solid rgba(181,124,26,.5); background: var(--amber-bg, #F3E7C8);
+}
+/* Selo compacto no formato do crm-demo, com cor semântica via .p-* (crm_tag) */
+.crm-app .crm-tag {
+  display: inline-block; padding: 1px 7px; border-radius: 4px; vertical-align: middle;
+  font: 600 9.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: .8px;
+  border: 1px solid; white-space: nowrap;
+}
+
+/* ── Tendência ── */
+.crm-app .crm-trend { font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; }
+.crm-app .t-up { color: var(--crm-green); }
+.crm-app .t-down { color: var(--crm-red); }
+.crm-app .t-flat { color: var(--crm-ink3); }
+
+/* ── Callout ── */
+.crm-app .crm-callout {
+  display: flex; gap: 10px; align-items: flex-start; border-radius: 11px; padding: 11px 14px;
+  font-size: 12.5px; line-height: 1.5; border: 1px solid; margin: 10px 0; background: var(--crm-card);
+}
+.crm-app .co-teal  { border-color: rgba(0,80,89,.30);    background: #EAF1F0; }
+.crm-app .co-amber { border-color: rgba(181,124,26,.35); background: var(--amber-bg, #F3E7C8); }
+.crm-app .co-red   { border-color: rgba(178,58,46,.30);  background: #F6E7E4; }
+.crm-app .co-green { border-color: rgba(14,126,114,.30); background: var(--pos-bg, #DDEDEB); }
+.crm-app .crm-callout__ic { font-size: 16px; line-height: 1.3; }
+.crm-app .crm-callout strong { color: var(--crm-ink); }
+
+/* ── Tabela densa (visual .vtable do VERO) ── */
+.crm-app .crm-tblwrap { overflow-x: auto; }
+.crm-app .crm-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--crm-card); }
+.crm-app .crm-tbl th {
+  font: 600 10px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: .9px;
+  color: var(--crm-ink3); text-align: left; padding: 8px 10px;
+  background: var(--track, #EEE6D6); border-bottom: 1px solid var(--crm-line2);
+}
+.crm-app .crm-tbl td { padding: 9px 10px; border-bottom: 1px solid var(--crm-line); vertical-align: middle; }
+.crm-app .crm-tbl tbody tr:nth-child(even) td { background: var(--crm-bg2); }
+.crm-app .crm-tbl tbody tr:hover td { background: #EAF1F0; }
+.crm-app .crm-tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+.crm-app .crm-tbl tr.tap { cursor: pointer; }
+.crm-app .crm-tbl .sub { font-size: 11px; color: var(--crm-ink3); }
+
+/* ── Avatar de iniciais ── */
+.crm-app .crm-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 9px; margin-right: 9px; flex: 0 0 auto;
+  font: 700 11px var(--num, 'IBM Plex Mono'); letter-spacing: .5px; color: #fff;
+  background: var(--crm-teal); vertical-align: middle;
+}
+.crm-app .crm-avatar--g { width: 46px; height: 46px; font-size: 15px; border-radius: 13px; }
+.crm-app .av-green { background: var(--crm-green); } .crm-app .av-red { background: var(--crm-red); }
+.crm-app .av-amber { background: var(--crm-amber); } .crm-app .av-blue { background: var(--crm-blue); }
+.crm-app .av-violet { background: var(--crm-violet); } .crm-app .av-grey { background: var(--crm-grey); }
+.crm-app .av-teal { background: var(--crm-teal); }
+
+/* ── Barras de proporção ── */
+.crm-app .crm-track { display: inline-block; width: 100%; height: 7px; border-radius: 99px; background: var(--track, #EEE6D6); overflow: hidden; vertical-align: middle; }
+.crm-app .crm-fill { display: block; height: 100%; border-radius: 99px; background: var(--crm-teal); }
+.crm-app .f-green { background: var(--crm-green); } .crm-app .f-amber { background: var(--crm-amber); }
+.crm-app .f-red { background: var(--crm-red); } .crm-app .f-blue { background: var(--crm-blue); }
+.crm-app .f-violet { background: var(--crm-violet); } .crm-app .f-grey { background: var(--crm-grey); }
+.crm-app .crm-hbars { display: grid; gap: 9px; }
+.crm-app .crm-hbar { display: grid; grid-template-columns: 110px 1fr 64px; gap: 10px; align-items: center; font-size: 12px; }
+.crm-app .crm-hbar .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--crm-ink2); }
+
+/* ── KV (rótulo → valor) ── */
+.crm-app .crm-kv { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--crm-line); font-size: 12.5px; }
+.crm-app .crm-kv:last-child { border-bottom: 0; }
+.crm-app .crm-kv > span { color: var(--crm-ink2); }
+
+/* ── Chips / tabs (estado visual, JS em crm.js) ── */
+.crm-app .crm-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.crm-app .crm-chip {
+  padding: 5px 12px; border-radius: 99px; font-size: 12px; cursor: pointer; user-select: none;
+  color: var(--crm-ink2); border: 1px solid var(--crm-line2); background: var(--crm-card);
+}
+.crm-app .crm-chip:hover { border-color: var(--crm-teal); color: var(--crm-ink); }
+.crm-app .crm-chip.on { background: var(--crm-teal); border-color: var(--crm-teal); color: #fff; font-weight: 600; }
+.crm-app .crm-tabs { display: inline-flex; gap: 2px; border: 1px solid var(--crm-line2); border-radius: 9px; padding: 3px; background: var(--crm-bg2); margin: 2px 0 12px; }
+.crm-app .crm-tab { padding: 6px 14px; border-radius: 7px; font-size: 12px; color: var(--crm-ink2); cursor: pointer; user-select: none; }
+.crm-app .crm-tab.on { background: var(--crm-teal); color: #fff; font-weight: 600; }
+
+/* ── Kanban ── */
+.crm-app .crm-kanban { display: grid; grid-template-columns: repeat(4, minmax(280px, 1fr)); gap: 16px; overflow-x: auto; padding-bottom: 6px; }
+@media (max-width: 1250px) { .crm-app .crm-kanban { grid-template-columns: repeat(4, 290px); } }
+.crm-app .crm-col { background: var(--crm-bg2); border: 1px solid var(--crm-line); border-radius: 12px; padding: 12px; min-height: 340px; }
+.crm-app .crm-col__head { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 4px 8px; }
+.crm-app .crm-col__nome { font: 600 10.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: .8px; color: var(--crm-ink3); }
+.crm-app .crm-col__total { font: 600 11px var(--num, 'IBM Plex Mono'); color: var(--crm-teal); }
+.crm-app .crm-deal {
+  background: var(--crm-card); border: 1px solid var(--crm-line2); border-radius: 10px;
+  padding: 10px 11px; margin-bottom: 9px; cursor: pointer; transition: box-shadow .12s, border-color .12s;
+}
+.crm-app .crm-deal:hover { border-color: var(--crm-teal); box-shadow: 0 3px 12px rgba(0,80,89,.10); }
+.crm-app .crm-deal__cli { font-size: 10.5px; color: var(--crm-ink3); }
+.crm-app .crm-deal__nome { font-size: 12.5px; font-weight: 600; margin: 2px 0 6px; }
+.crm-app .crm-deal__valor { font: 700 13px var(--num, 'IBM Plex Mono'); color: var(--crm-teal); }
+.crm-app .crm-deal__foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; gap: 6px; }
+.crm-app .crm-deal__mv { display: flex; gap: 4px; }
+.crm-app .crm-deal__mv button {
+  width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--crm-line2);
+  background: var(--crm-bg2); color: var(--crm-ink2); cursor: pointer; font-size: 13px; line-height: 1;
+}
+.crm-app .crm-deal__mv button:hover { border-color: var(--crm-teal); color: var(--crm-teal); }
+
+/* ── Timeline ── */
+.crm-app .crm-tl { position: relative; padding-left: 22px; }
+.crm-app .crm-tl::before { content: ''; position: absolute; left: 7px; top: 4px; bottom: 4px; width: 2px; background: var(--crm-line2); }
+.crm-app .crm-tl__item { position: relative; padding: 0 0 16px; }
+.crm-app .crm-tl__item:last-child { padding-bottom: 0; }
+.crm-app .crm-tl__dot { position: absolute; left: -21px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: var(--crm-teal); border: 2px solid var(--crm-card); box-shadow: 0 0 0 1px var(--crm-line2); }
+.crm-app .crm-tl__dot.d-amber { background: var(--crm-amber); } .crm-app .crm-tl__dot.d-red { background: var(--crm-red); }
+.crm-app .crm-tl__dot.d-blue { background: var(--crm-blue); } .crm-app .crm-tl__dot.d-violet { background: var(--crm-violet); }
+.crm-app .crm-tl__dot.d-green { background: var(--crm-green); }
+.crm-app .crm-tl__dt { font: 600 10.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: .7px; color: var(--crm-ink3); }
+.crm-app .crm-tl__t { font-size: 12.5px; font-weight: 600; margin-top: 1px; }
+.crm-app .crm-tl__sub { font-size: 11.5px; color: var(--crm-ink2); }
+
+/* ── Mapa simulado (papel claro) ── */
+.crm-app .crm-map {
+  position: relative; min-height: 420px; border-radius: var(--r-card, 13px); border: 1px solid var(--crm-line); overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,80,89,.07), transparent 45%),
+    radial-gradient(circle at 75% 60%, rgba(42,111,151,.06), transparent 40%),
+    repeating-linear-gradient(0deg, transparent 0 39px, rgba(36,27,20,.04) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 39px, rgba(36,27,20,.04) 39px 40px),
+    linear-gradient(180deg, #F6F3EA, #EFEBE0);
+}
+.crm-app .crm-pin { position: absolute; transform: translate(-50%, -100%); text-align: center; cursor: pointer; text-decoration: none; }
+.crm-app .crm-pin__dot { display: block; width: 16px; height: 16px; margin: 0 auto; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--crm-teal); border: 2px solid #fff; box-shadow: 0 2px 6px rgba(36,27,20,.35); }
+.crm-app .crm-pin__lbl { display: inline-block; margin-top: 5px; padding: 2px 7px; border-radius: 5px; background: #fff; border: 1px solid var(--crm-line2); font-size: 10.5px; color: var(--crm-ink); white-space: nowrap; box-shadow: 0 1px 4px rgba(36,27,20,.12); }
+.crm-app .pin-green .crm-pin__dot { background: var(--crm-green); } .crm-app .pin-red .crm-pin__dot { background: var(--crm-red); }
+.crm-app .pin-amber .crm-pin__dot { background: var(--crm-amber); } .crm-app .pin-blue .crm-pin__dot { background: var(--crm-blue); }
+.crm-app .pin-teal .crm-pin__dot { background: var(--crm-teal); } .crm-app .pin-violet .crm-pin__dot { background: var(--crm-violet); }
+.crm-app .pin-grey .crm-pin__dot { background: var(--crm-grey); }
+.crm-app .crm-map__badge { position: absolute; top: 12px; right: 12px; }
+.crm-app .crm-map__leg { position: absolute; left: 12px; bottom: 12px; display: flex; gap: 10px; padding: 6px 10px; border-radius: 8px; background: #fff; border: 1px solid var(--crm-line2); font-size: 11px; color: var(--crm-ink2); box-shadow: 0 1px 4px rgba(36,27,20,.10); }
+.crm-app .crm-map__leg i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; }
+
+/* ── Clima (mini-cards) ── */
+.crm-app .crm-clima { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+@media (max-width: 1100px) { .crm-app .crm-clima { grid-template-columns: repeat(4, 1fr); } }
+.crm-app .crm-dia { text-align: center; background: var(--crm-card); border: 1px solid var(--crm-line); border-radius: 12px; padding: 12px 8px; }
+.crm-app .crm-dia__d { font: 600 10.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1px; color: var(--crm-ink3); }
+.crm-app .crm-dia__ic { font-size: 26px; margin: 6px 0 2px; }
+.crm-app .crm-dia__t { font-size: 13px; font-weight: 700; }
+.crm-app .crm-dia__t small { color: var(--crm-ink3); font-weight: 400; }
+
+/* ── Clima v2 (hoje em destaque + próximos dias, tintado por condição) ── */
+.crm-app .crm-clima2 { display: flex; align-items: stretch; gap: 18px; padding: 4px 0 2px; }
+.crm-app .crm-clima2__hoje {
+  flex: 0 0 30%; display: flex; align-items: center; gap: 16px;
+  padding: 14px 18px; border-radius: 14px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #CFE5EE 0%, #E3F0EA 48%, #F9ECCF 100%);
+  border: 1px solid #C9DCD9;
+}
+.crm-app .crm-clima2__hoje::after {
+  content: ''; position: absolute; right: -30px; top: -30px; width: 120px; height: 120px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(240,180,41,.30), transparent 70%);
+}
+.crm-app .crm-clima2__ic {
+  width: 64px; height: 64px; border-radius: 50%; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.85); box-shadow: 0 4px 14px rgba(36,27,20,.14);
+}
+.crm-app .crm-clima2__temp { font-size: 36px; font-weight: 700; line-height: 1; letter-spacing: -.5px; color: #153A3E; }
+.crm-app .crm-clima2__min { font-size: 12px; color: #3E5A57; margin-top: 4px; }
+.crm-app .crm-clima2__lbl {
+  font: 600 10px var(--num, 'IBM Plex Mono'); text-transform: uppercase;
+  letter-spacing: 1px; color: #5C7773; margin-top: 6px;
+}
+.crm-app .crm-clima2__dias { flex: 1; display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+@media (max-width: 1250px) { .crm-app .crm-clima2__dias { grid-template-columns: repeat(4, 1fr); } }
+.crm-app .crm-clima2__dia {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  border: 1px solid var(--crm-line); border-radius: 12px; padding: 9px 4px;
+  transition: transform .12s, box-shadow .12s;
+}
+.crm-app .crm-clima2__dia:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(36,27,20,.10); }
+.crm-app .crm-clima2__dia--sol     { background: #FCF5E1; border-color: #EBDCB2; }
+.crm-app .crm-clima2__dia--nublado { background: #F2F0EA; border-color: #DCD6C7; }
+.crm-app .crm-clima2__dia--chuva   { background: #E2EDF6; border-color: #C2D8E8; }
+.crm-app .crm-clima2__dia .d { font: 600 9.5px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1px; color: var(--crm-ink3); }
+.crm-app .crm-clima2__dia .t { font-size: 12.5px; font-weight: 700; }
+.crm-app .crm-clima2__dia .t small { color: var(--crm-ink3); font-weight: 400; }
+.crm-app .crm-clima2__dia .ch { font: 600 9.5px var(--num, 'IBM Plex Mono'); color: var(--crm-ink3); }
+.crm-app .crm-clima2__dia .ch.tem {
+  color: #1E5B80; background: #CBE0EF; border-radius: 99px; padding: 1px 8px;
+}
+@media (max-width: 900px) { .crm-app .crm-clima2 { flex-direction: column; } .crm-app .crm-clima2__hoje { flex: none; } }
+
+/* ── Agenda (linha hora + faixa colorida) ── */
+.crm-app .crm-ag { display: flex; align-items: center; gap: 12px; padding: 10px 4px; border-bottom: 1px solid var(--crm-line); }
+.crm-app .crm-ag:last-child { border-bottom: 0; }
+.crm-app .crm-ag__h { font: 700 13px var(--num, 'IBM Plex Mono'); color: var(--crm-ink2); min-width: 46px; }
+.crm-app .crm-ag__bar { width: 4px; align-self: stretch; border-radius: 3px; background: var(--crm-teal); }
+.crm-app .crm-ag__bar.b-amber { background: var(--crm-amber); } .crm-app .crm-ag__bar.b-blue { background: var(--crm-blue); }
+.crm-app .crm-ag__bar.b-violet { background: var(--crm-violet); } .crm-app .crm-ag__bar.b-red { background: var(--crm-red); }
+.crm-app .crm-ag__bar.b-green { background: var(--crm-green); } .crm-app .crm-ag__bar.b-grey { background: var(--crm-grey); }
+.crm-app .crm-ag__body { flex: 1; min-width: 0; }
+.crm-app .crm-ag__t { font-size: 12.5px; font-weight: 600; }
+.crm-app .crm-ag__sub { font-size: 11px; color: var(--crm-ink3); }
+
+/* ── Funil de vendas (trapézios clássicos, silhueta contínua) ──
+   Cada segmento é um div centrado com clip-path trapezoidal: o topo
+   tem a largura do segmento e a base tem a largura do PRÓXIMO —
+   a silhueta desce contínua. Dados escritos DENTRO do segmento. */
+.crm-app .crm-funil { padding: 6px 8px 2px; }
+.crm-app .crm-funil__seg {
+  margin: 0 auto 3px; height: 47px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  line-height: 1.3; text-align: center; cursor: default;
+  transition: filter .12s;
+}
+.crm-app .crm-funil__seg:hover { filter: brightness(1.08); }
+.crm-app .crm-funil__seg-nome { font-size: 12px; font-weight: 700; letter-spacing: .2px; }
+.crm-app .crm-funil__seg-val {
+  font: 600 10.5px var(--num, 'IBM Plex Mono'); opacity: .85;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* ── Estados vazios ── */
+.crm-app .crm-empty { color: var(--crm-ink3); text-align: center; padding: 26px 10px; font-size: 12.5px; }
+
+/* ── Tela de login própria dos sistemas ── */
+.crm-login-body {
+  margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: var(--sidebar, #08262A);
+  background-image: radial-gradient(circle at 20% 20%, rgba(0,80,89,.55), transparent 55%),
+                    radial-gradient(circle at 80% 75%, rgba(24,124,112,.25), transparent 50%);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+.crm-login {
+  width: 100%; max-width: 400px; margin: 24px; padding: 30px 30px 26px;
+  background: rgba(8,38,42,.72); border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px; color: #DCE8E4; backdrop-filter: blur(8px);
+}
+.crm-login__brand { text-align: center; margin-bottom: 20px; }
+.crm-login__brand img { width: 110px; }
+.crm-login__prod {
+  display: block; margin-top: 10px; color: #9DC3BC;
+  font: 600 11px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1.4px;
+}
+.crm-login label { display: block; font-size: 12px; color: #C7D8D3; margin: 12px 0 5px; }
+.crm-login input {
+  width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.16); background: rgba(0,0,0,.25); color: #fff; font-size: 14px;
+}
+.crm-login input:focus { outline: none; border-color: #4E9CA1; }
+.crm-login button {
+  width: 100%; margin-top: 18px; padding: 11px; border-radius: 9px; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #2A767C, #005059); color: #fff; font-size: 14px; font-weight: 600;
+}
+.crm-login button:hover { filter: brightness(1.08); }
+.crm-login__foot { text-align: center; margin-top: 14px; font: 10px var(--num, 'IBM Plex Mono'); text-transform: uppercase; letter-spacing: 1px; color: #6F918A; }
+
+/* ── Impressão ── */
+@media print { .crm-side, .crm-topbar__acoes { display: none; } .crm-shell { grid-template-columns: 1fr; } }

@@ -1,0 +1,27 @@
+{
+  "slug": "confirmar-entrada-da-colheita-no-estoque",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Na lista de Colheita, ache o registro já salvo da válvula",
+      "rota": "/colheita/index.php",
+      "seletor": "table.vtable",
+      "marca": "caixa",
+      "label": "Registro de colheita"
+    },
+    {
+      "texto": "Clique em Confirmar entrada no estoque — este é o passo que cria o lote e dá entrada nos kg colhidos a custo provisório",
+      "rota": "/colheita/index.php",
+      "seletor": "button[title=\"Confirmar entrada no estoque\"]",
+      "marca": "seta",
+      "label": "Confirmar entrada no estoque"
+    },
+    {
+      "texto": "Se precisar corrigir, use Estornar para devolver o saldo e marcar o lote como estornado — o registro de colheita permanece",
+      "rota": "/colheita/index.php",
+      "seletor": "button[title^=\"Estornar entrada\"]",
+      "marca": "destaque",
+      "label": "Estornar entrada"
+    }
+  ]
+}

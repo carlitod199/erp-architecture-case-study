@@ -1,0 +1,19 @@
+{
+  "id": "compras_aprovacoes_pendentes.sync",
+  "titulo": "Listar aprovações de compra pendentes",
+  "modulo": "compras",
+  "permissao": "compras.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/compras_aprovacoes_pendentes", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta (o handler devolve retrato — some ao decidir)", "de_contexto": true }
+  },
+  "resumo": "Aprovações de compra pendentes",
+  "regras": [
+    "handler exige compras.ver",
+    "retrato das aprovações 'pendente' de pedidos em status 'aprovacao' (some ao decidir)",
+    "alimenta as capacidades compra.aprovar / compra.rejeitar"
+  ],
+  "inverso": null
+}

@@ -1,0 +1,18 @@
+{
+  "id": "estoque_movimentacoes.sync",
+  "titulo": "Listar movimentações de estoque (extrato)",
+  "modulo": "estoque",
+  "permissao": "estoque.ver",
+  "tipo": "leitura",
+  "confirmar": false,
+  "handler": { "metodo": "GET", "rota": "/sync/estoque_movimentacoes", "funcao": "rota_sync" },
+  "params": {
+    "desde": { "tipo": "data", "obrigatorio": false, "resolver": null, "desc": "cursor de delta; ausente = carga cheia", "de_contexto": true }
+  },
+  "resumo": "Extrato de movimentações de estoque (delta desde {desde})",
+  "regras": [
+    "extrato de entradas/saídas/ajustes com origem e observação",
+    "sem api_exigir no handler — token válido + tenant; SEM custos (P-75)"
+  ],
+  "inverso": null
+}

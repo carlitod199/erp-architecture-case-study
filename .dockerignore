@@ -1,0 +1,29 @@
+# VERO — contexto da imagem de produção. NÃO deixar segredo/junk entrar.
+.git
+.gitignore
+.dockerignore
+# SEGREDOS (nunca na imagem — o entrypoint materializa em runtime):
+.env
+config/fiscal_secrets.php
+storage/certs
+storage_private
+storage/uploads
+uploads
+# vendor é reconstruído no build stage (composer install) — não copiar o do host:
+vendor
+# não pertence à imagem da app web:
+vero_campo
+mobile
+node_modules
+docs
+scripts
+tests
+_backups_implementacao
+_audit_src.tgz
+deploy/_local
+.claude
+.agents
+.expo
+.idea
+*.log
+*.rar

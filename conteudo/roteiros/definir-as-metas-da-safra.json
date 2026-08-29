@@ -1,0 +1,34 @@
+{
+  "slug": "definir-as-metas-da-safra",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Selecione a safra que vai receber as metas no topo",
+      "rota": "/custeio/metas.php",
+      "seletor": "select[name=\"safra\"]",
+      "marca": "caixa",
+      "label": "Safra"
+    },
+    {
+      "texto": "Escolha o indicador (custo por hectare, produtividade, margem...)",
+      "rota": "/custeio/metas.php",
+      "seletor": "select[name=\"indicador\"]",
+      "marca": "caixa",
+      "label": "Indicador"
+    },
+    {
+      "texto": "Informe o valor da meta — confira a unidade no rotulo do indicador",
+      "rota": "/custeio/metas.php",
+      "seletor": "input[name=\"valor_meta\"]",
+      "marca": "caixa",
+      "label": "Valor da meta"
+    },
+    {
+      "texto": "Clique em Salvar meta — ela vira um card e passa a valer no Dashboard Executivo",
+      "rota": "/custeio/metas.php",
+      "seletor": "button:has-text(\"Salvar meta\")",
+      "marca": "seta",
+      "label": "Salvar meta"
+    }
+  ]
+}

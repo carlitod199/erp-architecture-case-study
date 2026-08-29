@@ -1,0 +1,27 @@
+{
+  "slug": "registrar-leitura-de-horimetro",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "No formulario de registro, escolha a maquina",
+      "rota": "/maquinas/horimetro.php",
+      "seletor": "form select[name=maquina_id]",
+      "marca": "caixa",
+      "label": "Maquina"
+    },
+    {
+      "texto": "Informe a leitura do horimetro (em horas) — sempre avanca, nunca regride",
+      "rota": "/maquinas/horimetro.php",
+      "seletor": "input[name=horimetro]",
+      "marca": "caixa",
+      "label": "Leitura (h)"
+    },
+    {
+      "texto": "Clique em Registrar leitura — atualiza o horimetro atual e reavalia os alertas dos planos",
+      "rota": "/maquinas/horimetro.php",
+      "seletor": "button:has-text(\"Registrar leitura\")",
+      "marca": "seta",
+      "label": "Registrar leitura"
+    }
+  ]
+}

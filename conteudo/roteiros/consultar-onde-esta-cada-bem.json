@@ -1,0 +1,27 @@
+{
+  "slug": "consultar-onde-esta-cada-bem",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Localização de Ativos e percorra os blocos — um por fazenda",
+      "rota": "/patrimonio/localizacao_ativos.php",
+      "seletor": "table.vtable",
+      "marca": "destaque",
+      "label": "Bens por fazenda"
+    },
+    {
+      "texto": "Cada bem aparece com sua classe (Máquina, Veículo, Implemento ou Ativo) e um detalhe",
+      "rota": "/patrimonio/localizacao_ativos.php",
+      "seletor": "table.vtable tbody tr:first-child",
+      "marca": "seta",
+      "label": "Classe e detalhe do bem"
+    },
+    {
+      "texto": "Confira ao final o bloco Sem localização definida — bens sem fazenda vinculada, que se corrige no cadastro do bem",
+      "rota": "/patrimonio/localizacao_ativos.php",
+      "seletor": ".vhint",
+      "marca": "destaque",
+      "label": "Sem localização definida"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "desenhar-valvula-no-mapa",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra o card de desenho e selecione a valvula que quer mapear",
+      "rota": "/agro/mapa.php",
+      "pre_acoes": [".mapa-tools__sum"],
+      "seletor": "#sel-talhao",
+      "marca": "caixa",
+      "label": "Selecione a válvula"
+    },
+    {
+      "texto": "Use a ferramenta de desenho de poligono do mapa para tracar a valvula",
+      "rota": "/agro/mapa.php",
+      "seletor": "a.leaflet-draw-draw-polygon",
+      "marca": "seta",
+      "label": "Desenhar polígono"
+    },
+    {
+      "texto": "Se ja tiver os mapas prontos, use Importar mapa (KML, KMZ ou GeoJSON)",
+      "rota": "/agro/mapa.php",
+      "pre_acoes": [".mapa-tools__sum"],
+      "seletor": "input[name=\"arquivo\"]",
+      "marca": "caixa",
+      "label": "Importar mapa"
+    }
+  ]
+}

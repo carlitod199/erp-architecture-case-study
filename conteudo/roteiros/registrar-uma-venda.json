@@ -1,0 +1,34 @@
+{
+  "slug": "registrar-uma-venda",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Abra Vendas em Nova venda e escolha o comprador",
+      "rota": "/comercial/vendas.php?novo=1",
+      "seletor": "select[name=\"comprador_id\"]",
+      "marca": "caixa",
+      "label": "Comprador"
+    },
+    {
+      "texto": "Escolha o lote agrícola COLH- vindo da colheita — venda nova exige o lote",
+      "rota": "/comercial/vendas.php?novo=1",
+      "seletor": "#f-lote",
+      "marca": "caixa",
+      "label": "Lote agrícola (COLH-)"
+    },
+    {
+      "texto": "Informe os kg comercializados e ajuste o preço por qualidade (a tabela sugere um valor)",
+      "rota": "/comercial/vendas.php?novo=1",
+      "seletor": "#f-kg",
+      "marca": "caixa",
+      "label": "kg comercializados"
+    },
+    {
+      "texto": "Defina o vencimento e clique em Salvar — baixa o kg do lote e gera a conta a receber",
+      "rota": "/comercial/vendas.php?novo=1",
+      "seletor": "#f-venda button[type=\"submit\"]",
+      "marca": "seta",
+      "label": "Salvar venda e gerar conta a receber"
+    }
+  ]
+}

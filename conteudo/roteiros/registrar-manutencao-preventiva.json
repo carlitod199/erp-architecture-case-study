@@ -1,0 +1,37 @@
+{
+  "slug": "registrar-manutencao-preventiva",
+  "login": "admin",
+  "passos": [
+    {
+      "texto": "Clique em Nova OS para abrir a ordem de manutencao",
+      "rota": "/maquinas/manutencao.php",
+      "seletor": "button:has-text(\"Nova OS\")",
+      "marca": "seta",
+      "label": "Nova OS"
+    },
+    {
+      "texto": "Escolha a maquina, o tipo e a data; se nasce de um plano, vincule o plano",
+      "rota": "/maquinas/manutencao.php",
+      "pre_acoes": ["button:has-text(\"Nova OS\")"],
+      "seletor": "#vm-form select[name=maquina_id]",
+      "marca": "caixa",
+      "label": "Maquina"
+    },
+    {
+      "texto": "Adicione os itens da OS — peca do estoque ou servico externo",
+      "rota": "/maquinas/manutencao.php",
+      "pre_acoes": ["button:has-text(\"Nova OS\")"],
+      "seletor": "#vm-form button:has-text(\"+ Item\")",
+      "marca": "caixa",
+      "label": "Adicionar item"
+    },
+    {
+      "texto": "Defina o status (aberta ou executada) e salve — na execucao as pecas baixam do estoque e o custo entra no custeio",
+      "rota": "/maquinas/manutencao.php",
+      "pre_acoes": ["button:has-text(\"Nova OS\")"],
+      "seletor": "#vm-form button.vbtn-primary[type=submit]",
+      "marca": "seta",
+      "label": "Salvar OS"
+    }
+  ]
+}
